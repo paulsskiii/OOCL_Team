@@ -5,4 +5,9 @@ public class Tanker extends Ship {
         super(shipName, captainName, speedKnots, fuelLevelPercentage);
         this.cargoTypeCarried = cargoTypeCarried;
     }
+
+    @Override
+    public void displayShipInfo() {
+        System.out.println("Cargo Type Carried: " + cargoTypeCarried);
+    }
 }

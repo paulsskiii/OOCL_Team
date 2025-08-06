@@ -24,11 +24,11 @@ public class ShipWorker {
         this.speedKnots = speedKnots;
     }
     public void setFuelLevelPercentage(int fuelLevelPercentage) {
-        if(fuelLevelPercentage < 0 && fuelLevelPercentage > 100) {
+        if(fuelLevelPercentage < 0 || fuelLevelPercentage > 100) {
             this.fuelLevelPercentage = fuelLevelPercentage;
         }
         else {
-            System.out.println("Enter a valid value for Fuel Level Percentage.")
+            System.out.println("Enter a valid value for Fuel Level Percentage.");
         }
     }
 

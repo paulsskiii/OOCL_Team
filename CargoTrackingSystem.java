@@ -11,6 +11,13 @@ public class CargoTrackingSystem {
         double weightKg = 850.25;
 
         // --- Add your code below this line ---
-        
+        if (estimatedDeliveryDays <= 3) {
+            System.out.println("Express delivery! Expected in X days");
+        } else if (estimatedDeliveryDays > 4 && estimatedDeliveryDays < 7) {
+            System.out.println("Standard delivery. Expected in X days.");
+        }
+        else {
+            System.out.println("Long hail delivery. Expected in X days.");
+        }
     }
 }

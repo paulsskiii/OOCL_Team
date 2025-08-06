@@ -1,9 +1,10 @@
 public class Shipment {
     private String cargoType;
-    private long trackingNumber;
+    private String trackingNumber;
     private String currentLocation;
     private int estimatedDeliveryDays;
     private boolean isDelivered;
+    private double weightKg;
     
     public String getCargoType() {
         return cargoType;
@@ -11,10 +12,10 @@ public class Shipment {
     public void setCargoType(String cargoType) {
         this.cargoType = cargoType;
     }
-    public long getTrackingNumber() {
+    public String getTrackingNumber() {
         return trackingNumber;
     }
-    public void setTrackingNumber(long trackingNumber) {
+    public void setTrackingNumber(String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
     public String getCurrentLocation() {
@@ -35,6 +36,14 @@ public class Shipment {
     public void setDelivered(boolean isDelivered) {
         this.isDelivered = isDelivered;
     }
+    public double getWeightKg() {
+        return weightKg;
+    }
+    public void setWeightKg(double weightKg) {
+        this.weightKg = weightKg;
+    }
+
+    
 
     
 }

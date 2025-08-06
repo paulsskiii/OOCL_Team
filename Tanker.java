@@ -1,15 +1,15 @@
-public class Tanker extends Ship {
+public class Tanker extends ShipWorker {
     
     private String cargoTypeCarrierId;
 
     public Tanker(String shipName, String captainName, double speedKnots, int fuelLevelPercentage, String cargoTypeCarrierId){
         super(shipName, captainName, speedKnots, fuelLevelPercentage);
-        this.cargoTypeCarrierId;
+        this.cargoTypeCarrierId = cargoTypeCarrierId;
     }
 
     @Override
-    void displayShipInfo(){
-        System.out.println("Cargo Type Carrier ID: " + cargoTypeCarrierId)
+    public void displayShipInfo(){
+        System.out.println("Cargo Type Carrier ID: " + cargoTypeCarrierId);
     }
 
 }

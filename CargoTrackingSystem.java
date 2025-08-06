@@ -2,14 +2,17 @@ package OOCL_Team;
 
 public class CargoTrackingSystem {
     public static void main(String[] args) {
+        Shipment shipment = new Shipment();
         // 1 & 2. Declare and Initialize Variables
-        String cargoType = "Electronics";
-        String trackingNumber = "TRK98765";
-        String currentLocation = "At Sea";
-        int estimatedDeliveryDays = 6;
-        boolean isDelivered = false;
-        double weightKg = 850.25;
-
+        int estimatedDeliveryDays =  shipment.getEstimatedDeliveryDays();
+        
+        shipment.setCargoType("Electronics");
+        shipment.setTrackingNumber("TRK98765");
+        shipment.setCurrentLocation("At Sea");
+        shipment.setEstimatedDeliveryDays(6);
+        shipment.setDelivered(false);
+        shipment.setWeightKg(860.25);
+        
         // --- Add your code below this line ---
         
         if ( estimatedDeliveryDays <= 3 ) {

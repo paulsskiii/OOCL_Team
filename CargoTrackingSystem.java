@@ -2,26 +2,24 @@ package Java34.OOCL_Team;
 
 public class CargoTrackingSystem {
     public static void main(String[] args) {
-        // 1 & 2. Declare and Initialize Variables
-        String cargoType = "Electronics";
-        String trackingNumber = "TRK98765";
-        String currentLocation = "At Sea";
-        int estimatedDeliveryDays = 6;
-        boolean isDelivered = false;
-        double weightKg = 850.25;
+        Cargo cargo = new Cargo();
 
-        
+        cargo.setCargoType("Electronics");
+        cargo.setTrackingNumber("TRK4073839050");
+        cargo.setCurrentLocation("Port of Manila");
+        cargo.setEstimatedDeliveryDays(3);
+        cargo.setDelivered(false);
+        cargo.setWeightKg(1500.75);
 
-        // --- Add your code below this line ---
-        if(estimatedDeliveryDays <= 3){
-            System.out.println ("Express delivery! Expected in " + estimatedDeliveryDays + " days.");
-        }
-        else if (estimatedDeliveryDays >= 4 && estimatedDeliveryDays <= 7){
-             System.out.println("Standard Delivery. Expected in " + estimatedDeliveryDays + " days.");
-        }
-        else{
-            System.out.println("Long haul Delivery. Expected in " + estimatedDeliveryDays + " days.");
-        }
-        
-    } 
+        System.out.println(checkEstimatedDeliveryDays(cargo));
+    }
+
+    public static String checkEstimatedDeliveryDays(Cargo cargo) {
+        if (cargo.getEstimatedDeliveryDays() <= 3){
+            return "Express delivery! Expected in " + cargo.getEstimatedDeliveryDays() + " days.";
+        } else if (cargo.getEstimatedDeliveryDays() <= 7 && cargo.getEstimatedDeliveryDays() >= 4) {
+            return "Standard delivery. Expected in " + cargo.getEstimatedDeliveryDays() + " days";
+        } 
+        return "Long haul delivery. Expected in " + cargo.getEstimatedDeliveryDays() + " days.";
+    }
 }

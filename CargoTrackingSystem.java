@@ -10,6 +10,8 @@ public class CargoTrackingSystem {
         boolean isDelivered = false;
         double weightKg = 850.25;
 
+        
+
         // --- Add your code below this line ---
         if(estimatedDeliveryDays <= 3){
             System.out.println ("Express delivery! Expected in " + estimatedDeliveryDays + " days.");
@@ -21,5 +23,5 @@ public class CargoTrackingSystem {
             System.out.println("Long haul Delivery. Expected in " + estimatedDeliveryDays + " days.");
         }
         
-    }
+    } 
 }

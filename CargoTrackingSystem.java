@@ -13,4 +13,13 @@ public class CargoTrackingSystem {
         // --- Add your code below this line ---
         
     }
+    
+    if(estimatedDeliveryDays <= 3){
+        System.out.println("Express delivery!");
+    } else if(estimatedDeliveryDays >= 4 && estimatedDeliveryDays <= 7){
+        System.out.println("Standard Delivery. Expected in X days");
+    } else {
+        System.out.println("Long haul Delivery. Expected in X days");
+    }
+
 }

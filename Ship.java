@@ -1,4 +1,6 @@
-private class Ship {
+package OOCL_Team;
+
+public class Ship {
     private String shipName;
     private String captainName;
     private double speedKnots;

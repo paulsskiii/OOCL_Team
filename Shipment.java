@@ -1,3 +1,5 @@
+package OOCL_Team;
+
 public class Shipment {
     private String cargoType;
     private long trackingNumber;

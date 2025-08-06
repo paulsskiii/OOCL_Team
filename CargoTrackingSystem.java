@@ -7,11 +7,11 @@ public class CargoTrackingSystem {
         int estimatedDeliveryDays =  shipment.getEstimatedDeliveryDays();
         
         shipment.setCargoType("Electronics");
-        shipment.setTrackingNumber("TRK98765");
+        // shipment.setTrackingNumber("TRK98765");
         shipment.setCurrentLocation("At Sea");
         shipment.setEstimatedDeliveryDays(6);
         shipment.setDelivered(false);
-        shipment.setWeightKg(860.25);
+        // shipment.setWeightKg(860.25);
         
         // --- Add your code below this line ---
         

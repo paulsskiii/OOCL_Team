@@ -33,7 +33,7 @@ public class Ship {
         return fuelLevelPercentage;
     }
 
-    private void displayShipInfo() {
+    public void displayShipInfo() {
         System.out.println("Ship Name: " + shipName);
         System.out.println("Captain Name: " + captainName);
         System.out.println("Speed: " + speedKnots + " knots");

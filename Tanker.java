@@ -1,4 +1,4 @@
-public class Tanker extends Ship {
+public class Tanker extends ShipWorker {
     
     private String cargoTypeCarrierId;
 
@@ -8,7 +8,7 @@ public class Tanker extends Ship {
     }
 
     @Override
-    void displayShipInfo(){
+    public void displayShipInfo(){
         System.out.println("Cargo Type Carrier ID: " + cargoTypeCarrierId)
     }
 

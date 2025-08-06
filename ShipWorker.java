@@ -4,6 +4,10 @@ public class ShipWorker {
     private double speedKnots;
     private int fuelLevelPercentage;
 
+    public ShipWorker(String shipName, String captainName, double speedKnots, int fuelLevelPercentage) {
+    }
+
+
     // setter
     public void setShipName(String shipName) {
         this.shipName = shipName;

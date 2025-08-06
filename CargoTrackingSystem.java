@@ -11,6 +11,8 @@ public class CargoTrackingSystem {
         double weightKg = 850.25;
 
         // --- Add your code below this line ---
+        if(estimatedDeliveryDays <= 3){
+        }
         
     }
     

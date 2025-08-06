@@ -1,4 +1,4 @@
-package Java34.OOCL_Team;
+package OOCL_Team;
 
 public class CargoTrackingSystem {
     public static void main(String[] args) {

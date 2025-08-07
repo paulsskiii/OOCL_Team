@@ -1,4 +1,4 @@
-package Java34.OOCL_Team.Exercise3;
+package Java34.OOCL_Team.MiniProject;
 
 public class Shipment {
     private final String shipmentId;
@@ -21,6 +21,32 @@ public class Shipment {
         this.declaredValue = declaredValue;
     }
 
+    //getters
+    public String getShipmentId() {
+        return this.shipmentId;
+    }
+
+    public String getOriginPort() {
+        return this.origin;
+    }
+
+    public String getDestinationPort() {
+        return this.destinationPort;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public String getCargoDescription(){
+        return this.cargoDescription;
+    }
+
+    public double getDeclaredValue(){
+        return this.declaredValue;
+    }
+
+    //setters
     private void setOrigin (String origin) {
         this.origin = origin;
     }

@@ -1,6 +1,6 @@
-package Java34.OOCL_Team.Exercise2;
+package Java34.OOCL_Team.MiniProject;
 
-import Java34.OOCL_Team.MiniProject.Shipment;
+import Java34.OOCL_Team.Exercise2.ShipWorker;
 
 public class CargoShip extends ShipWorker {
     public CargoShip(String shipName, String captainName, double speedKnots, int fuelLevelPercentage) {

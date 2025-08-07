@@ -20,4 +20,24 @@ public class Shipment {
         this.cargoDescription = cargoDescription;
         this.declaredValue = declaredValue;
     }
+
+    private void setOrigin (String origin) {
+        this.origin = origin;
+    }
+
+    private void setDestinationPort (String destinationPort) {
+        this.destinationPort = destinationPort;
+    }
+
+    public void setStatus (String status) {
+        this.status = status;
+    }
+
+    private void setCargoDescription (String cargoDescription) {
+        this.cargoDescription = cargoDescription;
+    }
+
+    private void setDeclaredValue (int declaredValue) {
+        this.declaredValue = declaredValue;
+    }
 }

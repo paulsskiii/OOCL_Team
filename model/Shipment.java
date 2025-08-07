@@ -1,4 +1,4 @@
-package Java34.OOCL_Team;
+package Java34.OOCL_Team.model;
 
 public class Shipment {
     private String shipmentId;

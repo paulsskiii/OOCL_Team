@@ -12,25 +12,6 @@ public class CargoLogisticsApp {
         Ship c2 = new Ship("4562", "Manila", "China", "Delivered",
                 "Awkward", 20);
 
-
-
-//        System.out.println("Loading to CargoShip");
-//        c1.setShipName("ESA");
-//        c1.loadCargo(c1);
-//        System.out.println(c1.getStatus());
-//
-//
-//        c1.unloadCargo(c1);
-//        System.out.println(c1.getStatus());
-//
-//
-//        System.out.println("unloading to Destination");
-//        c2.setShipName("CMA");
-//        c2.unloadCargo(c2);
-//
-//        System.out.println(c2.getStatus());
-
-
         System.out.println("Initial Details");
         System.out.println(c1.getShipmentDetails());
 

@@ -1,4 +1,4 @@
-public class ContainerShip extends Ship {
+public class ContainerShip extends ShipRepository {
     private int numberOfTEU;
 
     public ContainerShip(String shipName, String captainName, double speedKnots, int fuelLevelPercentage, int numberOfTEU) {

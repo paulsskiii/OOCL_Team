@@ -5,12 +5,16 @@ public class Shipment {
     private String originPort;
     private String destinationPort;
     private String status;
+    private String cargoDescription;
+    private double declaredValue;
 
-    public Shipment(String shipmentId, String originPort, String destinationPort, String status) {
+    public Shipment(String shipmentId, String originPort, String destinationPort, String status,String cargoDescription,double declaredValue) {
         this.shipmentId = shipmentId;
         this.originPort = originPort;
         this.destinationPort = destinationPort;
         this.status = status;
+        this.cargoDescription = cargoDescription;
+        this.declaredValue = declaredValue;
     }
 
     public String getShipmentId() {
@@ -29,6 +33,14 @@ public class Shipment {
         return status;
     }
 
+    private String getCargoDescription() {
+        return cargoDescription;
+    }
+
+    private double getDeclaredValue() {
+        return declaredValue;
+    }
+
     private void setShipmentId(String shipmentId) {
         this.shipmentId = shipmentId;
     }
@@ -45,7 +57,15 @@ public class Shipment {
         this.status = status;
     }
 
-    public void getShipmentDetails(String shipmentId, String originPort, String destinationPort, String status) {
-        System.out.println("Shipment ID: {shipmentId}, Origin Port: {originPort}, Destination Port: {destinationPort}, Status: {status}");
+    private void setCargoDescription(String cargoDescription) {
+        this.cargoDescription = cargoDescription;
+    }
+
+    private void setDeclaredValue(double declaredValue) {
+        this.declaredValue = declaredValue;
+    }
+
+    public String getShipmentDetails(String shipmentId, String originPort, String destinationPort, String status, String cargoDescription, double declaredValue) {
+        return String.format("Shipment ID: %s, Origin Port: %s, Destination Port: %s, Status: %s, Cargo Description: %s, Declared Value: %d",shipmentId,originPort,destinationPort,status,cargoDescription,declaredValue);
     }
 }

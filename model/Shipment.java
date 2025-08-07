@@ -8,6 +8,9 @@ public class Shipment {
     private String cargoDescription;
     private double declaredValue;
 
+    public Shipment() {
+    }
+
     public Shipment(String shipmentId, String originPort, String destinationPort, String status,String cargoDescription,double declaredValue) {
         this.shipmentId = shipmentId;
         this.originPort = originPort;
@@ -65,7 +68,8 @@ public class Shipment {
         this.declaredValue = declaredValue;
     }
 
-    public String getShipmentDetails(String shipmentId, String originPort, String destinationPort, String status, String cargoDescription, double declaredValue) {
-        return String.format("Shipment ID: %s, Origin Port: %s, Destination Port: %s, Status: %s, Cargo Description: %s, Declared Value: %d",shipmentId,originPort,destinationPort,status,cargoDescription,declaredValue);
+    public String getShipmentDetails() {
+        return String.format("Shipment ID: %s, Origin Port: %s, Destination Port: %s, Status: %s, Cargo Description: %s, Declared Value: %.2f "
+                ,shipmentId,originPort,destinationPort,status,cargoDescription,declaredValue);
     }
 }

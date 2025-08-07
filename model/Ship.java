@@ -6,8 +6,8 @@ public class Ship extends Shipment{
     private double speedKnots;
     private int fuelLevelPercentage;
 
-    public Ship(String shipmentId, String originPort, String destinationPort, String status) {
-        super(shipmentId, originPort, destinationPort, status);
+    public Ship(String shipmentId, String originPort, String destinationPort, String status, String cargoDescription,double declaredValue) {
+        super(shipmentId, originPort, destinationPort, status,cargoDescription, declaredValue);
     }
 
     public String getShipName() {
@@ -39,10 +39,16 @@ public class Ship extends Shipment{
     }
 
     public void loadCargo(Shipment shipment){
-        System.out.println("Loading Shipment " + shipment.getShipmentId() + " to " + this.shipName);
+        System.out.println("Loading Shipment " + shipment.getShipmentId() + " to " + this.shipName );
+        changeStatus("In-Transit");
     }
 
     public void unloadCargo(Shipment shipment){
         System.out.println("Unloading Shipment " + shipment.getShipmentId() + " to " + this.shipName);
+        changeStatus("Delivered");
+    }
+
+    public void changeStatus(String status){
+        this.setStatus(status);
     }
 }

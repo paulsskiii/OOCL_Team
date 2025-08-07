@@ -66,4 +66,13 @@ public class Shipment {
     private void setDeclaredValue (int declaredValue) {
         this.declaredValue = declaredValue;
     }
+
+    public String getShipmentDetails () {
+        String shipmentDetails = "";
+
+        shipmentDetails = "Shipment ID: " + getShipmentId () + " | Origin Port: " + getOriginPort () + " | Destination Port: " + getDestinationPort () +
+        " | Status: " + getStatus () + " | Cargo Desc: " + getCargoDescription () + " | Declared Value: " + getDeclaredValue ();
+
+        return shipmentDetails;
+    }
 }

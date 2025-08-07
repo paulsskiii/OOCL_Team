@@ -1,4 +1,5 @@
-package Java34.OOCL_Team.Exercise2;
+package Exercise2;
+import Java34.OOCL_Team.Exercise2.ShipWorker;
 
 public class ContainerShip extends ShipWorker {
 
@@ -10,8 +11,9 @@ public class ContainerShip extends ShipWorker {
             this.numberOfTEU = numberOfTEU;
     }
 
+    @Override
     public void displayShipInfo(){
-        System.out.println("print the numberOfTeu" + numberOfTEU);
+        System.out.println("Number of TEU: " + numberOfTEU);
     }
 
 }

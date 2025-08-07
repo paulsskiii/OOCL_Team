@@ -1,4 +1,5 @@
-package Java34.OOCL_Team.Exercise2;
+package Exercise2;
+import Java34.OOCL_Team.Exercise2.ShipWorker;
 
 public class Tanker extends ShipWorker {
     

@@ -1,3 +1,5 @@
+package Java34.OOCL_Team.Exercise2;
+
 public class Tanker extends ShipWorker {
     
     private String cargoTypeCarrierId;

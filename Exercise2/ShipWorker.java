@@ -1,3 +1,5 @@
+package Java34.OOCL_Team.Exercise2;
+
 public class ShipWorker {
     private String shipName;
     private String captainName;

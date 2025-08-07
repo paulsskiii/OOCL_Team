@@ -1,4 +1,6 @@
-package Java34.OOCL_Team;
+package Java34.OOCL_Team.Exercise1;
+
+import Java34.OOCL_Team.Exercise2.Cargo;
 
 public class CargoTrackingSystem {
     public static void main(String[] args) {

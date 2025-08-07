@@ -1,4 +1,4 @@
-package Java34.OOCL_Team;
+package Java34.OOCL_Team.Exercise2;
 
 public class Cargo {
     private String cargoType;

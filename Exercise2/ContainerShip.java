@@ -1,4 +1,6 @@
-public class ContainerShip extends ShipWorker{
+package Java34.OOCL_Team.Exercise2;
+
+public class ContainerShip extends ShipWorker {
 
     private int numberOfTEU;
 

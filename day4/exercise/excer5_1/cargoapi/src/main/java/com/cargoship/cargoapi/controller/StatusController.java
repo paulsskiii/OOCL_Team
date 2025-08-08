@@ -1,3 +1,5 @@
+package com.cargoship.cargoapi.controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +11,7 @@ public class StatusController {
 
     @GetMapping("/status")
     public String getStatus() {
-        // TODO: Return a message that confirms the API is running
-        return null; // Replace this
+        //  Return a message that confirms the API is running
+        return "Hi dont worry i am healthy."; // Replace this
     }
 }

@@ -1,3 +1,5 @@
+package com.cargoship.cargoapi.repository;
+
 import com.cargoship.cargoapi.model.Ship;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +17,12 @@ public class ShipRepository {
     private final List<Ship> ships = new ArrayList<>();
 
     public ShipRepository() {
-        // TODO: Add some dummy ship data to the list
+        //  Add some dummy ship data to the list
+        ships.add(new Ship(1, "Ling", 2, "Mnl"));
+        ships.add(new Ship(2, "Gang", 4, "Mnl"));
+        ships.add(new Ship(3, "Guli", 6, "Mnl"));
+        ships.add(new Ship(4, "Guli", 8, "Mnl"));
+        ships.add(new Ship(5, "Wata", 10, "Mnl"));
     }
 
     /**
@@ -23,7 +30,7 @@ public class ShipRepository {
      * @return List of all ships.
      */
     public List<Ship> findAllShips() {
-        // TODO: Return a copy of the ships list
+        //  Return a copy of the ships list
         return null;
     }
 
@@ -33,7 +40,7 @@ public class ShipRepository {
      * @return Optional of Ship if found.
      */
     public Optional<Ship> findShipById(Long id) {
-        // TODO: Search through the list and return the first match
+        //  Search through the list and return the first match
         return Optional.empty();
     }
 }

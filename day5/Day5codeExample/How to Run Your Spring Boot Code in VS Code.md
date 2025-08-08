@@ -11,7 +11,7 @@ Once the extensions are installed, it's a good idea to restart VS Code to make s
 ---
 
 ## Step 2: Create a New Spring Boot Project
-
+1
 Open the Command Palette (`Ctrl+Shift+P`) and type **Spring Initializr**.  
 
 Select **"Create a Maven Project"** or **"Create a Gradle Project."** Maven is the most common choice.  

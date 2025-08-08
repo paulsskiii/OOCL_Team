@@ -1,4 +1,4 @@
-Class Ship {
+public class Ship {
     String name;
     double maxSpeedKnot; // in knots
 

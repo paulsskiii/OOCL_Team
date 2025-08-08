@@ -1,0 +1,15 @@
+# Update cargo-service/src/main/resources/application.yml: Add Eureka client configuration.
+YAML
+# src/main/resources/application.yml
+# (Keep existing H2 and JPA config, and other spring settings)
+# ...
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/ # Address of the Eureka Server
+  instance:
+    hostname: localhost
+    # When running multiple instances on the same machine,
+    # it's good practice to provide a unique ID for each instance.
+    # Otherwise, Eureka might assume they are the same if hostname and app name are identical.
+    # instance-id: ${spring.application.name}:${instance_id:${random.value}}

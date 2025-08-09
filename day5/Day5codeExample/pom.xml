@@ -13,6 +13,22 @@ config-server/pom.xml (Verify dependencies): -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
     </dependencies>
 <dependencyManagement>
     <dependencies>
@@ -22,5 +38,6 @@ config-server/pom.xml (Verify dependencies): -->
             <version>${spring-cloud.version}</version> <type>pom</type>
             <scope>import</scope>
         </dependency>
+        
     </dependencies>
 </dependencyManagement>

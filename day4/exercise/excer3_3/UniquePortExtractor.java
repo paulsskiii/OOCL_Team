@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet; // For sorted unique elements
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UniquePortExtractor {
@@ -16,7 +13,13 @@ public class UniquePortExtractor {
         );
 
         // Extract all unique port names
- 
+        List<String> uniquePort = cargoRoutes.stream()
+                .flatMap(cargoRoute -> Arrays.stream(cargoRoute.split("->")))
+                .map(String::trim)
+                .distinct()
+                .sorted()
+                .toList();
+        System.out.println(uniquePort);
     }
 }
 

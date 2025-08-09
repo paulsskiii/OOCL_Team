@@ -1,0 +1,8 @@
+### `cargo-service-prod.yml`
+welcome:
+  message: Production Cargo Service is live!
+shipping:
+  fee: 15.00
+cargo:
+  default_size: 150.0
+```

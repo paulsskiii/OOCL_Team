@@ -1,0 +1,10 @@
+#yaml
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///D:\Users\Martin\OneDrive - De La Salle University - Manila\Desktop\Personal projects\ita-bootcamp\OOCL_Team\ARELLMA_exercises\cargoapi\config-repo

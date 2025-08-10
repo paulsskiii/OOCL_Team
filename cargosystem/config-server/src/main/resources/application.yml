@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///D:\Java Exercise\OOCL_Team\cargosystem\config-repo
+
+          # repos:
+          #   dev-properties-repo:
+          #     pattern : cargo-service/
+          #     uri: https://github.com/paulsskiii/OOCL_Team.git
+          #     search-paths: cargosystem/config-repo
+
+          #   prod-properties-repo:
+          #     uri: https://github.com/paulsskiii/OOCL_Team.git
+          #     pattern: cargo-service/prod
+          #     search-paths: cargosystem/config-repo/{profile}
+
+            # any-request-repo:
+            #   uri: https://github.com/paulsskiii/OOCL_Team
+            #   pattern: cargo-service*/*
+            #   search-paths:
+            #     - spring-cloud-config-server-setup/configs-location/{application}/{profile}
+

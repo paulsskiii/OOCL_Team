@@ -1,0 +1,6 @@
+server:
+  port: 7070
+welcome:
+  message: Development Cargo Service!
+shipping:
+  fee: 5.00

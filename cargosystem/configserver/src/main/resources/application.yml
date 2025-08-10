@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/paulsskiii/OOCL_Team
+
+          repos:
+
+            dev-properties-repo:
+              pattern : cargo-service/dev
+              uri: https://github.com/paulsskiii/OOCL_Team
+              search-paths:
+                - OOCL_Team/cargosystem/config-repo/
+
+            prod-properties-repo:
+              uri: https://github.com/paulsskiii/OOCL_Team
+              pattern: cargo-service/prod
+              search-paths:
+                - OOCL_Team/cargosystem/config-repo/{profile}
+
+            any-request-repo:
+              uri: https://github.com/paulsskiii/OOCL_Team
+              pattern: cargo-service*/*
+              search-paths:
+                - spring-cloud-config-server-setup/configs-location/{application}/{profile}

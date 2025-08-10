@@ -5,7 +5,7 @@ spring:
     active:
     - dev
   application:
-    name: cargo-service
+    name: eureka-server
   datasource:
     url: jdbc:h2:mem:cargodb
     driverClassName: org.h2.Driver
@@ -19,7 +19,11 @@ spring:
     console:
       enabled: true
       path: /h2-console
-  
-server:
-  port: 0
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8761

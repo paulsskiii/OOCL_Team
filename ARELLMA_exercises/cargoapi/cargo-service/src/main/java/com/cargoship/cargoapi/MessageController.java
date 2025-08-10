@@ -17,12 +17,13 @@ public class MessageController {
     @Value("${cargo.default_size}")
     private Double cargoDefaultSize;
 
-    // @Value("${spring.application.instance_id}")
-    // private String instanceId;
+    @Value("${eureka.instance.instance-id:unknown}")
+    private String instanceId;
 
-    // public String getInstanceId(){
-    //     return " Running Instance ID " + instanceId;
-    // }
+    @GetMapping("/instance")
+    public String getInstanceId(){
+        return " Running Instance ID " + instanceId;
+    }
 
     @GetMapping("/message")
     public String getMessage() {

@@ -13,9 +13,5 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class CargoServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(CargoServiceApplication.class, args);
-
-        // MessageController messageController = new MessageController();
-        // System.out.println(messageController.getInstanceId());
-
     }
 }

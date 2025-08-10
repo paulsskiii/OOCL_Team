@@ -5,3 +5,6 @@ shipping:
   fee: 5.00
 cargo:
   default_size: 100.0
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}

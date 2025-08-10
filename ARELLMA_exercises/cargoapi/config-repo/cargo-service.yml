@@ -1,0 +1,7 @@
+### `cargo-service-dev.yml`
+welcome:
+  message: Native Cargo Service!
+shipping:
+  fee: 2.00
+cargo:
+  default_size: 69.0

@@ -1,7 +1,6 @@
 // First REST Endpoint (@RestController, @GetMapping)
 
 // com.cargoship.cargoapi.controller.HelloController.java
-package com.cargoship.cargoapi.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,6 @@
-Class Ship {
+package excer3_2;
+
+class Ship {
     String name;
     double maxSpeedKnot; // in knots
 

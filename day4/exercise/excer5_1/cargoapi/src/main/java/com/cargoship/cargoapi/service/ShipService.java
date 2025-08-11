@@ -1,5 +1,10 @@
+package com.cargoship.cargoapi.service;
+
+import com.cargoship.cargoapi.component.PortAvailabilityChecker;
 import com.cargoship.cargoapi.model.Ship;
 import com.cargoship.cargoapi.repository.ShipRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +17,12 @@ import java.util.Optional;
 public class ShipService {
 
     private final ShipRepository shipRepository;
+    @Autowired
+    private PortAvailabilityChecker portAvailabilityChecker;
 
     public ShipService(ShipRepository shipRepository) {
         // TODO: Initialize the repository field
-        this.shipRepository = null; // Replace
+        this.shipRepository = shipRepository; // Replace
     }
 
     /**
@@ -23,7 +30,7 @@ public class ShipService {
      */
     public List<Ship> getAllShips() {
         // TODO: Call repository to return all ships
-        return null;
+        return shipRepository.findAllShips();
     }
 
     /**
@@ -31,6 +38,10 @@ public class ShipService {
      */
     public Optional<Ship> getShipDetails(Long id) {
         // TODO: Call repository to find a ship by ID
-        return Optional.empty();
+        return shipRepository.findShipById(id);
+    }
+
+    public void samplePortOperation(String portName) {
+        System.out.println("Ship operation executing...");
     }
 }

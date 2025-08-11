@@ -1,4 +1,4 @@
-package com.example.cargoservice.component;
+package com.example.cargo_service.component;
 
 import org.springframework.stereotype.Component;
 

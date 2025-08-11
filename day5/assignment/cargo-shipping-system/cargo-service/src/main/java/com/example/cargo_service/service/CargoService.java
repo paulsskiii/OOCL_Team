@@ -2,10 +2,10 @@
     // This class will encapsulate the business logic and interact with the CargoRepository
 
 // src/main/java/com/example/cargoservice/service/CargoService.java
-package com.example.cargoservice.service;
+package com.example.cargo_service.service;
 
-import com.example.cargoservice.model.CargoItem;
-import com.example.cargoservice.repository.CargoRepository; // Import CargoRepository
+import com.example.cargo_service.model.CargoItem;
+import com.example.cargo_service.repository.CargoRepository; // Import CargoRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;

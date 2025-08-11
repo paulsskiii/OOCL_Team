@@ -2,7 +2,7 @@
     // Update CargoItem.java to be a JPA Entity
 
 // src/main/java/com/example/cargoservice/model/CargoItem.java
-package com.example.cargoservice.model;
+package com.example.cargo_service.model;
 
 import jakarta.persistence.Entity; // Import for @Entity
 import jakarta.persistence.GeneratedValue;

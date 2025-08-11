@@ -1,8 +1,8 @@
-package com.example.cargoservice.service;
+package com.example.cargo_service.service;
 
-import com.example.cargoservice.component.PortAvailabilityChecker;
-import com.example.cargoservice.model.Ship;
-import com.example.cargoservice.repository.ShipRepository;
+import com.example.cargo_service.component.PortAvailabilityChecker;
+import com.example.cargo_service.model.Ship;
+import com.example.cargo_service.repository.ShipRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

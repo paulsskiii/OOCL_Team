@@ -1,4 +1,4 @@
-package com.example.cargoservice.model;
+package com.example.cargo_service.model;
 /**
  * A basic model class for a Ship.
  */

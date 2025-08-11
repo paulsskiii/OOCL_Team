@@ -1,4 +1,4 @@
-package main.java.com.example.tracking_service.model;
+package com.example.tracking_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;

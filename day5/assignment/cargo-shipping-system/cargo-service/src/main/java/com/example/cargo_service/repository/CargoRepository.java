@@ -1,11 +1,11 @@
 // Create CargoRepository.java (JPA Repository Interface)
 
 // src/main/java/com/example/cargoservice/repository/CargoRepository.java
-package com.example.cargoservice.repository;
+package com.example.cargo_service.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository; // Import JpaRepository
 import org.springframework.stereotype.Repository;
-import com.example.cargoservice.model.CargoItem;
+import com.example.cargo_service.model.CargoItem;
 
 @Repository // Marks this as a Spring Data JPA repository
 public interface CargoRepository extends JpaRepository<CargoItem, Long> {

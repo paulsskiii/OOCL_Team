@@ -1,6 +1,6 @@
-package com.example.cargoservice.repository;
+package com.example.cargo_service.repository;
 
-import com.example.cargoservice.model.Ship;
+import com.example.cargo_service.model.Ship;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

@@ -2,10 +2,10 @@
     //The controller now delegates to the CargoService for all data operations.
 
 // src/main/java/com/example/cargoservice/controller/CargoController.java
-package com.example.cargoservice.controller;
+package com.example.cargo_service.controller;
 
-import com.example.cargoservice.service.CargoService; // Import CargoService
-import com.example.cargoservice.model.CargoItem;
+import com.example.cargo_service.service.CargoService; // Import CargoService
+import com.example.cargo_service.model.CargoItem;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

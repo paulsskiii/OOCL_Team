@@ -1,4 +1,4 @@
-Class Ship {
+public class Ship {
     String name;
     double maxSpeedKnot; // in knots
 
@@ -7,14 +7,14 @@ Class Ship {
         this.maxSpeedKnot = maxSpeedKnot;
     }
 
-    public String getName() { return name; }
-    public double getMaxSpeedKnot() { return maxSpeedKnot; }
+    public String getName() { return this.name; }
+    public double getMaxSpeedKnot() { return this.maxSpeedKnot; }
 
     @Override
     public String toString() {
         return "Ship{" +
-               "name='" + name + '\'' +
-               ", maxSpeedKnot=" + maxSpeedKnot +
+               "name='" + getName() + '\'' +
+               ", maxSpeedKnot=" + getMaxSpeedKnot() +
                '}';
     }
 }

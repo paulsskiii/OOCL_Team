@@ -16,7 +16,18 @@ public class UniquePortExtractor {
         );
 
         // Extract all unique port names
- 
+        
+        List<String> uniquePortList = cargoRoutes.stream()
+                                                .flatMap(route -> Arrays.stream(route.split(" -> ")))
+                                                .sorted()
+                                                .distinct()
+                                                .collect(Collectors.toList());
+
+        System.out.println("Unique Port List");
+        for (String cargoRoute : uniquePortList) {
+            System.out.println(cargoRoute);
+        }
+        
     }
 }
 

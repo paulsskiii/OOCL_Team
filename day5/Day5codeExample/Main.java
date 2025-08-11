@@ -11,7 +11,7 @@ interface CoffeeService {
 class MobileAppCoffeeService implements CoffeeService {
     @Override
     public void placeOrder(String coffeeType) {
-        System.out.println("☕️ New order received from the mobile app.");
+        System.out.println(" New order received from the mobile app.");
         System.out.println("  Processing order for a " + coffeeType + ".");
     }
 }
@@ -62,7 +62,7 @@ public class Main {
         CoffeeService counterService = new CoffeeService() {
             @Override
             public void placeOrder(String coffeeType) {
-                System.out.println("📝 New order taken at the counter.");
+                System.out.println("New order taken at the counter.");
                 System.out.println("  Writing down the order for a " + coffeeType + ".");
             }
         };

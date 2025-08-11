@@ -13,6 +13,12 @@ public class AverageShipSpeed {
 
         // Calculate average max speed
         
+        double averageShipSpeed = ships.stream()
+                                           .mapToDouble(ship -> ship.getMaxSpeedKnot())
+                                           .average()
+                                           .orElse(0.0);
+
+        System.out.println("The average ship speed of the ships is " + averageShipSpeed);                                   
         // Test with an empty list
        
     }

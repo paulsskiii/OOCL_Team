@@ -18,6 +18,7 @@ class CoffeeOrderManager {
     // This is where Dependency Injection happens via annotation.
     // We're not creating a 'new CoffeeService()'. Instead, we're telling
     // Spring to find an instance of CoffeeService and "autowire" it here.
+    //can also make an automatic setter for the CoffeeService
     @Autowired
     private CoffeeService coffeeService;
 

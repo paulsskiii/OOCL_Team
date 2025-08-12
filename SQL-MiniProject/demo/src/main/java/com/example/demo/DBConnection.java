@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class DBConnection {
     // @Value ("${db.schema}")
-    private static String JDBC_SCHEMA = "online_ordering_proj";
+    public static String JDBC_SCHEMA = "online_ordering_proj";
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/" + JDBC_SCHEMA;
 
@@ -22,6 +22,8 @@ public class DBConnection {
     private static String PASSWORD = "";
 
     public static Connection getConnection () {
+
+
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);

@@ -1,12 +1,8 @@
 package com.example.demo;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-
-
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.demo.Statements.Statements;
 
 
 
@@ -14,12 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
     public class DemoApplication {
 
         public static void main(String[] args) {
-            // SpringApplication.run(DemoApplication.class, args);
-            
-           
-            
-            
-            
+
+            // Statements.trackPackageJourney();
+            Statements.selectAll();
+        
         }
 
     }

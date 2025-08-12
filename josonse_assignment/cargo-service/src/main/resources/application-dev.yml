@@ -1,0 +1,7 @@
+welcome:
+  message: Development Cargo Service!
+shipping:
+  fee: 5.00
+
+server:
+  port: 8082

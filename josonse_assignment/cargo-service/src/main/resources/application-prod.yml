@@ -1,0 +1,7 @@
+welcome:
+  message: Production Cargo Service is live!
+shipping:
+  fee: 15.00
+
+server:
+  port: 8083

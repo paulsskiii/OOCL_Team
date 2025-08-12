@@ -1,0 +1,4 @@
+db:
+  schema: online_ordering_proj
+  user: root
+  password: 

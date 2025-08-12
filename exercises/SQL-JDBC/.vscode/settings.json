@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "ex1_3"
+    ],
+    "java.project.referencedLibraries": [
+        "sqljdbc_12.10\\enu\\jars\\mssql-jdbc-12.10.1.jre8.jar",
+        "d:\\AVILAVI\\ITA10\\Workshop Git\\OOCL_Team\\exercises\\SQL-JDBC\\sqljdbc_12.10\\enu\\jars\\mssql-jdbc-12.10.1.jre11.jar"
+    ]
+}

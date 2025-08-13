@@ -84,16 +84,25 @@ public class DBConnection {
     }
 
     public static void displayMostActiveCities () {
+        System.out.println ();
         Connection con = null;
         try {
             con = DBConnection.getConnection ();
             CallableStatement cstmt = null;
-            String SQL = "";
+            String SQL = "CALL getMostActiveDeliveryCities()";
             cstmt = con.prepareCall (SQL);
             ResultSet rs = cstmt.executeQuery ();
 
             while (rs.next ()) {
-                
+                String locationName = rs.getString ("Location Name");
+                int freq = rs.getInt ("Frequency");
+                String courier = rs.getString ("Most Frequent Courier");
+                String deliveryDate = rs.getString ("Delivery Date Average");
+
+                System.out.println ("Location: " + locationName);
+                System.out.println ("\tNumber of deliveries: " + freq);
+                System.out.println ("\tMost frequency courier: " + courier);
+                System.out.println ("\tAverage Delivery Date: " + deliveryDate);
             }
 
             con.close ();

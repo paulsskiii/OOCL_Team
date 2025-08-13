@@ -52,7 +52,6 @@ public class DBConnection {
             cstmt.setInt (1, customerID);
             ResultSet rs = cstmt.executeQuery ();
 
-
             while (rs.next ()) {
                 if (nPackageCount == 0) {
                     customerName = rs.getString("Customer");
@@ -108,7 +107,45 @@ public class DBConnection {
     }
 
     public static void displayStepByStep (int packageID) {
+       System.out.println ();
+        Connection con = null;
+        try {
+            boolean isFirst = true;
+            con = DBConnection.getConnection ();
+            CallableStatement cstmt = null;
+            String SQL = "CALL getPackageJourneyTracker(?)";
+            cstmt = con.prepareCall (SQL);
+            cstmt.setInt (1, packageID);
+            ResultSet rs = cstmt.executeQuery ();
 
+
+            while (rs.next ()) {
+                if (isFirst) {
+                    System.out.println("Step-by-step of Package ID: " + packageID);
+                    System.out.println ("With description: " + rs.getString("package_contents_description"));
+                    System.out.println ("Sender: " + rs.getString ("sender_name") + " | Receiver: " + rs.getString ("receiver_name"));
+                    isFirst = false;
+                }
+                String trackingEventDescription = rs.getString ("tracking_event_description");
+                String status = rs.getString ("package_status");
+                String courier = rs.getString ("courier_name");
+                String location = rs.getString ("location_name");
+                String updateDate = rs.getString ("update_ts");
+
+                System.out.println ("Event: " + trackingEventDescription);
+                System.out.println ("\tCourier: " + courier);
+                System.out.println ("\tLocation: " + location);
+                System.out.println ("\tStatus: " + status);
+                System.out.println ("\tUpdated on: " + updateDate);
+            }
+            con.close ();
+        } catch (SQLException e) {
+            System.out.println ("DB Connection failed!");
+            System.out.println ("SQL State: " + e.getSQLState ());
+            System.out.println ("Error Code: " + e.getErrorCode ());
+            System.out.println ("Message: " + e.getMessage ());
+            e.printStackTrace ();
+        }
     }
 
     public static void displayCourierScore (int courierID) {

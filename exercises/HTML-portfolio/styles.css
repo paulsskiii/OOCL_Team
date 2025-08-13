@@ -1,0 +1,65 @@
+* {
+    /* border: 1px solid black; */
+    font-size: 20px;
+} */
+
+nav.navbar {
+    position: sticky;
+    width: fit-content;
+    height: 100%;
+    text-align: center;
+}
+
+nav.navbar div {
+    background-color: pink;
+    color: red;
+    padding: 20 30;
+}
+
+nav.navbar div:hover {
+    text-decoration: underline;
+    background-color: rgb(255, 166, 181);
+}
+
+nav.navbar div:hover {
+    /* background */
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+}
+
+main {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+section.form-vertical {
+    padding: 20px;   
+}
+
+.main-body {
+    padding: 50px;
+}
+
+section.form-vertical * {
+    margin-bottom: 20px;
+}
+
+label#lblMessage {
+    margin: 0 20px;
+}
+
+
+h1 {
+    font-weight: bold;
+    color: black;
+}

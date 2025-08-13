@@ -27,6 +27,8 @@ public class CargoShippingApplication {
             case "1":
                 break;
             case "2":
+            System.out.print("\n\nGetting most active delivery cities...");
+            caller.most_active_delivery_cities(conn);
                 break;
             case "3":
                 break;

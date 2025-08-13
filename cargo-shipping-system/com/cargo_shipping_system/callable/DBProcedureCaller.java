@@ -55,4 +55,28 @@ public class DBProcedureCaller {
         }
     }
 
+    public static void most_active_delivery_cities(Connection conn) {
+        try {
+            String query = "{CALL most_active_delivery_cities()}";
+            CallableStatement cstmt = conn.prepareCall(query);
+            // cstmt.setInt(1, 12);
+
+            ResultSet rs = cstmt.executeQuery();
+            
+            
+            while (rs.next()) {
+                String city = rs.getString("city_name");
+                int pkg_delivered = rs.getInt("packages_delivered");
+                String courier = rs.getString("most_frequent_courier");
+                float avg = rs.getFloat("avg_delivery_time_days");
+                System.out.printf("City: %s \nPackages Delivered: %s \nMost Frequent Courier: %s \naAVG Delivery Time: %s \n", city, pkg_delivered, courier, avg);
+                System.out.println("---------------------------------------------------");
+            }
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
+        }
+    }
+
 }

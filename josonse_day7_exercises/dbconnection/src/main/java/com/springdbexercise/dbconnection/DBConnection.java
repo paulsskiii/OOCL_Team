@@ -1,7 +1,9 @@
 package com.springdbexercise.dbconnection;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,7 +13,7 @@ public class DBConnection {
     // root@localhost:3306
     private static final String USER = "root";
 
-    private static final String PASSWORD = "admin";
+    private static final String PASSWORD = "";
 
 
     public static Connection getConnection(){
@@ -47,14 +49,114 @@ public class DBConnection {
         }
     }
 
+// ----------------------------------------------------------------------------------------------------------------
+
+    public static void retrieve_courier_name (Connection conn) {
+        try {
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT first_name, last_name FROM courier");
+
+            System.out.println("first_name\t\tlast_name");
+            while (rs.next()) {
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                System.out.println(first_name + "\t\t\t" + last_name );
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
+        }
+    }
+
+    public static void retrieve_all_sender_package (Connection conn) {
+        try {
+            String query = "SELECT * FROM package INNER JOIN customer ON package.sender_id = customer.customer_id WHERE package.sender_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1,1);
+
+            ResultSet rs = pstmt.executeQuery();
+            
+            System.out.println("package_id\tfirst_name\tlast_name");
+            while (rs.next()) {
+                int package_id = rs.getInt("package_id");
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                System.out.println(package_id + "\t\t" + first_name + "\t\t" + last_name );
+            }
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
+        }
+    }
+
+    public static void retrieve_courier_details(Connection conn) {
+        try {
+            String query = "{CALL retrieve_courier_details(?)}";
+            CallableStatement cstmt = conn.prepareCall(query);
+            cstmt.setInt(1, 12);
+
+            ResultSet rs = cstmt.executeQuery();
+            
+            System.out.println("courier_id\tfirst_name\tlast_name\tvehicle_type");
+            while (rs.next()) {
+                int package_id = rs.getInt("courier_id");
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                String vehicle_type = rs.getString("vehicle_type");
+                System.out.println(package_id + "\t\t" + first_name + "\t\t" + last_name + "\t\t" + vehicle_type);
+            }
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
+        }
+    }
+
+    public static void most_active_delivery_cities(Connection conn) {
+        try {
+            String query = "{CALL most_active_delivery_cities()}";
+            CallableStatement cstmt = conn.prepareCall(query);
+            // cstmt.setInt(1, 12);
+
+            ResultSet rs = cstmt.executeQuery();
+            
+            
+            while (rs.next()) {
+                String city = rs.getString("city_name");
+                int pkg_delivered = rs.getInt("packages_delivered");
+                String courier = rs.getString("most_frequent_courier");
+                float avg = rs.getFloat("avg_delivery_time_days");
+                System.out.printf("City: %s \nPackages Delivered: %s \nMost Frequent Courier: %s \naAVG Delivery Time: %s \n", city, pkg_delivered, courier, avg);
+                System.out.println("---------------------------------------------------");
+            }
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
+        }
+    }
+
+
+
     public static void main (String[] args){
         System.out.println("Attempting to get a database connection...");
         Connection conn = DBConnection.getConnection();
         if(conn != null){
             System.out.println("Connection test successful!");
             
+            // retrieve_all_sender_package(conn);
+            // retrieve_courier_details(conn);
+            most_active_delivery_cities(conn);
+
+
+
+            /*
             String sql = "SELECT * FROM package";
 
+            
             try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)){                
                     
                 while(rs.next()){
@@ -76,6 +178,7 @@ public class DBConnection {
             } catch (SQLException e){
                 e.printStackTrace();
             }
+            */
             
             DBConnection.closeConnection(conn);
         } else {

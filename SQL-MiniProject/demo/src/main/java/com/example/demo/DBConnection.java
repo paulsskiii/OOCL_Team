@@ -27,7 +27,7 @@ public class DBConnection {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-            System.out.println ("Database connection established");
+            // System.out.println ("Database connection established");
         } catch (SQLException e) {
             System.out.println ("DB Connection failed!");
             System.out.println ("SQL State: " + e.getSQLState ());
@@ -40,18 +40,39 @@ public class DBConnection {
     }
 
     public static void displayCustomerDeliveryHistory (int customerID) {
+        System.out.println ();
         Connection con = null;
         try {
+            int nPackageCount = 0;
+            String customerName = "";
             con = DBConnection.getConnection ();
             CallableStatement cstmt = null;
-            String SQL = "";
+            String SQL = "CALL GetCustomerDeliveryHistory(?)";
             cstmt = con.prepareCall (SQL);
             cstmt.setInt (1, customerID);
             ResultSet rs = cstmt.executeQuery ();
 
+
             while (rs.next ()) {
-                
+                if (nPackageCount == 0) {
+                    customerName = rs.getString("Customer");
+                    System.out.println("Orders of customer: " + customerName + " | Customer ID: " + customerID + " =====");
+                }
+                int packageID = rs.getInt ("Package_Id");
+                String deliveryDate = rs.getString ("Delivery Date");
+                String packageType = rs.getString ("Package Type");
+                String status = rs.getString ("status");
+                String courier = rs.getString ("Courier");
+
+                System.out.println ("Package ID: " + packageID);
+                System.out.println ("\tDelivery Date: " + deliveryDate);
+                System.out.println ("\tPackage Type: " + packageType);
+                System.out.println ("\tStatus: " + status);
+                System.out.println ("\tCourier: " + courier);
+                nPackageCount++;
             }
+
+            System.out.println ("\nTotal number of packages: " + nPackageCount);
 
             con.close ();
         } catch (SQLException e) {
@@ -84,5 +105,13 @@ public class DBConnection {
             System.out.println ("Message: " + e.getMessage ());
             e.printStackTrace ();
         }
+    }
+
+    public static void displayStepByStep (int packageID) {
+
+    }
+
+    public static void displayCourierScore (int courierID) {
+
     }
 }

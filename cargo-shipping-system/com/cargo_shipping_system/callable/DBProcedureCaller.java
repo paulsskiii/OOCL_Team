@@ -12,6 +12,32 @@ public class DBProcedureCaller {
     public DBProcedureCaller(Connection connection) {
         this.connection = connection;
     }
+
+    public void getCustomerDeliveryHistory(int customerId) {
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL GetCustomerDeliveryHistory(?)}");
+            callableStatement.setInt(1, customerId);
+            boolean hadResults = callableStatement.execute();
+
+            while (hadResults) {
+                ResultSet resultSet = callableStatement.getResultSet();
+
+                while (resultSet.next()) {
+                    System.out.println("Package ID: " + resultSet.getInt("package_id") +
+                                        ", Customer Name: " + resultSet.getString("customer_name") +
+                                        ", Sender ID: " + resultSet.getInt("sender_id") +
+                                        ", Recipient ID: " + resultSet.getInt("recipient_id") +
+                                        ", Pickup Date: " + resultSet.getDate("pickup_date") +
+                                        ", Delivery Date: " + resultSet.getDate("delivery_date") +
+                                        ", Classification: " + resultSet.getString("classification_name") +
+                                        ", Courier Name: " + resultSet.getString("courier"));
+                }
+                hadResults = callableStatement.getMoreResults();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
     public void getCourierScoreCard(String courier_id) {
         try {

@@ -20,15 +20,20 @@ public class CargoShippingApplication {
             e.printStackTrace();
         }
 
+
         System.out.print("Select which report to see (1-4): ");
         String reportType = scanner.next();
 
         switch (reportType){
             case "1":
+                System.out.print("\n\nEnter Customer ID to check delivery history: ");
+                int customerId = scanner.nextInt();
+                
+                caller.getCustomerDeliveryHistory(customerId);
                 break;
             case "2":
-            System.out.print("\n\nGetting most active delivery cities...");
-            caller.most_active_delivery_cities(conn);
+                System.out.print("\n\nGetting most active delivery cities...");
+                caller.most_active_delivery_cities(conn);
                 break;
             case "3":
                 break;

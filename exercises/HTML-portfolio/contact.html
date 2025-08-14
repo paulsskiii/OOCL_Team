@@ -9,7 +9,7 @@
             <a href="contact.html"> <div>Contact</div> </a>
         </nav>
         <main>
-            <form>
+            <form id="formContact">
                 <section class="form-vertical">
                     <label>Name: </label>
                     <input type="text" id="inputName"> <br/>
@@ -17,12 +17,18 @@
                     <label>Email: </label>
                     <input type="text" id="inputEmail"> <br/>
 
-                    <input type="submit" class="btnSubmit" id="inputBtn">
+                    <button id="btnSubmit" onclick="displaySubmit()">Submit</button>
                 </section>
 
                 <label id="lblMessage">Message: </label>
-                <textarea rows="10" cols="30"></textarea>
+                <textarea rows="10" cols="30" id="inputMessage"></textarea>
             </form>
         </main>
+        
+    <footer>
+        To God be the Glory
+    </footer>
+
+    <script src="contact.js"></script>
     </body>
 </html>

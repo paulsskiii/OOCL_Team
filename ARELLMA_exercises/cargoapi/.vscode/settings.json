@@ -1,0 +1,5 @@
+{
+	"java.compile.nullAnalysis.mode": "automatic",
+	"java.project.sourcePaths": [],
+	"java.configuration.updateBuildConfiguration": "interactive"
+}

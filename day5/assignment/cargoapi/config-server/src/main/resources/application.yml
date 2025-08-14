@@ -1,0 +1,13 @@
+#yaml
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///D:\git\week1\exerciseCargoTrackingSystem\OOCL_Team\ARELLMA_exercises\cargoapi\config-repo
+          # uri: file:///D:\Users\Martin\OneDrive - De La Salle University - Manila\Desktop\Personal projects\ita-bootcamp\OOCL_Team\ARELLMA_exercises\cargoapi\config-repo

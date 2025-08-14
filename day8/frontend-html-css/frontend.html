@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Title</title>
+    <!-- Optional: Link to external CSS stylesheet -->
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+
+<script>
+    // var name = "Hello, my name is Martin Arellano";
+    // let name2 = name;
+
+    // if(true){
+    //     var varVariable = "I'm var";
+    //     let letVariable = "I'm let";
+    // }
+    // console.log(name2);
+    // console.log(varVariable);
+    // console.log(letVariable);
+    // document.getElementById("name").innerText = name;
+
+    var email = "";
+    var message = "";
+
+    function setEmail(){
+        email = document.getElementById("email").value;
+    }
+
+    function setMessage(){
+        message = document.getElementById("message").value;
+    }
+    function alertOnLoad(){
+        alert("Welcome to my Profile!");
+    }
+
+    function alertOnSend(){
+        alert("Email sent to " + email + "\nMessage: " + message);
+    }
+    
+    function playAudioOnLoad() {
+        document.getElementById("music").play();
+    }
+
+</script>
+<body class="text-white">
+    <!-- Your content goes here -->
+    <div id="main-div">
+    <nav id="navbar">
+        <div class="text-white py-20">MartinJ Portfolio</div>
+
+    </nav>
+
+    <main  onload="playAudioOnLoad()" class="container">
+        <div id="name"></div>
+        
+
+
+        <div class="d-flex flex-col">
+            
+        <section>
+            <img src="image1.jpg" class="rounded" onload="playAudioOnLoad()"/>
+        </section>
+            <article class="mx-20">
+                <h2>Greetings!</h2>
+                <p>I am Martin Arellano.</p>
+                <p>I am a Web Developer and Programmer that has a keen eye for design and accessibility.</p>
+                <p>I strive to design application 
+                Interested?</p>
+            </article>
+        </div>
+        <article class="my-div mx-auto text-center">
+            <h1>Tech Stack</h1>
+            <p>JavaScript</p>
+            <p>ReactJS</p>
+            <p>NextJS</p>
+            <p>Java</p>
+            <p>Spring Boot</p>
+        </article>
+        
+    </main>
+        <section class="my-div mx-auto text-center">
+        
+        <h1>Contact me</h1>
+
+        <form>
+            <div style="margin: 10px">
+                <span>Email:</span>
+                <input id="email" type="text" onchange="setEmail()"/>
+            </div>
+            <div style="margin: 10px">
+                <span>Message:</span>
+                <input id="message" type="text" onchange="setMessage()"/>
+            </div>
+            <div >
+                <button type="submit" onclick="alertOnSend()">Send</button>
+            </div>
+            <audio id="music" controls>
+                <source src="music.mp3" type="audio/mpeg">
+            </audio>
+        </form>
+        
+    </section>
+</div>
+    <!-- Optional: Link to external JavaScript file -->
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>

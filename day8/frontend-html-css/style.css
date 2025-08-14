@@ -1,0 +1,38 @@
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-image: url('background.png');
+}
+
+#navbar{
+    position: sticky;
+    background-color:  #1E1E1E;
+    color: white;
+    flex-direction: flex;
+    font-size: large;
+}
+
+#main-div{
+  display: flex;
+  flex-direction: column;
+}
+
+#nav-item:hover{
+    cursor: pointer;
+    /* background-color: aqua; */
+}
+
+#navbar{
+
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+main{
+ padding-left: 10px;
+}
+
+aside{
+ padding-left: 10px;
+}

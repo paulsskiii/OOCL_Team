@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav {
+    background-color: #444;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #666;
+    border-radius: 5px;
+}
+
+section {
+    padding: 20px;
+    min-height: 200px;
+
+}
+
+#name {
+    padding: 10px;
+}
+
+#aboutMe, #schools, #skills, #hobbies {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    border: 1px solid black;
+    flex-direction: column;
+    border-bottom: 2px;
+}

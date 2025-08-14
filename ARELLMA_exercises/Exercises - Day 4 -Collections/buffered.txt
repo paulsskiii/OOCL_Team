@@ -1,2 +1,0 @@
-BufferedWriter is faster for large texts.
-It buffers the data.

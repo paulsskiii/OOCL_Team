@@ -69,4 +69,6 @@ public class CargoService {
     public List<CargoItem> searchCargoByOriginPattern(String originPattern) {
         return cargoRepository.findByOriginContaining(originPattern);
     }
+
+    
 }

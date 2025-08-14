@@ -11,9 +11,10 @@ import com.example.demo.Statements.Statements;
 
         public static void main(String[] args) {
 
+            // Statements.selectAll();
             // Statements.trackPackageJourney();
-            Statements.selectAll();
-        
+            Statements.getCustomerDeliveryHistory(1);
+            Statements.MostActiveDeliveryCity(1);
         }
 
     }

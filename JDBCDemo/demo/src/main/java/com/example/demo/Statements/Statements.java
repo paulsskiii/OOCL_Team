@@ -68,5 +68,75 @@ public class Statements {
         }
     }
 
+    public static void getCustomerDeliveryHistory(int input) {
+        try {
+            Connection con = DBConnection.getConnection();
+            CallableStatement stmt = con.prepareCall("{CALL getCustomerDeliveryHistory(?)}");
+            // ResultSet rs = stmt.execute();
+            stmt.setInt(1, input);
+            stmt.execute();
+            ResultSet test = stmt.getResultSet();
+            System.out.println();
+            
+            while (test.next()){
+                String customer_name = test.getString("CUSTOMER_NAME");
+                Integer total_sent = test.getInt("TOTAL_SENT");
+                Integer total_received = test.getInt("TOTAL_RECEIVED");
+
+                System.out.printf("Customer Name: %s, Total Sent: %d, Total Received: %d", 
+                    customer_name, total_sent, total_received);
+            }
+            
+            stmt.getMoreResults();
+            ResultSet pkg_list = stmt.getResultSet();
+            System.out.println();
+
+            while(pkg_list.next()) {
+                String transaction_type = pkg_list.getString("TRANSACTION_TYPE");
+                Integer package_id = pkg_list.getInt("PACKAGE_ID");
+                java.sql.Timestamp delivery_date = pkg_list.getTimestamp("DELIVERY_DATE");
+                String pkg_type = pkg_list.getString("PACKAGE_TYPE");
+                String pkg_status = pkg_list.getString("PACKAGE_STATUS");
+                String courier_name = pkg_list.getString("COURIER_NAME");
+
+                System.out.printf("Transaction Type: %s Package ID: %d Delivery Date: %s Package Type: %s Package Status: %s Courier Name: %s",
+                    transaction_type, package_id, delivery_date, pkg_type, pkg_status, courier_name);
+                System.out.println();
+            } 
+
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+
+    }
+
+    public static void MostActiveDeliveryCity(int input) {
+        try {
+
+            Connection con = DBConnection.getConnection();
+            CallableStatement stmt = con.prepareCall("{CALL MostActiveDeliveryCity(?)}");
+            stmt.setInt(1, input);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+
+            while (rs.next()) {
+                String city = rs.getString("city");
+                Integer total_packages = rs.getInt("total_packages");
+                String most_frequent_courier = rs.getString("most_frequent_courier");
+                Float avg_del_days = rs.getFloat("avg_delivery_days");
+                
+                System.out.printf("City: %s, Total Packages: %d, Most Frequent Courier: %s, Average Delivery Days: %.2f%n",city,total_packages,most_frequent_courier,avg_del_days);
+            }
+            stmt.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

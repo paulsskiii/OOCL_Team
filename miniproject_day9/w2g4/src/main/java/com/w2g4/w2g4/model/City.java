@@ -12,18 +12,16 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customer_id;
-    private String first_name;
-    private String last_name;
-    private String contact_number;
-    private String email_address;
-    private int address_id;
-    private String created_at;
-    private String updated_at;
+    private Long city_id;
+    private String name;
 }
+
+
+
+
 
 
 

@@ -12,18 +12,18 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class Courier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customer_id;
+    private Long courier_id;
     private String first_name;
     private String last_name;
     private String contact_number;
-    private String email_address;
-    private int address_id;
+    private String vehicle_type;
+    private String license_number;
     private String created_at;
-    private String updated_at;
 }
+
 
 
 

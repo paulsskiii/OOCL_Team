@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="Demo.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Portfolio</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="about">
+    <img src="https://tse3.mm.bing.net/th/id/OIP.YN7qi8WM391xccpWWUp7jAHaI4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Avatar" class="avatar">
+  <h2>About Me</h2>
+  <button type="button" onclick="showHiddenText_about()">Click Me to Know About Me</button>
+  <p id="aboutMe"></p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div id="project-list"></div>
+  <button type="button" onclick="showHiddenText_project()">Click Me to Show My Projects</button>
+  <p id="project"></p>
+</section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <textarea id="email" placeholder="Your Email" required></textarea>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Erica Evangelista</p>
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>
+

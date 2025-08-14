@@ -29,28 +29,28 @@
 │ ├── excer2_1/
 │ └── assignment/
 ├── day3/
-  ├── day3.md
-  ├── excer1_1/
-  ├── excer1_2/
-  ├── excer2_1/
-  └── assignment/
+│ ├── day3.md
+│ ├── excer1_1/
+│ ├── excer1_2/
+│ ├── excer2_1/
+│ └── assignment/
+
 
 ### Group Repo Example
 .
 ├── day01/
-│ ├── project1
-│ ├── project2
-│ └── activity
+│ ├── project1/
+│ ├── project2/
+│ └── activity/
 ├── day02/
-│ ├── project1
-│ ├── project2
-│ └── activity
+│ ├── project1/
+│ ├── project2/
+│ └── activity/
 ├── day03/
-│ ├── project1
-│ ├── project2
-│ └── activity
+│ ├── project1/
+│ ├── project2/
+│ └── activity/
 └── GROUP_MEMBERS.md
-
 ---
 
 ## 3. Trainee Instructions

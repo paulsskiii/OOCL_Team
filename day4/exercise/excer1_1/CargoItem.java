@@ -12,4 +12,7 @@ class CargoItem {
     }
 
     // Getters and toString / equals / hashCode
+    public void getCargoItem() {
+        // System.out.println("ID: " + this.id + " Name: " + this.name + );
+    }
 }

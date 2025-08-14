@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.w2g4.w2g4.model.Customer;
 
 @Repository
-public interface customerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
     
 }

@@ -12,7 +12,9 @@ class CargoItem {
     }
 
     // Getters and toString
-}
+    public CargoItem showCargoItems() {
+        return CargoItem;
+    }
 
 
 

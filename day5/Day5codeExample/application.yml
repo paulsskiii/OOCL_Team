@@ -1,0 +1,7 @@
+# Configuration File
+  # We'll configure the server port for our cargo service
+  
+YAML
+# src/main/resources/application.yml
+server:
+  port: 8081 # Set the port for the cargo service

@@ -1,11 +1,13 @@
+package com.example.cargoservice;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CargoapiApplication {
+public class CargoserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CargoapiApplication.class, args);
+		SpringApplication.run(CargoserviceApplication.class, args);
 	}
 
 }

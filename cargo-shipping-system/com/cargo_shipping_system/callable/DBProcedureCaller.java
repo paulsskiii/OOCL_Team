@@ -12,6 +12,32 @@ public class DBProcedureCaller {
     public DBProcedureCaller(Connection connection) {
         this.connection = connection;
     }
+
+    public void getCustomerDeliveryHistory(int customerId) {
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL GetCustomerDeliveryHistory(?)}");
+            callableStatement.setInt(1, customerId);
+            boolean hadResults = callableStatement.execute();
+
+            while (hadResults) {
+                ResultSet resultSet = callableStatement.getResultSet();
+
+                while (resultSet.next()) {
+                    System.out.println("Package ID: " + resultSet.getInt("package_id") +
+                                        ", Customer Name: " + resultSet.getString("customer_name") +
+                                        ", Sender ID: " + resultSet.getInt("sender_id") +
+                                        ", Recipient ID: " + resultSet.getInt("recipient_id") +
+                                        ", Pickup Date: " + resultSet.getDate("pickup_date") +
+                                        ", Delivery Date: " + resultSet.getDate("delivery_date") +
+                                        ", Classification: " + resultSet.getString("classification_name") +
+                                        ", Courier Name: " + resultSet.getString("courier"));
+                }
+                hadResults = callableStatement.getMoreResults();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     
     public void getCourierScoreCard(String courier_id) {
         try {
@@ -52,6 +78,30 @@ public class DBProcedureCaller {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void most_active_delivery_cities(Connection conn) {
+        try {
+            String query = "{CALL most_active_delivery_cities()}";
+            CallableStatement cstmt = conn.prepareCall(query);
+            // cstmt.setInt(1, 12);
+
+            ResultSet rs = cstmt.executeQuery();
+            
+            
+            while (rs.next()) {
+                String city = rs.getString("city_name");
+                int pkg_delivered = rs.getInt("packages_delivered");
+                String courier = rs.getString("most_frequent_courier");
+                float avg = rs.getFloat("avg_delivery_time_days");
+                System.out.printf("City: %s \nPackages Delivered: %s \nMost Frequent Courier: %s \naAVG Delivery Time: %s \n", city, pkg_delivered, courier, avg);
+                System.out.println("---------------------------------------------------");
+            }
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error", e);
         }
     }
 

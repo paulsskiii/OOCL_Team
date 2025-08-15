@@ -1,5 +1,6 @@
 package com.w2g4.w2g4.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,9 @@ import lombok.AllArgsConstructor;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long city_id;
+    @Column(name = "city_id")
+    private int address_id; // Primary Key
+    
+    @Column(name = "name")
     private String name;
 }

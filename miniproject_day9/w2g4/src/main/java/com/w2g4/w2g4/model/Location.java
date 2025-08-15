@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,10 +23,10 @@ public class Location {
     @Column(name = "location_id")
     private Long location_id;
 
-    @Column(name = "city_id")
-    private Long city_id;
+    @ManyToOne
+    @JoinColumn (name = "city_id", referencedColumnName = "city_id")
+    private City city; // Foreign Key to City Table
 
     @Column(name = "contact_number")
     private String contact_number;
 }
-

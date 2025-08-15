@@ -1,12 +1,14 @@
-function Button({ text, onClick }) {
+function Button({ text, onClick, buttonClick }) {
 	return (
 		<>
 			{text === "RESET" ? (
-				<button className="bg-gray-400 font-bold text-lg text-gray-700 px-4 py-2">
+				<button className="bg-gray-600 font-bold text-lg text-white px-4 py-2"
+				onClick={() => onClick(buttonClick)}>
 					{text}
 				</button>
 			) : (
-				<button className="bg-banner-red font-bold text-lg text-red-600 px-4 py-2">
+				<button className="bg-banner-red font-bold text-lg text-white px-4 py-2"
+				onClick={() => onClick(buttonClick)}>
 					{text}
 				</button>
 			)}

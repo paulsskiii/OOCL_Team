@@ -3,6 +3,7 @@ import "./App.css";
 import DataCard from "./components/DataCard";
 import SearchBar from "./components/SearchBar";
 import Button from "./components/Button";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
 	const [loading, setLoading] = useState(false);
@@ -158,6 +159,11 @@ function App() {
 	function searchCustomerClick(value) {
 		setLoading(true);
 	}
+
+	function handleButtonClick(){
+		setLoading(true);
+	}
+
 	return (
 		<div className="h-screen lg:h-full w-screen  items-center justify-center font-display">
 			<header className="bg-banner-red text-white text-2xl lg:text-5xl text-center py-10 sticky">
@@ -172,11 +178,19 @@ function App() {
 					onChange={setSearchValue}
 				/>
 			</section>
+			
+			{loading ? (<LoadingSpinner/>) : (<></>)}
 
 			<section className="flex flex-row gap-3 items-center justify-center my-10">
-				<Button text={"SHOW ALL"} />
-				<Button text={"GET COUNT"} />
-				<Button text={"RESET"} />
+				<Button 
+					text={"SHOW ALL"}
+					onClick={handleButtonClick}/>
+				<Button
+					text={"GET COUNT"}
+					onClick={handleButtonClick}/>
+				<Button
+					text={"RESET"}
+					onClick={handleButtonClick}/>
 			</section>
 			<section className="flex flex-col lg:flex-row lg:flex-wrap gap-5 lg:w-3/4 mx-auto">
 				{testData.map((person, index) => (

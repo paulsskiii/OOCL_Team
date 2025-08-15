@@ -15,21 +15,6 @@ import lombok.AllArgsConstructor;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int city_id;
+    private Long city_id;
     private String name;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

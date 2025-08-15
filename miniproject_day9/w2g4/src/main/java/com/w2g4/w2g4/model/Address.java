@@ -16,12 +16,12 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long address_id; // Primary Key
+    private int address_id;
     private String address_line1;
     private String address_line2;
     private String barangay;
-    private City city; // Foreign Key to City Table
-    private Integer postal_code;
+    private Long city;
+    private int postal_code;
     private String region;
     private String country;
 }

@@ -27,7 +27,7 @@ export const Test: React.FC<{}> = ({}) => {
       <h1 style={{textAlign:"center", paddingLeft:"50px", maxWidth:"300px", margin:"5px"}}> Hi, I'm Francis Dale </h1>
       <h2 style={{paddingLeft:"70px", margin:"5px"}}> based in Philippines.</h2>
       <Container style={{display:"flex"}}>
-        <div style={{padding:"20px", maxWidth:"300px", textAlign:"justify"}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id malesuada ipsum. Praesent et nunc justo. Ut lacus diam, eleifend vel quam eget, sollicitudin dictum tellus. Nam eros tellus, fermentum eu bibendum eget, suscipit id turpis. Curabitur a sapien pellentesque, sodales arcu a, posuere nisi. Etiam sed tempor orci. In pulvinar gravida sollicitudin. Suspendisse vel placerat sem, id ultrices ipsum. Morbi in purus tempus, pretium felis quis, placerat mauris. Nulla ut enim malesuada, molestie nunc sed, porta ligula. Fusce sed molestie metus, vitae fringilla nisl. Nunc vestibulum ex nec urna convallis, a ullamcorper tellus bibendum. </div>
+        <div style={{padding:"20px", maxWidth:"300px", textAlign:"justify"}}> Graduated at Far Eastern University - Institute of Technology with Bachelor of Science in Computer Science with specialization in Software Engineering. </div>
       {/* <div> asdasdaw </div> */}
         {/* <div style={{ display:"flex" }}> asdas</div> */}
         </Container>

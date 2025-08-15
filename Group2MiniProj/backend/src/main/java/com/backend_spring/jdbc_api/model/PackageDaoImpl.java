@@ -52,15 +52,15 @@ public class PackageDaoImpl implements PackageDao {
         Connection conn = DbConnection.getConnection();
         List<Package> packages = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM package WHERE senderId= ? ;";
+            String sql = "SELECT * FROM package WHERE senderId = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, senderId);
             
-            ResultSet rs = pstmt.executeQuery(sql);
+            ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
                 Package package1 = new Package();
-                package1.setId(rs.getInt(1));
+                package1.setId(rs.getInt("id"));
                 package1.setWeight(rs.getInt("weight"));
                 package1.setContentsDescription(rs.getString("contentsDescription"));
                 packages.add(package1);
@@ -81,11 +81,11 @@ public class PackageDaoImpl implements PackageDao {
         Connection conn = DbConnection.getConnection();
         List<Package> packages = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM package WHERE recepientid = ? ;";
+            String sql = "SELECT * FROM package WHERE recepientid = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, recipientId);
             
-            ResultSet rs = pstmt.executeQuery(sql);
+            ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
                 Package package1 = new Package();

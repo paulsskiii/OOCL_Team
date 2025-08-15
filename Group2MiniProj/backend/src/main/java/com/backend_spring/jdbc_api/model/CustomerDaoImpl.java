@@ -23,7 +23,7 @@ public class CustomerDaoImpl implements CustomerDao {
             
             while (rs.next()) {
                 Customer customer = new Customer();
-                customer.setId(rs.getInt(0));
+                customer.setId(rs.getInt(1));
                 customer.setFirstName(rs.getString("firstName"));
                 customer.setLastName(rs.getString("lastName"));
                 customers.add(customer);

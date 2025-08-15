@@ -1,12 +1,12 @@
-# GitHub Repository Setup Guide
+# GitHub Branch Setup Guide
 
 ## 1. Naming Conventions
 
-### Repositories
-- **Individual Repo**:  
+### Branch
+- **Individual Branch**:  
   `[firstname-lastname]`  
   _Example:_ `Paul-Baesa`
-- **Group Repo**:  
+- **Group Branch**:  
   `group-[group-Number-week(1,2,3....)/Team]`  
   _Example:_ `group-1-week2 or group-Bary` 
 
@@ -14,7 +14,7 @@
 
 ## 2. Folder / File Structure
 
-### Individual Repo Example
+### Individual Branch Example
 
 ```
 .
@@ -39,7 +39,7 @@
 
 ```
 
-### Group Repo Example
+### Group Branch Example
 
 ```
 .
@@ -62,17 +62,17 @@
 
 ## 3. Trainee Instructions
 
-1. **Each trainee has their own personal repository**.  
-   - You will **upload your individual work only to your own repo**.  
-   - Do **not** push code to the main repository or any other trainee's repository.
+1. **Each trainee has their own personal Branch'**.  
+   - You will **upload your individual work only to your own Branch**.  
+   - Do **not** push code to the main Branch or any other trainee's Branch.
 
 2. **For group activities**:  
-   - You will work in your assigned **group repository** for that week.  
+   - You will work in your assigned **group Branch** for that week.  
    - Only the **group leader** will push the group's code to the `main` branch.  
    - Members can send their code to the leader or use pull requests.
 
 3. **Daily workflow**:
-   - Pull the latest changes from your own repo:
+   - Pull the latest changes from your own Branch:
      ```bash
      git pull origin main
      ```
@@ -86,13 +86,13 @@
      git add .
      git commit -m "Completed excer1_1 for day2"
      ```
-   - Push changes to **your own repository**:
+   - Push changes to **your own Branch**:
      ```bash
      git push origin main
      ```
 
-5. **Never push directly to the teacher's repository**.  
-   The teacher's repo is **read-only** for trainee.
+5. **Never push directly to the main Branch**.  
+   Yes.
 
 ---
 
@@ -107,5 +107,5 @@
 | Oscar Piastri     | Tester              | @oscarpiastri        |
 
 ## Notes
-- Only the group leader will push code to the repository.
+- Only the group leader will push code to the Branch.
 - All members must contribute to exercises and assignments.

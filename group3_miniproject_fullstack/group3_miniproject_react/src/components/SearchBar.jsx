@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-function SearchBar({ onClick, onChange, searchValue }) {
+function SearchBar({ onClick, onChange, searchValue}) {
 	return (
 		<div
 			className={

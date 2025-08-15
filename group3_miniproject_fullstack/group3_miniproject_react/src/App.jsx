@@ -173,7 +173,7 @@ function App() {
 				CUSTOMER DIRECTORY{" "}
 			</header>
 
-      {isInvalidId ? (<ErrorMessage message="Invalid Customer ID {insert id}. Please input a valid ID."></ErrorMessage>) : (<></>)}
+            {isInvalidId ? (<ErrorMessage message="Invalid Customer ID {insert id}. Please input a valid ID."></ErrorMessage>) : (<></>)}
 
 			<section className="w-3/4 mx-auto my-5">
 				<SearchBar

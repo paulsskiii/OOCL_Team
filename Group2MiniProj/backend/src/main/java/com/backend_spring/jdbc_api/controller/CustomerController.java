@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("http://localhost:5174/")
+@CrossOrigin("http://localhost:5173")
 public class CustomerController {
 
     private CustomerDao customerDao = new CustomerDaoImpl() ;

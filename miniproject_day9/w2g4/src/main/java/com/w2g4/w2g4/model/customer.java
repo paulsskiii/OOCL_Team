@@ -1,6 +1,6 @@
 package com.w2g4.w2g4.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

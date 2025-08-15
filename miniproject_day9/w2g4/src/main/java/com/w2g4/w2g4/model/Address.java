@@ -36,7 +36,7 @@ public class Address {
     private City city; // Foreign Key to City Table
 
     @Column(name = "postal_code")
-    private int postal_code;
+    private Integer postal_code;
 
     @Column(name = "region")
     private String region;

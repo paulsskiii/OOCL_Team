@@ -4,10 +4,12 @@ import DataCard from "./components/DataCard";
 import SearchBar from "./components/SearchBar";
 import Button from "./components/Button";
 import LoadingSpinner from "./components/LoadingSpinner";
+import ErrorMessage from "./components/ErrorMessage";
 
 function App() {
 	const [loading, setLoading] = useState(false);
 	const [searchValue, setSearchValue] = useState("");
+	const [isInvalidId, setIsInvalidId] = useState(true);
 
 	const testData = [
 		{
@@ -165,11 +167,13 @@ function App() {
 	}
 
 	return (
-		<div className="h-screen lg:h-full w-screen  items-center justify-center font-display">
+		<div className="h-screen lg:h-full w-screen  items-center justify-center font-display">			
 			<header className="bg-banner-red text-white text-2xl lg:text-5xl text-center py-10 sticky">
 				{" "}
 				CUSTOMER DIRECTORY{" "}
 			</header>
+
+      {isInvalidId ? (<ErrorMessage message="Invalid Customer ID {insert id}. Please input a valid ID."></ErrorMessage>) : (<></>)}
 
 			<section className="w-3/4 mx-auto my-5">
 				<SearchBar

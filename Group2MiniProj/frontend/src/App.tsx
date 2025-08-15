@@ -36,19 +36,11 @@ function App() {
 
   return (
     <div className="app" style={{ maxWidth: 800, margin: '2rem auto', padding: '0 1rem' }}>
-      <h1>Items List</h1>
-      {data && data.length > 0 ? (
-        // data.map((customer) => <DataCard key={customer.} {...item} />)
-        <ul className="fruit-list">
-
-        {customers.map((customer, index) => (
-          <li key={index} className="fruit-item">
-            {customer.firstName} - {customer.lastName}
-          </li>
-        ))}
-      </ul>
+      <h1>Names List</h1>
+      {customers && customers.length > 0 ? (
+        customers.map((customer) => <DataCard firstName={customer.firstName} lastName={customer.lastName} />)
       ) : (
-        <p>No items found.</p>
+        <p>No names found.</p>
       )}
     </div>
   );

@@ -7,8 +7,8 @@
   `[firstname-lastname]`  
   _Example:_ `Paul-Baesa`
 - **Group Repo**:  
-  `group-[dayNumber]-[groupNumber/Team]`  
-  _Example:_ `group-Day02 or group-Bary` 
+  `group-[group-Number-week(1,2,3....)/Team]`  
+  _Example:_ `group-1-week2 or group-Bary` 
 
 ---
 

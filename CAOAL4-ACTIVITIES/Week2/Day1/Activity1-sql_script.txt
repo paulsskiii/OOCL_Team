@@ -1,0 +1,110 @@
+CREATE SCHEMA IF NOT EXISTS 'CAOAL4_SCHEMA';
+
+DROP DATABASE IF EXISTS `CAOAL4_DB`;
+CREATE DATABASE CAOAL4_DB;
+
+USE CAOAL4_DB;
+
+CREATE TABLE `CUSTOMER` (
+  `CustomerID` int NOT NULL AUTO_INCREMENT,
+  `CustomerFullName` varchar(30) NOT NULL,
+  PRIMARY KEY (`CustomerID`)
+);
+
+CREATE TABLE `PRODUCTS` (
+  `ProductID` int NOT NULL AUTO_INCREMENT,
+  `ProductName` varchar(30) NOT NULL,
+  `ProductCategory` varchar(30) NOT NULL,
+  `ProductPrice` float NOT NULL,
+  PRIMARY KEY (`ProductID`)
+);
+
+CREATE TABLE `SELLER` (
+  `SellerID` int NOT NULL AUTO_INCREMENT,
+  `SellerName` varchar(30) NOT NULL,
+  PRIMARY KEY (`SellerID`)
+);
+
+
+CREATE TABLE `ORDERLIST` (
+  `OrderID` int NOT NULL AUTO_INCREMENT primary key,
+  `OrderDate` date NOT NULL,
+  `OrderQTY` int NOT NULL,
+  `SellerName` varchar(30) NOT NULL,
+  `CustomerFullName` varchar(30) NOT NULL,
+  `ProductName` varchar(30) NOT NULL,
+  `ProductPrice` float NOT NULL,
+  `SellerID` int NOT NULL,
+  `CustomerID` int NOT NULL,
+  `ProductID` int NOT NULL,
+  
+  FOREIGN KEY (SellerID) REFERENCES SELLER(SellerID),
+  FOREIGN KEY (CustomerID) REFERENCES CUSTOMER(CustomerID),
+  FOREIGN KEY (ProductID) REFERENCES PRODUCTS(ProductID)
+);
+
+
+--INSERT SCRIPTS
+
+
+INSERT INTO CUSTOMER (CustomerFullName)
+VALUES
+	('Alexis Cao'),
+    	('Kim Sunwoo'),
+	('Jeon Jungkook'),
+	('Kim Jisoo'),
+	('Minatosaki Sana'),
+	('Jennie Kim'),
+	('Sehun Oh'),
+	('Ahyeon Kim'),
+	('Jacob Bae'),
+	('Eric Sohn');
+
+SELECT * FROM CUSTOMER;
+
+INSERT INTO PRODUCTS (ProductName, ProductCategory,ProductPrice)
+VALUES
+	('Flat Iron','Tools',100.0),
+    	('Make-up Brush','Accesory',25.0),
+    	('Foundation','Make-up',50.0),
+    	('Curlers','Tools',100.0),
+    	('Hair Band','Accessory',25.0),
+    	('Lipstick','Make-up',50.0),
+    	('Electric Brush','Tools',100.0),
+    	('Hair Clip','Accessory',25.0),
+    	('Eye Shadow','Make-up',50.0),
+    	('Blush','Make-up',45.0);
+
+SELECT * FROM PRODUCTS;
+
+INSERT INTO SELLER (SellerName)
+VALUES
+	('Asa'),
+    	('Belle'),
+    	('Sophia'),
+    	('Juyeon'),
+    	('Kevin');
+
+SELECT * FROM SELLER;
+
+INSERT INTO ORDERLIST (OrderDate, OrderQTY, SellerName, CustomerFullName, ProductName, ProductPrice, SellerID, CustomerID, ProductID)
+VALUES
+	('2025-08-10',1,'Asa','Alexis Cao','Flat Iron',100,1,1,1),
+    	('2025-08-10',1,'Asa','Alexis Cao','Hair Band',25,1,1,5),
+    	('2025-08-11',1,'Belle','Kim Sunwoo','Foundation',50,2,2,3),
+    	('2025-08-11',1,'Asa','Kim Jisoo','Electric Brush',100,1,4,7),
+    	('2025-08-11',1,'Juyeon','Minatosaki Sana','Make-up Brush',25,4,5,2),
+    	('2025-08-12',1,'Belle','Sehun Oh','Foundation',50,2,7,3),
+    	('2025-08-12',1,'Juyeon','Ahhyeon Kim','Hair Clip',25,4,8,8),
+    	('2025-08-12',1,'Belle','Minatosaki Sana','Lipstick',50,2,5,6),
+    	('2025-08-13',1,'Belle','Jennie Kim','Lipstick',50,2,6,6),
+    	('2025-08-13',1,'Asa','Eric Sohn','Flat Iron',100,1,10,1);
+
+SELECT * FROM ORDERLIST;
+
+
+
+
+
+
+

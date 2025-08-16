@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CargoManifestManager {
     public static void main(String[] args) {
         List<CargoItem> manifest = new ArrayList<>();
-        Iterator<CargoItem> iterator = manifest.iterator();
+        Iterator<excer1_1.CargoItem> iterator = manifest.iterator();
         Scanner input = new Scanner(System.in);
 
         // Add items to manifest
@@ -30,17 +30,6 @@ public class CargoManifestManager {
         for (CargoItem cargoItem : manifest) {
             System.out.println("ID: " + cargoItem.getId() + " | Name: " + cargoItem.getName() + " | Weight: " + cargoItem.getWeight() + " | Destination: " + cargoItem.getDestination());
         }
-
-//        while(iterator.hasNext()) {
-//            System.out.println("ID: " + iterator.next().getId() + " | Name: " + iterator.next().getName() +
-//                    " | Weight: " + iterator.next().getWeight() + " | Destination: " + iterator.next().getDestination());
-//
-//            if(inputCargoId == iterator.next().getId()) {
-//                iterator.remove();
-//            }
-//        }
-
-        // Remove by ID
 
         // Display manifest
         System.out.println("Remaining cargo items: " + manifest);

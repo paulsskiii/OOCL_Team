@@ -1,0 +1,55 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "shipping",
+            "request": "launch",
+            "mainClass": "com.example.shippingportal.ShippingPortalApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "eureka",
+            "request": "launch",
+            "mainClass": "com.example.eurekaserver.EurekaserverApplication",
+            "projectName": "eurekaserver"
+        },
+        {
+            "type": "java",
+            "name": "prod",
+            "request": "launch",
+            "mainClass": "com.example.cargoservice.CargoserviceApplication",
+            "projectName": "cargoservice",
+            "args": "--spring.profiles.active=prod"
+        },
+        {
+            "type": "java",
+            "name": "dev",
+            "request": "launch",
+            "mainClass": "com.example.cargoservice.CargoserviceApplication",
+            "projectName": "cargoservice",
+            "args": "--spring.profiles.active=dev"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "run all",
+            "configurations": [
+                "eureka",
+                "dev",
+                "prod",
+                "shipping"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+spring:
+  application:
+    instance_id: dev:${server.port}
+
+server:
+  port: 8080
+
+welcome:
+  message: Development Cargo Service!
+  
+shipping_fee: 150.0

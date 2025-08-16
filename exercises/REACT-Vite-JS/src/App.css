@@ -1,0 +1,9 @@
+.fruit-list {
+  list-style-type:armenian;
+  padding: 10;
+}
+
+.fruit-item {
+  font-weight: bold;
+  color: pink;
+}

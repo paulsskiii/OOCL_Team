@@ -1,0 +1,10 @@
+spring:
+  application:
+    instance_id: prod:${server.port}
+
+server:
+  port: 8081
+
+welcome:
+  message: Production Cargo Service is live!
+shipping_fee: 234000.00     # specific properties for each profile

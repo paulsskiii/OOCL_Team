@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Div Mouseover Example</title>
+<style>
+       #myBox {
+           width: 150px;
+           height: 150px;
+           background-color: steelblue;
+       }
+</style>
+</head>
+<body>
+<div id="myBox"></div>
+<script>
+   const box = document.getElementById('myBox');
+   box.addEventListener('mouseover', () => {
+       box.style.backgroundColor = "tomato";
+       box.style.width = "200px";
+       box.style.height = "200px";
+   });
+   box.addEventListener('mouseout', () => {
+       box.style.backgroundColor = "steelblue";
+       box.style.width = "150px";
+       box.style.height = "150px";
+   });
+</script>
+</body>
+</html>

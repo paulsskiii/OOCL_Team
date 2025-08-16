@@ -11,7 +11,7 @@ export const AppContext = createContext();
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  user: storedUser || { name: "", email: "", about: "" },
+  user: storedUser || { name: "", email: "", about: "", password: "", profileImage: "" },
 };
 
 const userReducer = (state, action) => {
@@ -21,7 +21,7 @@ const userReducer = (state, action) => {
       return { ...state, user: action.payload };
     case "LOGOUT":
       localStorage.removeItem("user");
-      return { ...state, user: { name: "", email: "", about: "" } };
+      return { ...state, user: { name: "", email: "", about: "", password: "", profileImage: "" } };
     default:
       return state;
   }

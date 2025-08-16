@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const ProfileEditor = () => {
   const { user, dispatch } = useContext(AppContext);
   const [formUser, setFormUser] = useState(user);
+  const [profileImage, setProfileImage] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,20 +16,40 @@ const ProfileEditor = () => {
     });
   };
 
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setProfileImage(reader.result); // save base64 image
+    };
+    reader.readAsDataURL(selectedFile);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (formUser.password.length < 8) {
+      toast.error("Password must be at least 8 characters long!")
+      return;
+    }
+
     if (!formUser.name || !formUser.email || !formUser.about) {
-      console.log("Complete all the fields!");
-      alert("Complete all the fields");
+      toast.error("Please complete all the fields!");
+      // console.log("Complete all the fields!");
+      // alert("Complete all the fields");
       return;
     }
     setIsLoading(true);
 
     setTimeout(() => {
-      dispatch({ type: "UPDATE", payload: formUser });
+      const updatedUser = { ...formUser, profileImage };
+      dispatch({ type: "UPDATE", payload: updatedUser });
 
-      alert(`Name: ${formUser.name} Email: ${formUser.email}`);
+      toast.success(`Welcome ${formUser.name.toUpperCase()}!`);
 
       setIsLoading(false);
     }, 1000);
@@ -44,7 +66,6 @@ const ProfileEditor = () => {
             <h2 className="text-2xl font-bold text-center  mb-4">
               Update Profile
             </h2>
-
             <input
               type="text"
               name="name"
@@ -53,7 +74,6 @@ const ProfileEditor = () => {
               placeholder="Enter your name..."
               className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
             />
-
             <input
               type="email"
               name="email"
@@ -62,7 +82,14 @@ const ProfileEditor = () => {
               placeholder="Enter your email..."
               className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
             />
-
+            <input
+              type="password"
+              name="password"
+              value={formUser.password}
+              onChange={handleChange}
+              placeholder="Enter your password..."
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
+            />
             <textarea
               name="about"
               onChange={handleChange}
@@ -70,15 +97,12 @@ const ProfileEditor = () => {
               className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
               placeholder="Enter about..."
             />
-            {/* <input
-              type="password"
-              name="password"
-              value={formUser.password}
-              onChange={handleChange}
-              placeholder="Enter your password..."
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black"
-            /> */}
-
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
+            />
             <button
               type="submit"
               className="bg-black cursor-pointer text-white py-2 rounded-lg hover:bg-white hover:text-black transition-colors duration-200 font-semibold"

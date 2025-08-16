@@ -10,6 +10,6 @@ public class PortAvailabilityChecker {
 
     public boolean isPortOperational(String portName) {
         // Basic logic: if portName equals "Damaged Port" (case-insensitive), return false
-        return portName.equals( "Damaged Port");
+        return !"Damaged Port".equalsIgnoreCase(portName);
     }
 }

@@ -10,5 +10,19 @@ public class PortCapacityTracker {
         ports.put("Tokyo", new Port("Tokyo", 4, 4));
 
         // Simulation logic here
+        ports.get("Manila").shipArrives();
+        ports.get("Singapore").shipArrives();
+//        ports.get("Tokyo").shipArrives();
+        ports.get("Tokyo").shipDeparts();
+
+        // Print current occupancy of all ports
+        System.out.println("==========================");
+        System.out.println("==Port Current Occupancy==");
+        for (Port port : ports.values()) {
+            System.out.println("Port: " + port.getName());
+            System.out.println("Current Occupancy: " + port.getCurrentOccupancy() + "/" + port.getCapacity());
+            System.out.println("---------------------");
+        }
+
     }
 }

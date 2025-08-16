@@ -1,0 +1,27 @@
+//adding data
+POST /cargo
+
+{
+    "name": "Alex",
+    "weight": 50.0,
+    "origin": "Manila",
+    "destination": "Korea"
+}
+
+//deleting data
+DELETE /cargo/{id}
+
+//updating data
+PUT /cargo/{id}
+
+{
+    "id": 3,
+    "name": "CAOAL", <- old: alex
+    "weight": 50.0,
+    "origin": "Manila",
+    "destination": "Korea"
+}
+
+//GET
+http://localhost:8081/cargo/{ID}
+http://localhost:8081/cargo?origin={origin}&destination={destination}

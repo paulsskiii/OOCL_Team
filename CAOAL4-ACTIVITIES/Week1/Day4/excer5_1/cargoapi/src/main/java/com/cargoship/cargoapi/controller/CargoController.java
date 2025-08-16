@@ -5,6 +5,7 @@
 package com.cargoship.cargoapi.controller;
 
 import com.cargoship.cargoapi.model.CargoItem;
+import com.cargoship.cargoapi.service.CargoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,21 @@ public class CargoController {
     private final List<CargoItem> cargoItems = new ArrayList<>();
     private final AtomicLong counter = new AtomicLong();
 
+    // Constructor Injection for Cargo Service
+    private final CargoService cargoService;
+
+//    public CargoController(CargoService cargoService) {
+//        this.cargoService = cargoService;
+//    }
+
     // Initialize with some dummy data
-    public CargoController() {
-        cargoItems.add(new CargoItem(counter.incrementAndGet(), "Electronics", 150.0, "Manila", "Cebu"));
-        cargoItems.add(new CargoItem(counter.incrementAndGet(), "Apparel", 50.5, "Davao", "Manila"));
-        cargoItems.add(new CargoItem(counter.incrementAndGet(), "Perishables", 200.0, "Cebu", "Manila"));
+    public CargoController(CargoService cargoService) {
+        this.cargoService = cargoService;
+//        cargoItems.add(new CargoItem(counter.incrementAndGet(), "Electronics", 150.0, "Manila", "Cebu"));
+//        cargoItems.add(new CargoItem(counter.incrementAndGet(), "Apparel", 50.5, "Davao", "Manila"));
+//        cargoItems.add(new CargoItem(counter.incrementAndGet(), "Perishables", 200.0, "Cebu", "Manila"));
     }
+
 
     /**
      * GET /cargo
@@ -36,7 +46,8 @@ public class CargoController {
      */
     @GetMapping // Maps HTTP GET requests to /cargo
     public ResponseEntity<List<CargoItem>> getAllCargoItems() {
-        return ResponseEntity.ok(cargoItems); // Returns 200 OK with list of cargo items
+//        return ResponseEntity.ok(cargoItems); // Returns 200 OK with list of cargo items
+        return ResponseEntity.ok(cargoService.getAllCargoItems()); //new using cargoService
     }
 
     /**
@@ -47,12 +58,13 @@ public class CargoController {
      */
     @GetMapping("/{id}") // Maps HTTP GET requests to /cargo/{id}
     public ResponseEntity<CargoItem> getCargoItemById(@PathVariable Long id) {
-        Optional<CargoItem> cargoItem = cargoItems.stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
-        return cargoItem.map(ResponseEntity::ok) // If found, return 200 OK
-                        .orElseGet(() -> ResponseEntity.notFound().build()); 
-// Else, return 404 Not Found
+//        Optional<CargoItem> cargoItem = cargoItems.stream()
+//                .filter(c -> c.getId().equals(id))
+//                .findFirst();
+//        return cargoItem.map(ResponseEntity::ok) // If found, return 200 OK
+//                        .orElseGet(() -> ResponseEntity.notFound().build());// Else, return 404 Not Found
+        return cargoService.getCargoItemById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build()); //new using cargoService
+
     }
 
     /**
@@ -63,8 +75,24 @@ public class CargoController {
      */
     @PostMapping // Maps HTTP POST requests to /cargo
     public ResponseEntity<CargoItem> addCargoItem(@RequestBody CargoItem cargoItem) {
-        cargoItem.setId(counter.incrementAndGet()); // Assign a new ID
-        cargoItems.add(cargoItem); // Add to our in-memory list
-        return new ResponseEntity<>(cargoItem, HttpStatus.CREATED); // Returns 201 Created status
+//        cargoItem.setId(counter.incrementAndGet()); // Assign a new ID
+//        cargoItems.add(cargoItem); // Add to our in-memory list
+//        return new ResponseEntity<>(cargoItem, HttpStatus.CREATED); // Returns 201 Created status
+        CargoItem addCargo = cargoService.addCargoItem(cargoItem);
+        return new ResponseEntity<>(addCargo, HttpStatus.CREATED);  //new using cargoService
+    }
+
+    // PUT /cargo/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<CargoItem> updateCargoItem(@PathVariable Long id, @RequestBody CargoItem updatedCargoItem) {
+        CargoItem updated = cargoService.updateCargoItem(id, updatedCargoItem);
+        return (updated != null) ? ResponseEntity.ok(updated) : ResponseEntity.notFound().build();
+    }
+
+    // DELETE /cargo/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCargoItem(@PathVariable Long id) {
+        cargoService.deleteCargoItem(id);
+        return ResponseEntity.noContent().build();
     }
 }

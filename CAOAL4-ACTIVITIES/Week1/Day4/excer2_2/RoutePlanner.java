@@ -36,6 +36,7 @@ public class RoutePlanner {
         try {
             planner.planRoute(origin, destination);
         } catch (PortNotRecognizedException e) {
+            System.out.println("Origin: " + origin + " Destination: " + destination);
             System.out.println("The Origin or Destination ports are invalid");
         }
 

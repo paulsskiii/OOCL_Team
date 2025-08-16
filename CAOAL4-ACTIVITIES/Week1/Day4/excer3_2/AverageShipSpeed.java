@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,9 +15,14 @@ public class AverageShipSpeed {
         double averageSpeed = ships.stream().mapToDouble(Ship::getMaxSpeedKnot).average().orElse(0.0);
 
         System.out.println("Average Speed Knot: " + averageSpeed);
-        
+
+
         // Test with an empty list
-        
+        List<Ship> emptyShips = new ArrayList<>();
+
+        double averageEmptySpeed = emptyShips.stream().mapToDouble(Ship::getMaxSpeedKnot).average().orElse(0.0);
+        System.out.println("Average Speed Knot of an empty list: " + averageEmptySpeed);
+
        
     }
 }

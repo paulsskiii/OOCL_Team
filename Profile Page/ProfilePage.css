@@ -1,0 +1,43 @@
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 30px;
+    align-items: center;
+    background-color: white;
+    flex-direction: column;
+}
+#parent {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+    margin: auto;
+}
+#child {
+    flex-direction: column;
+    text-align: left;
+    justify-content: flex-start;
+}
+#display-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+#name {
+    margin-left: 30px;;
+}
+
+main {
+    margin: 30px;
+}
+
+.header {
+    background-color: aquamarine;
+    height: 100px;
+}
+
+footer {
+    position: sticky;
+
+}

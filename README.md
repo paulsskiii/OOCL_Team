@@ -94,9 +94,14 @@
 5. **Never push directly to the main Branch**.  
    Yes.
 
+6. **Branch Cleanup and Uniformity**.  
+   - Once you have migrated to your new branch following the updated instructions, you must delete your old or unused branches.
+
+   - This ensures our repository stays clean, organized, and uniform across all trainees
+
 ---
 
-4. Markdown Template — GROUP_MEMBERS.md
+## 4. Markdown Template — GROUP_MEMBERS.md
 # Group Members
 
 | Name              | Role                | GitHub Username      |

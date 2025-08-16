@@ -3,7 +3,7 @@
 ## Design Thinking Activity:
 ### [Figma](https://www.figma.com/design/PBG7IJA9oZ99tRTwp0mB2Z/ITA-10-Design-Thinking-Activity--CAMERA-?node-id=0-1&p=f)
 
-![Design Thinking Activity Figma](day2/DesignThinkingActivity_Figma.png)
+![Design Thinking Activity Figma](DesignThinkingActivity_Figma.png)
 
 ## Sprint Planning Activity [Jira] (ITA-10 CAMERA):
 ### Sticky Notes

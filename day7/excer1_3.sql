@@ -1,0 +1,2 @@
+SELECT DISTINCT SENDER_ID
+FROM transactions;

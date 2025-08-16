@@ -5,9 +5,11 @@
 
 ![Design Thinking Activity Figma](DesignThinkingActivity_Figma.png)
 
-## Sprint Planning Activity [Jira] (ITA-10 CAMERA):
+---
+
+## Sprint Planning Activity (ITA-10 CAMERA):
 ### Sticky Notes
 ![Sprint Planning Sticky Notes](SprintPlanning_StickyNotes.jpg)
 
-### [Jira](https://annadesembrana.atlassian.net/jira/software/projects/I1C/boards/35/backlog?atlOrigin=eyJpIjoiN2UxMjA5MDYwNjUwNDRkZGE3NjdlOTg4MDViNTU3YzgiLCJwIjoiaiJ9)
+### [Jira Project](https://annadesembrana.atlassian.net/jira/software/projects/I1C/boards/35/backlog?atlOrigin=eyJpIjoiN2UxMjA5MDYwNjUwNDRkZGE3NjdlOTg4MDViNTU3YzgiLCJwIjoiaiJ9)
 ![Sprint Jira](SprintPlanning_Jira.png)

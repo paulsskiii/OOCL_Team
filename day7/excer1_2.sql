@@ -1,0 +1,14 @@
+SELECT DISTINCT c.CUSTOMER_ID, c.FIRST_NAME, c.LAST_NAME, t
+FROM CUSTOMERS c
+WHERE c.CUSTOMER_ID NOT IN (SELECT DISTINCT SENDER_ID
+                            FROM transactions);
+
+SELECT DISTINCT c.CUSTOMER_ID, c.FIRST_NAME, c.LAST_NAME, t.TRANSACTION_ID
+FROM TRANSACTIONS t
+         LEFT OUTER JOIN CUSTOMERS c ON t.SENDER_ID = c.CUSTOMER_ID;
+
+SELECT *
+FROM customers c
+         LEFT JOIN transactions t
+                   ON c.customer_id = t.sender_id
+WHERE t.sender_id IS NULL;

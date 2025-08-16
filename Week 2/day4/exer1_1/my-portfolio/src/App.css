@@ -1,0 +1,299 @@
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url('.\assets\pic.jpg');
+    height: 800px;
+}
+
+.title {
+    color: black;
+    font-size: 50px;
+}
+
+.title1 {
+    color: #FFECA1;
+    font-size: 50px;
+}
+
+.sub {
+    margin: 50px 23px 0 20px;
+    color: black;
+    font-size: 20px;
+}
+
+.name {
+    color: #FFECA1;
+    text-shadow: 3px 2px 1px black;
+    font-size: 70px;
+    margin-top: 260px;
+}
+
+.des {
+    color: #FFECA1;
+    text-shadow: 3px 2px 1px black;
+    font-size: 50px;
+}
+
+.body1 {
+    height: 500px;
+    background-color: rgb(65, 64, 64);
+}
+
+.about {
+    color: white;
+    font-size: 105px;
+    text-shadow: 4px 2px 1px black;
+    margin-top: 100px;
+}
+
+.me {
+    text-align: center;
+    color: white;
+    font-size: 27px;
+    padding: 0 130px 0 130px;
+    margin-top: 20px;
+}
+
+.body2 {
+    background-color: rgb(245, 247, 154);
+}
+
+.portfolio {
+    color: rgb(31, 31, 29);
+    text-align: center;
+    font-size: 90px;
+    margin-top: 40px;
+}
+
+.mini-picture {
+    margin-top: 40px;
+}
+
+.first-picture {
+    margin-right: 30px;
+}
+
+.picture1 {
+    width: 270px;
+}
+
+.sec-picture {
+    margin-right: 30px;
+}
+
+.picture2 {
+    width: 303px;
+}
+
+.picture3 {
+    width: 342px;
+}
+
+.button1 {
+    margin-top: 42px;
+}
+
+.see-more {
+    background-color: rgba(29, 29, 23, 0.767);
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    width: 250px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+}
+
+.see-more:hover {
+    color: black;
+    background-color: #FFECA1;
+    border: 1px solid rgb(54, 52, 52);
+    cursor: pointer;
+}
+
+.body3 {
+    height: 800px;
+    background-color: rgb(83, 81, 81);
+}
+
+.contactcontent {
+    display: flex;
+}
+
+.contact {
+    margin: 0 0 0 100px;
+    color: white;
+    font-size: 90px;
+    text-shadow: 4px 2px 1px black;
+}
+
+.download-area {
+    width: 450px;
+    height: 500px;
+    display: inline-block;
+}
+
+.email {
+    display: flex;
+    margin-top: 40px;
+}
+
+.img-email {
+    width: 50px;
+}
+
+.text-email {
+    padding-top: 7px;
+    padding-left: 17px;
+    color: white;
+}
+
+.whatsapp {
+    display: flex;
+    margin-top: 40px;
+}
+
+.img-whatsapp {
+    width: 50px;
+}
+
+.text-whatsapp {
+    padding-top: 7px;
+    padding-left: 17px;
+    color: white;
+}
+
+.icons {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 40px;
+}
+
+.img-facebook {
+    width: 107px;
+    margin-right: 20px;
+}
+
+.img-twitter {
+    width: 70px;
+    margin-right: 10px;
+}
+
+.download {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 42px;
+}
+
+.download-button {
+    background-color: #FFECA1;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    font-weight: 700;
+    width: 250px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+}
+
+.download-button:hover {
+    color: black;
+    background-color: rgb(255, 255, 0);
+    border: 1px solid rgb(54, 52, 52);
+    cursor: pointer;
+}
+
+.submit-area {
+    width: 600px;
+    height: 500px;
+}
+
+.name-textbox {
+    position: absolute;
+    width: 580px;
+    height: 70px;
+    margin-top: 30px;
+    margin-left: 10px;
+    background-color: rgba(85, 85, 20, 0.74);
+    color: white;
+    border-radius: 3px;
+}
+
+.your-name {
+    margin-top: 17px;
+    margin-left: 30px;
+    font-size: 30px;
+}
+
+.email-textbox {
+    position: absolute;
+    width: 580px;
+    height: 70px;
+    margin-top: 120px;
+    margin-left: 10px;
+    background-color: rgba(85, 85, 20, 0.74);
+    color: white;
+    border-radius: 3px;
+}
+
+.your-email {
+    margin-top: 17px;
+    margin-left: 30px;
+    font-size: 30px;
+}
+
+.msg-textbox {
+    position: absolute;
+    width: 580px;
+    height: 220px;
+    margin-top: 210px;
+    margin-left: 10px;
+    background-color: rgba(85, 85, 20, 0.74);
+    color: white;
+    border-radius: 3px;
+}
+
+.your-msg {
+    margin-top: 17px;
+    margin-left: 30px;
+    font-size: 30px;
+}
+
+.submit {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 455px;
+}
+
+.submit-button {
+    background-color: #FFECA1;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    font-weight: 700;
+    width: 250px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+}
+
+.submit-button:hover {
+    color: black;
+    background-color: rgb(255, 255, 0);
+    border: 1px solid rgb(54, 52, 52);
+    cursor: pointer;
+}
+
+footer {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1349px;
+    height: 80px;
+    background-color: whitesmoke;
+}

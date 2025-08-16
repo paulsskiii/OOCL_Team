@@ -1,0 +1,9 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///C:/Users/DESENMO2/NEW/OOCL_Team/day5/assignment/config-repo

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-function SearchBar({ onClick, onChange, searchValue}) {
+function SearchBar({ onClick, onChange, searchValue }) {
 	return (
 		<div
 			className={
@@ -28,7 +28,6 @@ function SearchBar({ onClick, onChange, searchValue}) {
 				onChange={(e) => {
 					onChange(e.target.value);
 				}}
-				// disabled={isDisabled ? true : false}
 			/>
 		</div>
 	);

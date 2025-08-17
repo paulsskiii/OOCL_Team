@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- meta tags-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,">
+  <meta name="description" content="ITA BOOTCAMP FRONT END EXERCISE">
+  <meta name="author" content="ALEXIS CAO">
+  <meta name="keywords" content="CAOAL's Porfolio">
+  <title>CAOAL's Profile</title>
+  <!-- scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+  <div id="container" align="center">
+    <header class="tabs-nav">
+      <ul>
+        <li class="active"><a href="#tab1">Overview</a></li>
+        <li><a href="#tab2">Profile</a></li>
+      </ul>
+    </header>
+
+  <section class="tabs-content">
+    <!-- Overview Tab -->
+    <div id="tab1">
+
+        <img src="CAOAL-PIC.jpg" alt="Alexis Cao" class="profile-pic">
+        <h1 style="font-weight: bold;">Alexis D. Cao</h1>
+        <p style="text-align:center; font-weight:bold;">
+          Dasmarinas, Cavite, Philippines<br>
+          <i class="fa fa-phone" aria-hidden="true"></i> Contact No.: +63977-xxxx-xxx<br>
+          <i class="fa fa-envelope" aria-hidden="true"></i> Email: <a href="mailto:alexis.cao@oocl.com">alexis.cao@oocl.com</a>
+        </p>
+
+        <div id="tab1" class="social-links">
+          <a href="#" class="fa-brands fa-yahoo"></a>
+          <a href="#" class="fa-brands fa-facebook"></a>
+          <a href="#" class="fa-brands fa-linkedin"></a>
+          <a href="#" class="fa-brands fa-skype"></a>
+          <a href="mailto:201911286@feualabang.edu.ph" class="fa-brands fa-google"></a>
+        </div>
+
+        <hr>
+        <h2>ABOUT ME</h2>
+        <p align="justify">
+        Hello everyone! My name is Alexis Cao, currently working as programmer in OOCL Philippines Inc. Aside from programming, I also have a little background in basic drafting and designing. I also do graphic designing and digital artwork as a hobby.  
+        </p>
+
+        <hr>
+        <p style="font-weight: bold;">Checkout My Links!</p>
+        <button type="text">
+          <p1><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;&nbsp;Add me on facebook</p1>
+        </button>
+        <br>
+
+        <button type="text">
+          <p1><i class="fa fa-linkedin" aria-hidden="true"></i>&nbsp;&nbsp;Connect with me on LinkedIn</p1>
+        </button>
+        <br>
+
+         <button type="text">
+          <p1><i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;&nbsp;Follow me on Instagram</p1>
+        </button>
+    </div>
+
+    <div id="tab2">
+
+      <h3>Experience</h3>
+        <p>Job Position: PROGRAMMER<br>
+          Team: DOCU-DPMCP<br>
+          Date Hired: OCT 2024 - PRESENT</p>
+
+          <p>Job Position: PROGRAMMER INTERN<br>
+          Team: DOCU-DPMCP<br>
+          Date Hired: FEB 2024 - SEPT 2024</p>
+      <h3>Personal Background</h3>
+        <p>Date of Birth: January 8<br>
+           Birthplace: Baliuag, Bulacan<br>
+           Sex: Female<br>
+           Nationality: Filipino</p>
+
+        <h3>Educational Attainment</h3>
+        <p>College: FEU - ALABANG<br>
+            BS Information Technology<br>with specialization in Service Management and Business Analytics<br>2019 – 2024</p>
+
+        <h3>Skills</h3>
+        <p>Computer Skills: Microsoft Office<br>
+            Programming Language/s: Java.....</p>
+    </div>
+
+  </section>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#sign-up").click(function(){
+      var fname = $("#fname").val();
+      var lname = $("#lname").val();
+      var ename = $("#ename").val();
+      var psw = $("#psw").val();
+      var cpsw = $("#cpsw").val();
+      newwindow=window.open("", "", "width=500,height=300");
+      newwindow.document.writeln("<h2>This are the data from the sign-up form. Thank you! <br></h2>");
+      newwindow.document.writeln("First Name: "+fname+"<br><br>");
+      newwindow.document.writeln("Last Name: "+lname+"<br><br>");
+      newwindow.document.writeln("Email: "+ename+"<br><br>");
+      newwindow.document.writeln("Password: "+psw+"<br><br>");
+      newwindow.document.writeln("Confirm Password: "+cpsw+"<br><br>");    
+    });
+});
+</script>
+
+  <script>
+  $(function() {
+    $('.tabs-nav a').click(function() {
+
+      // Check for active
+      $('.tabs-nav li').removeClass('active');
+      $(this).parent().addClass('active');
+
+      // Display active tab
+      let currentTab = $(this).attr('href');
+      $('.tabs-content div').hide();
+      $(currentTab).show();
+
+      return false;
+    });
+  });
+  </script>
+
+<script>
+(function() {
+
+    $('#form2 > #fname,#lname,#ename,#psw,#cpsw').keyup(function() {
+        var empty = false;
+        $('#form2 > #fname,#lname,#ename,#psw,#cpsw').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $('#sign-up').attr('disabled', 'disabled');
+        } else {
+            $('#sign-up').removeAttr('disabled');
+        }
+    });
+})()
+</script>
+
+</body>
+</html>

@@ -7,20 +7,30 @@ import {
   Link,
 } from "react-router-dom";
 
-function BioSection() {
+type BioDisplayProps = {
+  name: string;
+  birthday: Date;
+  personType: string;
+};
+
+export default function BioSection({
+  name,
+  birthday,
+  personType,
+}: BioDisplayProps) {
   return (
     <div>
       <dl className="row">
         <dt className="col-sm-3">Name</dt>
-        <dd className="col-sm-9">Abi</dd>
+        <dd className="col-sm-9">{name}</dd>
 
         <dt className="col-sm-3">Date of Birth</dt>
         <dd className="col-sm-9">
-          <p>hapi birthday</p>
+          <p>{birthday.toLocaleDateString()}</p>
         </dd>
 
         <dt className="col-sm-3">Type of Person</dt>
-        <dd className="col-sm-9">Inverter</dd>
+        <dd className="col-sm-9">{personType}</dd>
 
         <dt className="col-sm-3 text-truncate">Additional Information</dt>
         <dd className="col-sm-9">
@@ -31,5 +41,3 @@ function BioSection() {
     </div>
   );
 }
-
-export default BioSection;

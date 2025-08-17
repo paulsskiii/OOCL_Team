@@ -1,6 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import Home from "./HomePage";
 import AboutMePage from "./AboutMePage";
 import SkillsPage from "./SkillsPage";
@@ -10,24 +15,47 @@ function Header() {
     <Router>
       <div
         className="myHeader"
-        style={{ padding: " 10px 20px", backgroundColor: "darkkhaki" }}
+        style={{
+          padding: " 40px 20px 0px 20px",
+          backgroundColor: "#FF9F8A",
+        }}
       >
         <nav className=".container-fluid position-sticky justify-content-end ">
           <ul className="nav nav-tabs">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
+            <li
+              className="nav-item"
+              style={{
+                color: "white",
+              }}
+            >
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  "nav-link" + (isActive ? " active-tab" : "")
+                }
+              >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/about" className="nav-link">
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  "nav-link" + (isActive ? " active-tab" : "")
+                }
+              >
                 About
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/skillSet" className="nav-link">
+              <NavLink
+                to="/skillSet"
+                className={({ isActive }) =>
+                  "nav-link" + (isActive ? " active-tab" : "")
+                }
+              >
                 Skills
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

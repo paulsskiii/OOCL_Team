@@ -1,76 +1,141 @@
-import { useState, useEffect } from "react"
-import LoadingSpinner from './LoadingSpinner';
+import { useState, useEffect, useContext } from "react";
+import { LoadingSpinner } from "./LoadingSpinner";
+import { Context } from "../App";
+import { IoClose } from "react-icons/io5";
 
-function UserProfile({name, setName, email, setEmail, description, setDescription}){
+type UserProfileProps = {};
 
-    const [loading, setIsLoading] = useState(false);
-    const [tempName, setTempName] = useState(name);
-    const [tempEmail, setTempEmail] = useState(email);
-    const [tempDesc, setTempDesc] = useState(description);
+export const UserProfile: React.FC<UserProfileProps> = ({}) => {
+	const context = useContext(Context);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false); 
-            if(loading)
-                alert("Profile details successfully updated!")
-        }, 3000);
+	if (!context) return null;
 
-        return () => clearTimeout(timer);
+	const { name, setName } = context;
+	const { email, setEmail } = context;
+	const { description, setDescription } = context;
+	const { hobbies, setHobbies } = context;
+	const { profileModalOpen, setProfileModalOpen } = context;
 
-    }, [loading]);
+	const [tempName, setTempName] = useState(name);
+	const [loading, setIsLoading] = useState(false);
+	const [tempEmail, setTempEmail] = useState(email);
+	const [tempDesc, setTempDesc] = useState(description);
+	const [tempHobbies, setTempHobbies] = useState(hobbies);
 
-    const handleName = (e) => {
-        setTempName(e.target.value)
-    }
+	useEffect(() => {
+		if (loading) {
+			const timer = setTimeout(() => {
+				setIsLoading(false);
+				setProfileModalOpen(false);
+				if (loading) alert("Profile details successfully updated!");
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [loading]);
 
-    const handleEmail = (e) => {
-        setTempEmail(e.target.value)
-    }
+	const handleName = (e) => {
+		setTempName(e.target.value);
+	};
 
-    const handleDescription = (e) => {
-        setTempDesc(e.target.value)
-    }
+	const handleEmail = (e) => {
+		setTempEmail(e.target.value);
+	};
 
-    function editProfile(){
-        setEmail(tempEmail);
-        setName(tempName);
-        setDescription(tempDesc);
-        setIsLoading(true);
-    }
-    
-    return(
-        <div className="flex flex-col w-full items-center justify-center "> 
+	const handleDescription = (e) => {
+		setTempDesc(e.target.value);
+	};
 
-            { loading ? (<LoadingSpinner/>) : (<></>) }
+	const handleHobbies = (e) => {
+		setTempHobbies(e.target.value);
+	};
 
-            <div className="text-3xl font-bold ">
-                EDIT PROFILE
-            </div>
-                <aside className="flex flex-col gap-5">
-                        <div className="text-left w-full">
-                            <div className="text-lg mt-5" >User Name</div>
-                            <input type="text" className="bg-white rounded-sm text-black text-md w-96 p-1" value={tempName} onChange={handleName}></input>
-                        </div>
+	function editProfile() {
+		setEmail(tempEmail);
+		setName(tempName);
+		setDescription(tempDesc);
+		setHobbies(tempHobbies);
+		setIsLoading(true);
+	}
 
-                        <div className="text-left w-full">
-                            <div className="text-lg">Email</div>
-                            <input type="text" className="bg-white rounded-sm text-black text-md w-96 p-1" value={tempEmail} onChange={handleEmail}></input>
-                        </div>
+	if (!profileModalOpen) return null;
 
-                        <div className="text-left w-3/4">
-                            <div className="text-lg">Description</div>
-                            <textarea className="bg-white rounded-sm text-black text-md p-1 w-96 h-54" value={tempDesc} onChange={handleDescription}></textarea>
-                        </div>
+	return (
+		<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+			<div className="bg-gray-900/20 backdrop-blur-2xl border-2 border-gray-400 rounded-2xl shadow-lg w-[500px] p-6 relative">
+				{/* Close button */}
+				<button
+					onClick={() => setProfileModalOpen(false)}
+					className="absolute top-3 right-3 text-white hover:text-gray-300 bg-red-500/0"
+				>
+					<IoClose size={20} />
+				</button>
 
-                        <div className="flex justify-end">
-                            <button className="bg-green-300 text-black" 
-                                onClick={()  => editProfile()}>
-                                    Save
-                            </button>
-                        </div>
-                </aside>
-        </div>
-    )
-}
+				{loading ? (
+					<div className="flex justify-center items-center py-10">
+						<LoadingSpinner />
+					</div>
+				) : (
+					<>
+						<h2 className="text-2xl font-bold text-center mb-6">
+							Edit Profile
+						</h2>
 
-export default UserProfile;
+						<aside className="flex flex-col gap-5">
+							{/* Username */}
+							<div className="text-left w-full">
+								<label className="text-lg">User Name</label>
+								<input
+									type="text"
+									className="bg-gray-100 rounded-md text-black text-md w-full p-2 mt-1"
+									value={tempName}
+									onChange={handleName}
+								/>
+							</div>
+
+							{/* Email */}
+							<div className="text-left w-full">
+								<label className="text-lg">Email</label>
+								<input
+									type="text"
+									className="bg-gray-100 rounded-md text-black text-md w-full p-2 mt-1"
+									value={tempEmail}
+									onChange={handleEmail}
+								/>
+							</div>
+
+							{/* Description */}
+							<div className="text-left w-full">
+								<label className="text-lg">Description</label>
+								<textarea
+									className="bg-gray-100 rounded-md text-black text-md p-2 w-full h-32 mt-1"
+									value={tempDesc}
+									onChange={handleDescription}
+								/>
+							</div>
+
+							{/* Hobbies */}
+							<div className="text-left w-full">
+								<label className="text-lg">Hobbies</label>
+								<textarea
+									className="bg-gray-100 rounded-md text-black text-md p-2 w-full h-32 mt-1"
+									value={tempHobbies}
+									onChange={handleHobbies}
+								/>
+							</div>
+
+							{/* Save button */}
+							<div className="flex justify-end">
+								<button
+									className="bg-blue-400 hover:bg-green-600 text-white px-4 py-2 rounded-lg"
+									onClick={editProfile}
+								>
+									Save Changes
+								</button>
+							</div>
+						</aside>
+					</>
+				)}
+			</div>
+		</div>
+	);
+};

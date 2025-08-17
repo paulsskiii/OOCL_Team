@@ -1,6 +1,8 @@
+package excer3_2;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.OptionalDouble;
 
 public class AverageShipSpeed {
     public static void main(String[] args) {
@@ -12,8 +14,19 @@ public class AverageShipSpeed {
         );
 
         // Calculate average max speed
-        
+        double ave = getAve(ships);
+        System.out.println("Max speed" + ave);
+
         // Test with an empty list
-       
+        List<Ship> emptyShips = Collections.emptyList();
+        double emptyAve = getAve(emptyShips);
+        System.out.println("Average max speed of empty list): " + emptyAve);
+    }
+
+    private static double getAve(List<Ship> ships) {
+        return ships.stream()
+                .mapToDouble(value -> value.maxSpeedKnot)
+                .average()
+                .orElse(0.0);
     }
 }

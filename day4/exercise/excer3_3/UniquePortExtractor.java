@@ -16,7 +16,12 @@ public class UniquePortExtractor {
         );
 
         // Extract all unique port names
- 
+        cargoRoutes.stream()
+                .flatMap(route -> Arrays.stream(route.split("->")))
+                .map(String::trim)
+                .distinct()
+                .sorted()
+                .forEach(System.out::println);
     }
 }
 

@@ -1,3 +1,5 @@
+package com.cargoship.cargoapi.service;
+
 import com.cargoship.cargoapi.model.Ship;
 import com.cargoship.cargoapi.repository.ShipRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class ShipService {
 
     public ShipService(ShipRepository shipRepository) {
         // TODO: Initialize the repository field
-        this.shipRepository = null; // Replace
+        this.shipRepository = shipRepository; // Replace
     }
 
     /**
@@ -23,7 +25,7 @@ public class ShipService {
      */
     public List<Ship> getAllShips() {
         // TODO: Call repository to return all ships
-        return null;
+        return shipRepository.findAllShips();
     }
 
     /**
@@ -31,6 +33,6 @@ public class ShipService {
      */
     public Optional<Ship> getShipDetails(Long id) {
         // TODO: Call repository to find a ship by ID
-        return Optional.empty();
+        return shipRepository.findShipById(id);
     }
 }

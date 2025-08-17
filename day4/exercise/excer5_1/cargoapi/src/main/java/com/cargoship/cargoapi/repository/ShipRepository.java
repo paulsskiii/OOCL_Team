@@ -1,3 +1,5 @@
+package com.cargoship.cargoapi.repository;
+
 import com.cargoship.cargoapi.model.Ship;
 import org.springframework.stereotype.Repository;
 
@@ -16,24 +18,31 @@ public class ShipRepository {
 
     public ShipRepository() {
         // TODO: Add some dummy ship data to the list
+        ships.add(new Ship(1, "Name1", 10, "Manila"));
+        ships.add(new Ship(2, "Name2", 100, "Japan"));
+        ships.add(new Ship(3, "Name3", 1000, "Taiwan"));
     }
 
     /**
      * Get all ships.
+     * 
      * @return List of all ships.
      */
     public List<Ship> findAllShips() {
         // TODO: Return a copy of the ships list
-        return null;
+        return new ArrayList<>(ships);
     }
 
     /**
      * Find a ship by ID.
+     * 
      * @param id The ship ID to search for.
      * @return Optional of Ship if found.
      */
     public Optional<Ship> findShipById(Long id) {
         // TODO: Search through the list and return the first match
-        return Optional.empty();
+        return ships.stream()
+                .filter(ship -> ship.getId() == id)
+                .findFirst();
     }
 }

@@ -1,4 +1,6 @@
-Class Ship {
+package excer3_2;
+
+public class Ship {
     String name;
     double maxSpeedKnot; // in knots
 
@@ -13,8 +15,8 @@ Class Ship {
     @Override
     public String toString() {
         return "Ship{" +
-               "name='" + name + '\'' +
-               ", maxSpeedKnot=" + maxSpeedKnot +
-               '}';
+                "name='" + name + '\'' +
+                ", maxSpeedKnot=" + maxSpeedKnot +
+                '}';
     }
 }

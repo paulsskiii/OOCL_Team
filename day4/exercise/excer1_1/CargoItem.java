@@ -1,4 +1,8 @@
-class CargoItem {
+package Java34.OOCL_Team.day4.exercise.excer1_1;
+
+import java.util.Objects;
+
+public class CargoItem {
     long id;
     String name;
     double weight;
@@ -12,4 +16,41 @@ class CargoItem {
     }
 
     // Getters and toString / equals / hashCode
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    @Override
+    public String toString() {
+        return "CargoItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", destination='" + destination + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CargoItem cargoItem = (CargoItem) o;
+        return getId() == cargoItem.getId() && Double.compare(getWeight(), cargoItem.getWeight()) == 0 && Objects.equals(getName(), cargoItem.getName()) && Objects.equals(getDestination(), cargoItem.getDestination());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getWeight(), getDestination());
+    }
 }

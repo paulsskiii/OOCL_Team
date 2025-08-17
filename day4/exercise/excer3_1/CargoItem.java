@@ -1,8 +1,14 @@
+package excer3_1;
+
 class CargoItem {
     long id;
     String name;
     double weight;
     double value;
+
+    public CargoItem(){
+
+    }
 
     public CargoItem(long id, String name, double weight, double value) {
         this.id = id;
@@ -12,7 +18,33 @@ class CargoItem {
     }
 
     // Getters and toString
-}
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return "CargoItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", value=" + value +
+                '}';
+    }
+
+    }
 
 
 

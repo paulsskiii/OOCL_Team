@@ -1,8 +1,9 @@
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet; // For sorted unique elements
-import java.util.stream.Collectors;
+import java.util.stream.Collectors; // For sorted unique elements
 
 public class UniquePortExtractor {
     public static void main(String[] args) {
@@ -16,7 +17,14 @@ public class UniquePortExtractor {
         );
 
         // Extract all unique port names
+        Set<String> uniquePorts = cargoRoutes.stream()
+            .flatMap(port ->
+                    Arrays.stream(port.split("->"))
+                            .map(split -> split.replaceAll("\\s+","")))
+            .sorted(Comparator.naturalOrder())
+            .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        uniquePorts.forEach(System.out::println);
  
     }
 }
-

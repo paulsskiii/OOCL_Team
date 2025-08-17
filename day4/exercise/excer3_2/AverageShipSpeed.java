@@ -1,6 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalDouble;
 
 public class AverageShipSpeed {
     public static void main(String[] args) {
@@ -12,8 +12,13 @@ public class AverageShipSpeed {
         );
 
         // Calculate average max speed
+        System.out.println("Average Ship Speed from Populated List:" + ships.stream().mapToDouble(ship -> ship.getMaxSpeedKnot()).average().orElse(0.0));
         
         // Test with an empty list
+        List<Ship> emptyListOfShips = new ArrayList<>();
+
+        System.out.println("Average Ship Speed from Empty List: " + emptyListOfShips.stream().mapToDouble(ship -> ship.getMaxSpeedKnot()).average().orElse(0.0));
+
        
     }
 }

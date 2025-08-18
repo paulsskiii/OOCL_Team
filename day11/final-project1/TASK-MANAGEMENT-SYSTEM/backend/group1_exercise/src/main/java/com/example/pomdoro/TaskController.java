@@ -44,17 +44,17 @@ public class TaskController {
 
     @GetMapping("/search")
     public List<Task> searchTask(@RequestParam String input){
-        return taskRepository.findByTitleOrDescriptionIgnoreCase();
+        return taskRepository.findByTitleContainingOrDescriptionContainingIgnoreCase(input, input);
     }
     
-    // @GetMapping("/filter/{}")
-    // public List<Task> filterByStatus(@PathVariable boolean status){
-    //     if(status){
-    //         return taskRepository.findByStatusTrue();
-    //     } else {
-    //         return taskRepository.findByStatusFalse();
-    //     }
+    @GetMapping("/filter/{}")
+    public List<Task> filterByStatus(@PathVariable boolean status){
+        if(status){
+            return taskRepository.findByCompletedTrue();
+        } else {
+            return taskRepository.findByCompletedFalse();
+        }
         
-    // }
+    }
 
 }

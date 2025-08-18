@@ -1,0 +1,80 @@
+SELECT 
+  productName AS NAME, 
+     MAX(productPrice) AS HIGHEST_PRICED
+ FROM PRODUCTS
+ GROUP BY productName
+
+
+
+ SELECT 
+  OREF.orderReferenceID AS REFERENCE_ID,
+     ORD.orderID AS ORDER_ID,
+     CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+     CUST.email AS CUSTOMER_EMAIL,
+     PRD.productName AS PRODUCT_NAME,
+     PRD.productPrice  AS PRODUCT_PRICE,
+     OREF.quantity AS QUANTITY,
+     SELL.sellerName AS SELLER_NAME,
+     SELL.companyName AS COMPANY_NAME,
+     ORD.createdAt AS CREATED_AT
+ FROM ORDER_REFERENCES AS OREF
+ RIGHT JOIN ORDERS AS ORD
+  ON OREF.orderID = ORD.orderID
+ LEFT JOIN CUSTOMERS AS CUST
+  ON ORD.customerID = CUST.customerID
+ LEFT JOIN PRODUCTS AS PRD
+  ON OREF.productID = PRD.productID
+ LEFT JOIN SELLERS AS SELL
+  ON ORD.sellerID = SELL.sellerID
+ WHERE 
+  DATE_FORMAT(ORD.createdAt, '%Y') >= 2025
+  AND DATE_FORMAT(ORD.createdAt, '%Y') <= 2025
+ ORDER BY ORD.createdAt DESC
+
+
+
+SELECT 
+  OREF.orderReferenceID AS REFERENCE_ID,
+     ORD.orderID AS ORDER_ID,
+     CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+     CUST.email AS CUSTOMER_EMAIL,
+     PRD.productName AS PRODUCT_NAME,
+     PRD.productPrice  AS PRODUCT_PRICE,
+     OREF.quantity AS QUANTITY,
+     SELL.sellerName AS SELLER_NAME,
+     SELL.companyName AS COMPANY_NAME,
+     ORD.createdAt AS CREATED_AT
+ FROM ORDER_REFERENCES AS OREF
+ RIGHT JOIN ORDERS AS ORD
+  ON OREF.orderID = ORD.orderID
+ LEFT JOIN CUSTOMERS AS CUST
+  ON ORD.customerID = CUST.customerID
+ LEFT JOIN PRODUCTS AS PRD
+  ON OREF.productID = PRD.productID
+ LEFT JOIN SELLERS AS SELL
+  ON ORD.sellerID = SELL.sellerID
+ WHERE DATE_FORMAT(ORD.createdAt, '%m') >= 01 AND DATE_FORMAT(ORD.createdAt, '%m') <= 08
+
+
+
+SELECT 
+  OREF.orderReferenceID AS REFERENCE_ID,
+     ORD.orderID AS ORDER_ID,
+     CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+     CUST.email AS CUSTOMER_EMAIL,
+     PRD.productName AS PRODUCT_NAME,
+     PRD.productPrice  AS PRODUCT_PRICE,
+     OREF.quantity AS QUANTITY,
+     SELL.sellerName AS SELLER_NAME,
+     SELL.companyName AS COMPANY_NAME,
+     ORD.createdAt AS CREATED_AT
+ FROM ORDER_REFERENCES AS OREF
+ LEFT JOIN ORDERS AS ORD
+  ON OREF.orderID = ORD.orderID
+ LEFT JOIN CUSTOMERS AS CUST
+  ON ORD.customerID = CUST.customerID
+ LEFT JOIN PRODUCTS AS PRD
+  ON OREF.productID = PRD.productID
+ LEFT JOIN SELLERS AS SELL
+  ON ORD.sellerID = SELL.sellerID
+ WHERE ORD.createdAt BETWEEN '2025-01-01' AND '2025-08-31'

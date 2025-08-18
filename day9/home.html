@@ -1,0 +1,153 @@
+<html>
+<head>
+	<title>Sample Profile</title>
+</head>
+<body>
+
+<style>
+
+body{
+	background-color: #FAF9F6;
+	display: grid;
+	grid-template-columns: 3fr;
+	font-family: Arial;
+}
+
+main{
+	background-image: url("bg.jpg");
+	border: solid 0.05px;
+	height: 600px;
+	border-radius: 20px;
+	padding: 20px;
+	background-size: cover;
+
+}
+
+.picture{
+	grid-area: menu;
+
+}
+
+.text{
+	grid-area: content;
+}
+</style>
+
+<header>
+</header>
+
+<main>
+	<section class="picture" >
+		<div>
+			<h1><marquee>Rent A Girlfriend</marquee></h1>
+		</div>
+	</section>
+	<section class="text">
+		<div>
+			<img src="sumi.jpg" height="300px" width="150px"><br>
+			<b>Sumi Sakurasawa</b>
+		</div>
+		<div>
+			<h4>About Me</h4>
+			<ul>
+				<li id = "age">22</li>
+				<li>March 6, 2003 </li>
+				<li>Can eat a lot </li>
+				<li>Cries a lot</li>
+				<li>Programmer</li>
+				<li>OOCL Inc.</li>
+			</ul>
+			<button onclick="addAge()">Add age!</button><br/>
+			<button id = "lolbutton">Click me!</button>
+		</div>
+	</section>
+</main>
+
+<script>
+
+	function addAge(){
+
+		const age = document.getElementById("age");
+		let new_age = parseInt(age.textContent);
+		new_age++;
+		document.getElementById("age").innerHTML = new_age;
+		alert("Added 1 year to her!");
+
+		console.log(new_age);
+		console.warn("yellow warning");
+		console.error("red error D:");
+		console.info("info");
+	}
+
+
+		const button = document.getElementById('lolbutton');
+
+		let currentTop = Math.random();
+	    let currentRight = Math.random();
+	    console.log("wee: "+currentRight);
+
+	    button.addEventListener('click', () => {
+	    currentTop += 100; 
+        currentRight += 50;
+
+
+        button.style.position = 'absolute';
+
+	    button.style.top = currentTop + "px";
+        button.style.right = currentRight + 'px';
+
+
+	    console.log("css style:"+button.style.right);
+    });
+	
+
+
+	// Using Promises
+	function promiseFunction() {
+	  return  new Promise((resolve, reject) => {
+	  setTimeout(() => {
+	    resolve("Promises Resolved");
+	  }, 2000);
+	})
+	}
+
+	console.log("Promises Start");
+	promiseFunction()
+	.then((result) => {
+	  console.log(result);
+	  console.log("Promises End");
+	})
+	.catch((error)=>{
+	console.log(error)
+	});
+
+
+
+	// Using Async/Await
+	async function asyncFunction() {
+	  try {
+	    console.log("Async Start");
+	    const promise = new Promise((resolve, reject) => {
+	      setTimeout(() => {
+	        resolve("Async Resolved");
+	      }, 5000);
+	    });
+	    const result = await promise;
+	    console.log(result);
+	    console.log("Async End");
+	  } catch (error) {
+	    console.error(error);
+	  }
+	}
+
+asyncFunction()
+
+
+
+Output:
+Start
+Resolved
+End
+</script>
+</body>
+</html>

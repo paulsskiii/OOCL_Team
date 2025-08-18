@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Java",
+    "picsrc": "./src/assets/local-storage/pics/java.png"
+  },
+  {
+    "name": "Angular JS",
+    "picsrc": "./src/assets/local-storage/pics/angular.png"
+  }
+]

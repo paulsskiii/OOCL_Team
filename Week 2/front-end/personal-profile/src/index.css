@@ -47,7 +47,7 @@
   justify-content: space-between;
 }
 
-button{
+button, h1{
   font-size: 150px;
 }
 
@@ -66,4 +66,8 @@ button:hover{
 .form-container{
   display: flex;
   flex-direction: column;
+}
+
+.skills-cont{
+  display: flex;
 }

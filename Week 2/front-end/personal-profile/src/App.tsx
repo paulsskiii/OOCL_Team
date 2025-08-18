@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Banner}  from "./components/Banner";
 import { Content } from "./components/Content";
 
+
 function App() {
   const [page, setPage] = useState(1);
   const [name, setName] = useState("Juan Gabriel C. Semana");
   const [quote, setQuote] = useState("It is good to love many things, for therein lies the true strength, and whosoever loves much performs much, and can accomplish much, and what is done in love is well done.” ― Vincent Van Gogh");
+  const [pageName, setPageName] = useState("Skills");
 
   useEffect(() => {
     let timer = setTimeout(()=>{
@@ -24,13 +26,13 @@ function App() {
 
   return <>
     <Banner name={name} quote={quote}/>
-    <Content page={page} setName={setName} setQuote={setQuote}/>
+    <Content page={page}  setPageName={setPageName} setName={setName} setQuote={setQuote}/>
 
     <div className="slider-btns">
       <button onClick={back}>
           &lt;
       </button>
-      
+      <h1>{pageName}</h1>
       <button onClick={forward}>
           &gt;
       </button>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTaskContext } from "../context/TaskContext";
 import { taskService } from "../api/taskService";
@@ -6,9 +6,12 @@ import { taskService } from "../api/taskService";
 function TaskList() {
   const { state, dispatch } = useTaskContext();
   const { tasks, loading, error } = state;
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     fetchTasks();
   }, []);
+
   const fetchTasks = async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
@@ -42,8 +45,21 @@ function TaskList() {
   if (loading) return <div>Loading tasks...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  const searchData = tasks.filter((task) => {
+    const searchMatch = task.title.toLowerCase().includes(search.toLowerCase());
+
+    return searchMatch;
+  });
+
   return (
     <div style={{ padding: "20px" }}>
+      <input
+        type="text"
+        name="search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search Task"
+      />
       <h2>Task List ({tasks.length} tasks)</h2>
       {tasks.length === 0 ? (
         <div>
@@ -54,7 +70,7 @@ function TaskList() {
               padding: "10px 20px",
               backgroundColor: "#007bff",
               color: "white",
-              textDecoration: "none"
+              textDecoration: "none",
             }}
           >
             Create your first task
@@ -62,7 +78,7 @@ function TaskList() {
         </div>
       ) : (
         <div>
-          {tasks.map((task) => (
+          {searchData.map((task) => (
             <div
               key={task.id}
               style={{

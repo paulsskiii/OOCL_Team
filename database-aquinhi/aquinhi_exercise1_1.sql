@@ -1,0 +1,129 @@
+
+SELECT * FROM ORDER_REFERENCES; 
+
+SELECT 
+	OREF.orderReferenceID AS REFERENCE_ID,
+    ORD.orderID AS ORDER_ID,
+    CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+    CUST.email AS CUSTOMER_EMAIL,
+    PRD.productName AS PRODUCT_NAME,
+    PRD.productPrice  AS PRODUCT_PRICE,
+    OREF.quantity AS QUANTITY,
+    SELL.sellerName AS SELLER_NAME,
+    SELL.companyName AS COMPANY_NAME,
+    ORD.createdAt AS CREATED_AT
+FROM ORDER_REFERENCES AS OREF
+LEFT JOIN ORDERS AS ORD
+	ON OREF.orderID = ORD.orderID
+LEFT JOIN CUSTOMERS AS CUST
+	ON ORD.customerID = CUST.customerID
+LEFT JOIN PRODUCTS AS PRD
+	ON OREF.productID = PRD.productID
+LEFT JOIN SELLERS AS SELL
+	ON ORD.sellerID = SELL.sellerID
+WHERE 
+	SELL.sellerName = 'Infold Games'
+	AND CUST.firstName = 'Aki';
+
+ 
+ 
+ ----
+ 
+SELECT 
+    CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+    SUM(PRD.productPrice) AS TOTAL_PRICE,
+    COUNT(OREF.orderID) AS TOTAL_ORDERS
+FROM ORDER_REFERENCES AS OREF
+LEFT JOIN ORDERS AS ORD
+	ON OREF.orderID = ORD.orderID
+LEFT JOIN CUSTOMERS AS CUST
+	ON ORD.customerID = CUST.customerID
+LEFT JOIN PRODUCTS AS PRD
+	ON OREF.productID = PRD.productID
+WHERE CUST.customerID = 1
+GROUP BY cust.firstName;
+
+
+SELECT MAX(productPrice) AS HIGHEST_PRICED
+FROM PRODUCTS;
+
+
+SELECT * FROM PRODUCTS;
+
+
+-- 1 
+
+SELECT 
+	DISTINCT(type) AS PRODUCT_TYPE,
+    COUNT(type) AS TOTAL_OF_TYPE
+FROM products
+GROUP BY type;
+
+-- 2 
+
+SELECT 
+	firstName AS FIRST_NAME,
+    lastName AS LAST_NAME,
+    CONCAT(firstName,' ', lastName) AS FULL_NAME,
+    city
+FROM CUSTOMERS
+WHERE LOWER(city) LIKE '%a%';
+
+select distinct(city) from customers;
+
+-- 3
+
+SELECT 
+    ORD.orderID AS ORDER_ID,
+    CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+    CUST.email AS CUSTOMER_EMAIL,
+    PRD.productName AS PRODUCT_NAME,
+    PRD.productPrice  AS PRODUCT_PRICE,
+    SELL.sellerName AS SELLER_NAME,
+    SELL.companyName AS COMPANY_NAME,
+    ORD.createdAt AS CREATED_AT
+FROM ORDERS AS ORD
+LEFT JOIN ORDER_REFERENCES AS OREF
+	ON OREF.orderID = ORD.orderID
+LEFT JOIN CUSTOMERS AS CUST
+	ON ORD.customerID = CUST.customerID
+LEFT JOIN PRODUCTS AS PRD
+	ON OREF.productID = PRD.productID
+LEFT JOIN SELLERS AS SELL
+	ON ORD.sellerID = SELL.sellerID
+WHERE 
+	MONTH(ORD.createdAt) BETWEEN 01 AND 08
+ORDER BY ORD.createdAt DESC;
+
+
+-- 4 
+
+SELECT 
+    MAX(productPrice) AS HIGHEST_PRICED,
+    type AS PRODUCT_TYPE
+FROM PRODUCTS
+GROUP BY type;
+
+-- 5
+
+SELECT 
+    ORD.orderID AS ORDER_ID,
+    CONCAT(CUST.firstName,' ', CUST.lastName) AS CUSTOMER_NAME,
+    CUST.email AS CUSTOMER_EMAIL,
+    SELL.sellerName AS SELLER_NAME,
+    SELL.companyName AS COMPANY_NAME,
+    ORD.createdAt AS CREATED_AT
+FROM ORDERS AS ORD
+LEFT JOIN CUSTOMERS AS CUST
+	ON ORD.customerID = CUST.customerID
+LEFT JOIN SELLERS AS SELL
+	ON ORD.sellerID = SELL.sellerID
+WHERE 
+	DATE_FORMAT(ORD.createdAt, '%Y') = 2025
+    AND CUST.email LIKE '%@gmail.com'
+ORDER BY ORD.createdAt DESC;
+
+SELECT * FROM CUSTOMERS;
+
+
+

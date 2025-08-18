@@ -8,19 +8,33 @@ function CreateTask() {
   const [description, setDescription] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
-  const { dispatch } = useTaskContext();
+  // const { dispatch } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
+  const { tasks } = state;
+
+  function checkUniqueTitle (input) {
+    return tasks.filter((task) => task.title == input)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
-    try {
-      const newTask = { title, description };
-      const response = await taskService.createTask(newTask);
-      dispatch({ type: "ADD_TASK", payload: response.data });
-      navigate("/"); // Redirect to task list
-    } catch (error) {
-      alert("Failed to create task");
-    } finally {
-      setSubmitting(false);
+    const result = checkUniqueTitle(title);
+    console.log(result);
+    if (result.length != 0) {
+      alert("Existing Task");
+    }
+    else {
+      setSubmitting(true);
+      try {
+        const newTask = { title, description };
+        const response = await taskService.createTask(newTask);
+        dispatch({ type: "ADD_TASK", payload: response.data });
+        navigate("/"); // Redirect to task list
+      } catch (error) {
+        alert("Failed to create task");
+      } finally {
+        setSubmitting(false);
+      }
     }
   };
   return (
@@ -35,6 +49,7 @@ function CreateTask() {
             onChange={(e) => setTitle(e.target.value)}
             required
             style={{ width: "100%", padding: "8px", margin: "8px 0" }}
+            maxLength={"50"}
           />
         </div>
         <div>
@@ -43,6 +58,8 @@ function CreateTask() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             style={{ width: "100%", padding: "8px", margin: "8px 0" }}
+            required
+            maxLength={"255"}
           />
         </div>
         <button

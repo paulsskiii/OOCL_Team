@@ -9,8 +9,9 @@ function TaskManager() {
     fetchTasks();
     
   }, []);
+  
   const fetchTasks = async () => {
-debugger
+
     dispatch({ type: "SET_LOADING", payload: true });
     
     try {

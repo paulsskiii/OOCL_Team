@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTaskContext } from "../context/TaskContext";
 import { taskService } from "../api/taskService";
-
+ 
 function TaskList() {
   const { state, dispatch } = useTaskContext();
   const { tasks, loading, error } = state;
-  const [search, setSearch] = useState("");
-
+  const [selectedValue, setSelectedValue] = useState("");
   useEffect(() => {
     fetchTasks();
   }, []);
-
+ 
   const fetchTasks = async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
@@ -23,6 +22,7 @@ function TaskList() {
       dispatch({ type: "SET_LOADING", payload: false });
     }
   };
+ 
   const deleteTask = async (id, title) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
@@ -33,6 +33,7 @@ function TaskList() {
       }
     }
   };
+ 
   const toggleComplete = async (task) => {
     try {
       const updatedTask = { ...task, completed: !task.completed };
@@ -42,26 +43,46 @@ function TaskList() {
       alert("Failed to update task");
     }
   };
+ 
+   useEffect(() => {
+    console.log(selectedValue);
+  }, [selectedValue]);
+ 
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+ 
+  const checkIsCompleted = (selectedValue) => {
+    return tasks.filter((task) => task.completed == selectedValue)
+  }
+
+  const getFilteredTasks = () => {
+    if (selectedValue === "") {
+      return tasks;
+    }
+    return checkIsCompleted(selectedValue);
+  };
+
+  const filteredTasks = getFilteredTasks();
+
   if (loading) return <div>Loading tasks...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const searchData = tasks.filter((task) => {
-    const searchMatch = task.title.toLowerCase().includes(search.toLowerCase());
-
-    return searchMatch;
-  });
-
   return (
     <div style={{ padding: "20px" }}>
-      <input
-        type="text"
-        name="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search Task"
-      />
       <h2>Task List ({tasks.length} tasks)</h2>
-      {tasks.length === 0 ? (
+      <label for="filterId">Filter by: </label>
+
+      <select name="filterId" id="filterId" value={selectedValue} onChange={handleChange}>
+        <option value="">All Tasks</option>
+        <option value="1">Completed</option>
+        <option value="0">Incomplete</option>
+      </select>
+      {filteredTasks.length === 0 && selectedValue !== "" ? (
+        <div>
+          <p>No {selectedValue === "true" ? "Completed" : "Incomplete"} tasks found.</p>
+        </div>
+      ) : tasks.length === 0 ? (
         <div>
           <p>No tasks found.</p>
           <Link
@@ -70,7 +91,7 @@ function TaskList() {
               padding: "10px 20px",
               backgroundColor: "#007bff",
               color: "white",
-              textDecoration: "none",
+              textDecoration: "none"
             }}
           >
             Create your first task
@@ -78,7 +99,7 @@ function TaskList() {
         </div>
       ) : (
         <div>
-          {searchData.map((task) => (
+          {filteredTasks.map((task) => (
             <div
               key={task.id}
               style={{
@@ -156,5 +177,5 @@ function TaskList() {
     </div>
   );
 }
-
+ 
 export default TaskList;

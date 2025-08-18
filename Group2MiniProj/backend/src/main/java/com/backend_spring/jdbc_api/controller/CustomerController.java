@@ -14,6 +14,7 @@ import com.backend_spring.jdbc_api.util.DbConnection;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("http://localhost:5173")
@@ -22,7 +23,7 @@ public class CustomerController {
     private CustomerDao customerDao = new CustomerDaoImpl() ;
     
     @GetMapping("/users")
-    public List<Customer> getMethodName() {
+    public List<Customer> getAllCustomers() {
         DbConnection.getConnection();
         return customerDao.findAll();
     }

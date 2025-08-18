@@ -11,6 +11,18 @@ function EditTask() {
   const [completed, setCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+
+const validateTask = (task) => {
+    const errors = {};
+    if (!task.title || task.title.trim().length < 3) {
+      errors.title = "Title must be at least 3 characters";
+    }
+    if (task.title && task.title.length > 100) {
+      errors.title = "Title must be less than 100 characters";
+    }
+    return errors;
+  };
+
   useEffect(() => {
     const task = state.tasks.find((t) => t.id === parseInt(id));
     if (task) {
@@ -46,12 +58,15 @@ function EditTask() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const updatedTask = { title, description, completed };
+      const updatedTask = { title, description };
+      const isError = validateTask(updatedTask);
+
+      if (isError.title !== undefined) throw new Error(isError.title);
       const response = await taskService.updateTask(id, updatedTask);
       dispatch({ type: "UPDATE_TASK", payload: response.data });
       navigate("/");
     } catch (error) {
-      alert("Failed to update task");
+      alert("Failed to update task. " + error.message);
     } finally {
       setSubmitting(false);
     }

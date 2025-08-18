@@ -35,4 +35,16 @@ public class TaskController {
         public void deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
     }
+
+    // http://localhost:8080/findtitle?title=build
+    @GetMapping("/findtitle")
+    public List<Task> findByTitle(@RequestParam String title){
+        return taskRepository.findByTitleLike(title);
+    }
+
+    // localhost:8080/api/tasks/filter?completed=false
+    @GetMapping("/filter")
+    public List<Task> filterByCompleted(@RequestParam boolean completed) {
+        return taskRepository.filterByCompleted(completed);
+    }
 }

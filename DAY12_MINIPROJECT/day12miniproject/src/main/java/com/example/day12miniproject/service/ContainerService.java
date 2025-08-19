@@ -30,19 +30,19 @@ public class ContainerService {
         containerRepository.deleteById(id); // Uses JpaRepository's deleteById()
     }
     
-    public int countbyDestination (Long id, String destination) {
+    public Long countbyDestination (Long id, String destination) {
         List<Container> containerList = containerRepository.findAll();
 
         return containerList.stream()
-            .filter(container -> container.getDestination.toUpperCase() == destination.toUpperCase())
+            .filter(container -> container.getDestination().toUpperCase() == destination.toUpperCase())
             .count();
     }
 
-    public int countbyOrigin (Long id, String origin) {
+    public Long countbyOrigin (Long id, String origin) {
         List<Container> containerList = containerRepository.findAll();
 
         return containerList.stream()
-            .filter(container -> container.getOrigin.toUpperCase() == origin.toUpperCase())
+            .filter(container -> container.getOrigin().toUpperCase() == origin.toUpperCase())
             .count();
     }
 }

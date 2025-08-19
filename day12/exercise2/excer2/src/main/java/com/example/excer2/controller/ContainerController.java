@@ -25,7 +25,7 @@ public class ContainerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Container> getContainerById(@PathVariable Long id) {
+    public ResponseEntity<Container> getContainerById(@PathVariable String id) {
         List <Container> containerItems = containerService.getAllContainers();
         Optional<Container> container = containerItems.stream()
                 .filter(c -> c.getContainerNumber().equals(id))
@@ -41,7 +41,7 @@ public class ContainerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Container> updateContainer(@PathVariable Long id, @RequestBody Container container) {
+    public ResponseEntity<Container> updateContainer(@PathVariable String id, @RequestBody Container container) {
         container.setContainerNumber(id);
         Container updatedContainer = containerService.updateContainer(container);
         return ResponseEntity.ok(updatedContainer);
@@ -49,7 +49,7 @@ public class ContainerController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteContainer(@PathVariable Long id) {
+    public void deleteContainer(@PathVariable String id) {
         containerService.deleteContainer(id);
     }
 }

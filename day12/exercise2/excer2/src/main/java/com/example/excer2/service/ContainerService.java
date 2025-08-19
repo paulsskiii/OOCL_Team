@@ -19,8 +19,8 @@ public class ContainerService {
         return containerRepository.findAll();
     }
 
-    public Optional<Container> getContainerById(Long id) {
-        return containerRepository.findById(id); // Uses JpaRepository's findById()
+    public List<Container> getContainerById(String id) {
+        return containerRepository.findByContainerNumber(id); // Uses JpaRepository's findById()
     }
 
     public Container addContainer (Container container) {
@@ -31,7 +31,7 @@ public class ContainerService {
         return containerRepository.save(container);
     }
 
-    public void deleteContainer (Long id) {
+    public void deleteContainer (String id) {
         containerRepository.deleteById(id);
     }
 

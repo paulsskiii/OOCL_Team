@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/container")
@@ -19,33 +20,36 @@ public class ContainerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ContainerItem>> getAllContainerItems(
-            @RequestParam(required = false) String size,
-            @RequestParam(required = false) String type,
-            @RequestParam(required = false) Double weight,
-            @RequestParam(required = false) String contentDescription) {
+    public ResponseEntity<List<Container>> getAllContainers() {
+        return ResponseEntity.ok(containerService.getAllContainers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContainerItem> getContainerItemById(@PathVariable Long id) {
-        return ResponseEntity.ok(containerService.getContainerItemById(id));
+    public ResponseEntity<Container> getContainerById(@PathVariable Long id) {
+        List <Container> containerItems = containerService.getAllContainers();
+        Optional<Container> container = containerItems.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst();
+        return container.map(ResponseEntity::ok) // If found, return 200 OK
+                        .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<ContainerItem> addContainerItem(@RequestBody ContainerItem containerItem) {
-        ContainerItem newContainer = containerService.addContainerItem(containerItem);
+    public ResponseEntity<Container> addContainer(@RequestBody Container container) {
+        Container newContainer = containerService.addContainer(container);
         return new ResponseEntity<>(newContainer, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContainerItem> updateContainerItem(@PathVariable Long id, @RequestBody ContainerItem containerItem) {
-        ContainerItem updatedContainer = containerService.updateContainerItem(id, containerItem);
+    public ResponseEntity<Container> updateContainer(@PathVariable Long id, @RequestBody Container container) {
+        container.setId(id);
+        Container updatedContainer = containerService.updateContainer(container);
         return ResponseEntity.ok(updatedContainer);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteContainerItem(@PathVariable Long id) {
-        containerService.deleteContainerItem(id);
+    public void deleteContainer(@PathVariable Long id) {
+        containerService.deleteContainer(id);
     }
 }

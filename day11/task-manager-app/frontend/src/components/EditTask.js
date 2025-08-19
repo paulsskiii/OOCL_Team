@@ -23,19 +23,6 @@ function EditTask() {
       fetchTask();
     }
   }, [id, state.tasks]);
-
-  const validateTask = (task) => {
-    const errors = {};
-    if (!task.title || task.title.trim().length < 3) {
-      errors.title = "Title must be at least 3 characters";
-    }
-    if (task.title && task.title.length > 100) {
-      errors.title = "Title must be less than 100 characters";
-    }
-    return errors;
-  };
-
-
   const fetchTask = async () => {
     try {
       const response = await taskService.getAllTasks();
@@ -60,16 +47,11 @@ function EditTask() {
     setSubmitting(true);
     try {
       const updatedTask = { title, description, completed };
-      const isError = validateTask(updatedTask);
-      console.log (isError);
-      if(isError.title !== undefined){
-        throw new Error(isError.title);
-      }
       const response = await taskService.updateTask(id, updatedTask);
       dispatch({ type: "UPDATE_TASK", payload: response.data });
       navigate("/");
     } catch (error) {
-      alert("Failed to update task. " + error.message);
+      alert("Failed to update task");
     } finally {
       setSubmitting(false);
     }

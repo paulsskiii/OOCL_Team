@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTaskContext } from "../context/TaskContext";
 import { taskService } from "../api/taskService";
-import { SearchTask } from "./SearchTask"
 
 function TaskList() {
   const { state, dispatch } = useTaskContext();
   const { tasks, loading, error } = state;
-  const [ searchTasks, setSearchTasks ] = useState([]);
 
   useEffect(() => {
     fetchTasks();
@@ -20,7 +18,7 @@ function TaskList() {
   useEffect(() => {
     const timer = setInterval(() => fetchTasks(), 30000);
     return () => clearInterval(timer); // Cleanup when unmounting
-  }, []);
+    }, []);
 
   const fetchTasks = async () => {
     dispatch({ type: "SET_LOADING", payload: true });
@@ -60,10 +58,7 @@ function TaskList() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>
-        Task List ({searchTasks.length > 0 ? searchTasks.length : tasks.length} tasks)
-      </h2>
-      <SearchTask setSearchTasks={setSearchTasks} />
+      <h2>Task List ({tasks.length} tasks)</h2>
       {tasks.length === 0 ? (
         <div>
           <p>No tasks found.</p>
@@ -81,7 +76,7 @@ function TaskList() {
         </div>
       ) : (
         <div>
-          {(searchTasks.length > 0 ? searchTasks : tasks).map((task) => (
+          {tasks.map((task) => (
             <div
               key={task.id}
               style={{

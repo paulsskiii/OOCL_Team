@@ -1,23 +1,17 @@
 package com.example.fullstack;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Task")
 public class Task {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
     private boolean completed;
-    // Constructors
 
+    // Constructors
     public Task() {
     }
 
@@ -26,8 +20,8 @@ public class Task {
         this.description = description;
         this.completed = false;
     }
-// Getters and Setters
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }

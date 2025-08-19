@@ -3,11 +3,15 @@ package com.example.day12miniproject.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.day12miniproject.model.Container;
 import com.example.day12miniproject.repository.ContainerRepository;
 
+@Service
 public class ContainerService {
-
+    @Autowired
     private final  ContainerRepository containerRepository;
 
       public ContainerService(ContainerRepository containerRepository) {

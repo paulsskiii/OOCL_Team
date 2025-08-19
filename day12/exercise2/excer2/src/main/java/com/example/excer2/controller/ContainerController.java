@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/container")
+@RequestMapping("/api/containers")
 public class ContainerController {
 
     private final ContainerService containerService;
@@ -28,7 +28,7 @@ public class ContainerController {
     public ResponseEntity<Container> getContainerById(@PathVariable Long id) {
         List <Container> containerItems = containerService.getAllContainers();
         Optional<Container> container = containerItems.stream()
-                .filter(c -> c.getId().equals(id))
+                .filter(c -> c.getContainerNumber().equals(id))
                 .findFirst();
         return container.map(ResponseEntity::ok) // If found, return 200 OK
                         .orElseGet(() -> ResponseEntity.notFound().build());
@@ -42,7 +42,7 @@ public class ContainerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Container> updateContainer(@PathVariable Long id, @RequestBody Container container) {
-        container.setId(id);
+        container.setContainerNumber(id);
         Container updatedContainer = containerService.updateContainer(container);
         return ResponseEntity.ok(updatedContainer);
     }

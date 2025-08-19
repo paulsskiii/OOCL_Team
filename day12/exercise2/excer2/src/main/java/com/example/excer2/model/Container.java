@@ -9,11 +9,11 @@ import lombok.Data;
 @Entity
 @Data
 public class Container {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String type;
-    private String size;
-    private double weight;
-    private String contentDescription;
+    private String containerNumber;
+    private String origin;
+    private String destination;
+    private double weightKg;
+
 }

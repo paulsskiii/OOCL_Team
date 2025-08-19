@@ -36,7 +36,7 @@ public class TaskController {
         taskRepository.deleteById(id);
     }
 
-    // http://localhost:8080/findtitle?title=build
+    // http://localhost:8080/api/tasks/findtitle?title=build
     @GetMapping("/findtitle")
     public List<Task> findByTitle(@RequestParam String title){
         return taskRepository.findByTitleLike(title);
@@ -46,5 +46,11 @@ public class TaskController {
     @GetMapping("/filter")
     public List<Task> filterByCompleted(@RequestParam boolean completed) {
         return taskRepository.filterByCompleted(completed);
+    }
+
+    // http://localhost:8080/api/tasks/findfilter?title=build&complete=true
+    @GetMapping("/findfilter")
+    public List<Task> findAndFilterByCompleted(@RequestParam String title, @RequestParam boolean completed) {
+            return taskRepository.findAndFilterByCompleted(title, completed);
     }
 }

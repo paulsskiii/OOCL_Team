@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTaskContext } from "../context/TaskContext";
 import { taskService } from "../api/taskService";
- 
+
 function TaskList() {
   const { state, dispatch } = useTaskContext();
   const { tasks, loading, error } = state;
   const [selectedValue, setSelectedValue] = useState("");
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     fetchTasks();
   }, []);
- 
+
   const fetchTasks = async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
@@ -22,7 +24,7 @@ function TaskList() {
       dispatch({ type: "SET_LOADING", payload: false });
     }
   };
- 
+
   const deleteTask = async (id, title) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
@@ -33,7 +35,7 @@ function TaskList() {
       }
     }
   };
- 
+
   const toggleComplete = async (task) => {
     try {
       const updatedTask = { ...task, completed: !task.completed };
@@ -43,18 +45,31 @@ function TaskList() {
       alert("Failed to update task");
     }
   };
- 
-   useEffect(() => {
+
+  useEffect(() => {
     console.log(selectedValue);
   }, [selectedValue]);
- 
+
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
- 
+
+  // const searchData = tasks.filter((task) => {
+  //   const searchMatch = task.title.toLowerCase().includes(search.toLowerCase());
+  //   return searchMatch;
+  // });
+
+  const getSearchedTasks = () => {
+    tasks.filter((task) => {
+      const searchMatch = task.title
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      return searchMatch;
+    });
+  };
   const checkIsCompleted = (selectedValue) => {
-    return tasks.filter((task) => task.completed == selectedValue)
-  }
+    return tasks.filter((task) => task.completed == selectedValue);
+  };
 
   const getFilteredTasks = () => {
     if (selectedValue === "") {
@@ -71,16 +86,35 @@ function TaskList() {
   return (
     <div style={{ padding: "20px" }}>
       <h2>Task List ({tasks.length} tasks)</h2>
+
+      <div>
+        {" "}
+        <input
+          type="text"
+          name="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search Task"
+        />
+      </div>
       <label for="filterId">Filter by: </label>
 
-      <select name="filterId" id="filterId" value={selectedValue} onChange={handleChange}>
+      <select
+        name="filterId"
+        id="filterId"
+        value={selectedValue}
+        onChange={handleChange}
+      >
         <option value="">All Tasks</option>
         <option value="1">Completed</option>
         <option value="0">Incomplete</option>
       </select>
       {filteredTasks.length === 0 && selectedValue !== "" ? (
         <div>
-          <p>No {selectedValue === "true" ? "Completed" : "Incomplete"} tasks found.</p>
+          <p>
+            No {selectedValue === "true" ? "Completed" : "Incomplete"} tasks
+            found.
+          </p>
         </div>
       ) : tasks.length === 0 ? (
         <div>
@@ -91,7 +125,7 @@ function TaskList() {
               padding: "10px 20px",
               backgroundColor: "#007bff",
               color: "white",
-              textDecoration: "none"
+              textDecoration: "none",
             }}
           >
             Create your first task
@@ -177,5 +211,5 @@ function TaskList() {
     </div>
   );
 }
- 
+
 export default TaskList;

@@ -33,6 +33,6 @@ public class PersonalDetails {
     private String email;
 
     @Column(name ="telephoneNumber")
-    private String telephoneNumber;
+    private String telNumber;
     
 }

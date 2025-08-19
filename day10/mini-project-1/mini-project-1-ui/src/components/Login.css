@@ -1,0 +1,9 @@
+.login-form input::placeholder,
+.login-form input[type="password"]::placeholder {
+  color: #fff !important;
+  opacity: 1;
+}
+
+.login-form input {
+  color: #fff;
+}

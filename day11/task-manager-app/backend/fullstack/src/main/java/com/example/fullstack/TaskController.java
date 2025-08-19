@@ -47,14 +47,13 @@ public class TaskController {
         return taskRepository.findByTitleContainingOrDescriptionContainingIgnoreCase(input, input);
     }
     
-    @GetMapping("/filter/{status}")
-    public List<Task> filterByStatus(@PathVariable boolean status){
-        if(status){
+    @GetMapping()
+    public List<Task> filterByStatus(@RequestParam boolean completed){
+        if(completed){
             return taskRepository.findByCompletedTrue();
         } else {
             return taskRepository.findByCompletedFalse();
         }
         
     }
-
 }

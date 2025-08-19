@@ -7,11 +7,12 @@ import { SearchTask } from "./SearchTask"
 function TaskList() {
   const { state, dispatch } = useTaskContext();
   const { tasks, loading, error } = state;
-  const [ searchTasks, setSearchTasks ] = useState([]);
+  const [searchTasks, setSearchTasks] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    fetchTasks(filter);
+  }, [filter]);
 
   useEffect(() => {
     console.log('Tasks updated:', tasks);
@@ -22,10 +23,11 @@ function TaskList() {
     return () => clearInterval(timer); // Cleanup when unmounting
   }, []);
 
-  const fetchTasks = async () => {
+  const fetchTasks = async (status = "all") => {
     dispatch({ type: "SET_LOADING", payload: true });
+
     try {
-      const response = await taskService.getAllTasks();
+      const response = await taskService.getAllTasks(status);
       dispatch({ type: "SET_TASKS", payload: response.data });
     } catch (err) {
       dispatch({ type: "SET_ERROR", payload: "Failed to fetch tasks" });
@@ -64,6 +66,19 @@ function TaskList() {
         Task List ({searchTasks.length > 0 ? searchTasks.length : tasks.length} tasks)
       </h2>
       <SearchTask setSearchTasks={setSearchTasks} />
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="filter">Filter tasks: </label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          style={{ padding: "5px", marginLeft: "10px" }}
+        >
+          <option value="all">All</option>
+          <option value={true}>Completed</option>
+          <option value={false}>Pending</option>
+        </select>
+      </div>
       {tasks.length === 0 ? (
         <div>
           <p>No tasks found.</p>

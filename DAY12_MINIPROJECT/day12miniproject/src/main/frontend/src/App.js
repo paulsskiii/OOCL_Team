@@ -111,10 +111,10 @@ const App = () => {
   const filteredContainers = containers.filter(
     (container) =>
       container.containerName
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      container.origin.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      container.destination.toLowerCase().includes(searchTerm.toLowerCase())
+        ?.toLowerCase()
+        .includes(searchTerm?.toLowerCase()) ||
+      container?.origin?.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+      container?.destination?.toLowerCase().includes(searchTerm?.toLowerCase())
   );
 
   // Initial data fetch on component mount

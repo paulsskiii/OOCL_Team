@@ -21,6 +21,7 @@ public class ContainerController {
 
     @GetMapping
     public ResponseEntity<List<Container>> getAllContainers() {
+    
         return ResponseEntity.ok(containerService.getAllContainers());
     }
 
@@ -47,9 +48,9 @@ public class ContainerController {
         return ResponseEntity.ok(updatedContainer);
     }
 
-    @DeleteMapping("/{id}")
+   @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteContainer(@PathVariable String id) {
-        containerService.deleteContainer(id);
+    public void deleteContainer(@PathVariable String id, @RequestBody Container container) {
+        containerService.deleteContainer(container);
     }
 }

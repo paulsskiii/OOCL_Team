@@ -1,0 +1,7 @@
+com\example\day12\Day12Application.class
+com\example\day12\PersonalDetailsController.class
+com\example\day12\PersonalDetailsRepository.class
+com\example\day12\Task.class
+com\example\day12\TaskRepository.class
+com\example\day12\TaskController.class
+com\example\day12\PersonalDetails.class

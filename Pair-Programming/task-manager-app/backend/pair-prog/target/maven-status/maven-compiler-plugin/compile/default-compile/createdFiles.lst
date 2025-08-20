@@ -1,0 +1,5 @@
+com\example\pair_prog\controller\TaskController.class
+com\example\pair_prog\model\Task.class
+com\example\pair_prog\PairProgApplication.class
+com\example\pair_prog\service\WebConfig.class
+com\example\pair_prog\repository\TaskRepository.class

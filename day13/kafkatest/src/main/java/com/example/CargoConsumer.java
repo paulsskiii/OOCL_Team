@@ -16,15 +16,15 @@ public class CargoConsumer {
         props.put("auto.offset.reset", "earliest"); 
  
         try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) { 
-            consumer.subscribe(Collections.singletonList("cargo-events")); 
+            consumer.subscribe(Collections.singletonList("cargo-events-part3-bat")); 
             System.out.println("Tracking service is listening for cargo events..."); 
  
             while (true) { 
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100)); 
                 for (ConsumerRecord<String, String> record : records) { 
                     System.out.printf("Received message: key = %s, value = %s, partition = %d, offset = %d%n", 
-                            record.key(), record.value(), record.partition(), record.offset()); 
-                } 
+                            record.key(), record.value(), record.partition(), record.offset());
+                }
             } 
         } 
     } 

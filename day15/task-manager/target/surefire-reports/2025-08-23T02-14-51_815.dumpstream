@@ -1,0 +1,5 @@
+# Created at 2025-08-23T02:14:52.037
+Boot Manifest-JAR contains absolute paths in classpath 'D:\AVILAVI\ITA10\Workshop Git\OOCL_Team\day15\task-manager\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

@@ -1,0 +1,52 @@
+=== check if podman running / connected =====
+podman info | grep -i root
+
+=== if not connected =====
+podman-machine-stop
+podman-machine-start
+
+=== if change in backed =====
+run to check for existing images (must be empty) (command to be searched, use GUI for now) ---
+podman images
+
+--- once empty ---
+podman build -t task-manager:v1.0 .
+
+--- confirm images created
+podman images
+
+=== Stop and delete previous containers and pod ====
+podman stop mysql-db task-manager-app
+podman rm mysql-db task-manager-app
+podman pod rm task-manager-app
+
+=== re/create pod ====
+podman pod create --name task-manager-pod -p 8080:8080 -p 3306:3306
+
+=== Run MySQL in pod ====
+--- will get podman images (takes a while) ----
+podman run -d --pod task-manager-pod --name mysql-db \
+-e MYSQL_ROOT_PASSWORD=rootpass \
+-e MYSQL_DATABASE=taskmanager \
+-e MYSQL_USER=taskapp \
+-e MYSQL_PASSWORD=password123 \
+mysql:8.0
+
+=== Run app in pod, wait few minutes for MySQL to fully start ====
+--- can run sleep 30 after running sql pod, just to be sure ----
+podman run -d --pod task-manager-pod --name task-manager-app \
+-e SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/taskmanager \
+task-manager:v1.0
+
+=== may need to create db manually ====
+CREATE TABLE tasks (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+=== login forms created by spring security library ====
+default username: user
+default password: check app logs

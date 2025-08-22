@@ -1,0 +1,91 @@
+stages:
+  - lint
+  - test
+  - build
+  - package
+  - deploy
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+cache:
+  paths:
+    - .m2/repository/
+    - task-manager-frontend/node_modules/
+# Frontend Linting
+frontend-lint:
+  stage: lint
+  image: node:18-alpine
+  before_script:
+    - cd task-manager-frontend
+    - npm ci
+  script:
+    - npm run lint
+  only:
+    - main
+    - merge_requests
+# Backend Tests
+backend-test:
+  stage: test
+  image: openjdk:17-jdk-slim
+  services:
+    - mysql:8.0
+  variables:
+    MYSQL_ROOT_PASSWORD: rootpassword
+    MYSQL_DATABASE: taskmanager_test
+    MYSQL_USER: testuser
+    MYSQL_PASSWORD: testpass
+    SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/taskmanager_test
+    SPRING_DATASOURCE_USERNAME: testuser
+    SPRING_DATASOURCE_PASSWORD: testpass
+  script:
+    - ./mvnw $MAVEN_CLI_OPTS test
+# Frontend Tests
+frontend-test:
+  stage: test
+  image: node:18-alpine
+  before_script:
+    - cd task-manager-frontend
+    - npm ci
+  script:
+    - npm test -- --coverage --watchAll=false
+# Build Backend
+build-backend:
+  stage: build
+  image: openjdk:17-jdk-slim
+  script:
+- ./mv    nw $MAVEN_CLI_OPTS clean package -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 hour
+# Build Frontend
+build-frontend:
+  stage: build
+  image: node:18-alpine
+  before_script:
+    - cd task-manager-frontend
+    - npm ci
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - task-manager-frontend/build/
+    expire_in: 1 hour
+# Package with Podman
+package-app:
+  stage: package
+  image: quay.io/podman/stable:latest
+  services:
+    - docker:dind
+  before_script:
+    - podman --version
+  script:
+    - podman build -t task-manager:latest .
+    - podman save task-manager:latest > task-manager.tar
+  artifacts:
+    paths:
+      - task-manager.tar
+    expire_in: 1 day
+  dependencies:
+    - build-backend
+    - build-frontend

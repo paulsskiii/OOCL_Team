@@ -14,6 +14,7 @@ public class CargoConsumer {
         props.put("key.deserializer", StringDeserializer.class.getName()); 
         props.put("value.deserializer", StringDeserializer.class.getName()); 
         props.put("auto.offset.reset", "earliest"); 
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "cargo-event-group");
  
         try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) { 
             consumer.subscribe(Collections.singletonList("cargo-events")); 

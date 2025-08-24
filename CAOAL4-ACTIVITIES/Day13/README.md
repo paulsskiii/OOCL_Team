@@ -1,4 +1,4 @@
 ## DAY 13
 
-** INDIVIDUAL KAFKA ACTIVITY
-** GROUP
+** dir 'kafka' - individual kafka, producer, consumer setup
+** dir 'excer2' - group activity kafka + cargo system

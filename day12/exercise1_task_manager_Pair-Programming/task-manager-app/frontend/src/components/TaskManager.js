@@ -4,16 +4,14 @@ import { taskService } from "../api/taskService";
 function TaskManager() {
   const { state, dispatch } = useTaskContext();
   const { tasks, loading, error } = state;
-  
+
   useEffect(() => {
     fetchTasks();
-    
   }, []);
-  
-  const fetchTasks = async () => {
 
+  const fetchTasks = async () => {
     dispatch({ type: "SET_LOADING", payload: true });
-    
+
     try {
       const response = await taskService.getAllTasks();
       dispatch({ type: "SET_TASKS", payload: response.data });
@@ -23,6 +21,7 @@ function TaskManager() {
       dispatch({ type: "SET_LOADING", payload: false });
     }
   };
+
   const deleteTask = async (id) => {
     try {
       await taskService.deleteTask(id);
@@ -31,6 +30,7 @@ function TaskManager() {
       dispatch({ type: "SET_ERROR", payload: "Failed to delete task" });
     }
   };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   return (
@@ -43,7 +43,6 @@ function TaskManager() {
       ))}
     </div>
   );
-  
 }
 
 export default TaskManager;

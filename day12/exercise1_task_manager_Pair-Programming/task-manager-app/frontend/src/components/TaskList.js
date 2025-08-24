@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Link } from "react-router-dom";
 import { useTaskContext } from "../context/TaskContext";
 import { taskService } from "../api/taskService";
@@ -12,7 +12,9 @@ function TaskList() {
   useEffect(() => {
     fetchTasks();
   }, []);
-
+  useEffect(() => {
+    searchTasks();
+  }, [selectedValue]);
   const fetchTasks = async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
@@ -20,6 +22,35 @@ function TaskList() {
       dispatch({ type: "SET_TASKS", payload: response.data });
     } catch (err) {
       dispatch({ type: "SET_ERROR", payload: "Failed to fetch tasks" });
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: false });
+    }
+  };
+
+  const searchTasks = async () => {
+    dispatch({ type: "SET_LOADING", payload: true });
+    try {
+      if (search !== "" && selectedValue === "") {
+        const response = await taskService.findByTitleLike(search);
+        console.log("search by title", search);
+        dispatch({ type: "SET_TASKS", payload: response.data });
+      } else if (search === "" && selectedValue !== "") {
+        const response = await taskService.filterByCompleted(selectedValue);
+        console.log("search by filer", selectedValue);
+        dispatch({ type: "SET_TASKS", payload: response.data });
+      } else if (search !== "" && selectedValue !== "") {
+        const response = await taskService.findAndFilterByCompleted(
+          search,
+          selectedValue
+        );
+        console.log("search by filter and title", search, " ", selectedValue);
+        dispatch({ type: "SET_TASKS", payload: response.data });
+      } else {
+        fetchTasks();
+      }
+    } catch (err) {
+      dispatch({ type: "SET_ERROR", payload: "Failed to fetch tasks" });
+      console.log("error", error);
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
@@ -46,39 +77,9 @@ function TaskList() {
     }
   };
 
-  useEffect(() => {
-    console.log(selectedValue);
-  }, [selectedValue]);
-
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-
-  // const searchData = tasks.filter((task) => {
-  //   const searchMatch = task.title.toLowerCase().includes(search.toLowerCase());
-  //   return searchMatch;
-  // });
-
-  const getSearchedTasks = () => {
-    tasks.filter((task) => {
-      const searchMatch = task.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
-      return searchMatch;
-    });
-  };
-  const checkIsCompleted = (selectedValue) => {
-    return tasks.filter((task) => task.completed == selectedValue);
-  };
-
-  const getFilteredTasks = () => {
-    if (selectedValue === "") {
-      return tasks;
-    }
-    return checkIsCompleted(selectedValue);
-  };
-
-  const filteredTasks = getFilteredTasks();
 
   if (loading) return <div>Loading tasks...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -97,19 +98,55 @@ function TaskList() {
           placeholder="Search Task"
         />
       </div>
+      <div>
+        <button
+          onClick={() => {
+            searchTasks();
+          }}
+          style={{
+            padding: "5px 10px",
+            margin: "10px",
+            backgroundColor: "#28a745",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Search
+        </button>
+        <button
+          onClick={() => {
+            fetchTasks();
+            setSearch("");
+            setSelectedValue("");
+          }}
+          style={{
+            padding: "5px 10px",
+            margin: "10px",
+            backgroundColor: "#ffc107",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Clear
+        </button>
+      </div>
       <label for="filterId">Filter by: </label>
 
       <select
         name="filterId"
         id="filterId"
         value={selectedValue}
-        onChange={handleChange}
+        onChange={(e) => {
+          handleChange(e);
+        }}
       >
-        <option value="">All Tasks</option>
-        <option value="1">Completed</option>
-        <option value="0">Incomplete</option>
+        <option value={""}>All Tasks</option>
+        <option value={"true"}>Completed</option>
+        <option value={"false"}>Incomplete</option>
       </select>
-      {filteredTasks.length === 0 && selectedValue !== "" ? (
+      {tasks.length === 0 ? (
         <div>
           <p>
             No {selectedValue === "true" ? "Completed" : "Incomplete"} tasks
@@ -133,7 +170,7 @@ function TaskList() {
         </div>
       ) : (
         <div>
-          {filteredTasks.map((task) => (
+          {tasks.map((task) => (
             <div
               key={task.id}
               style={{

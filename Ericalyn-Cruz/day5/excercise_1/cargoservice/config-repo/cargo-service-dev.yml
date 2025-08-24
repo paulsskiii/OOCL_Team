@@ -1,0 +1,6 @@
+### `cargo-service-dev.yml`
+
+welcome:
+  message: Development Cargo Service!
+shipping:
+  fee: 5.00

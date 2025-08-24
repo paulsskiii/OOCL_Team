@@ -10,4 +10,4 @@ public class CargoLoader {
 
         // Test cases here
     }
-}
+}   

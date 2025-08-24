@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title> test</title> 
+    </head>
+
+    <body class="flex-container">
+        <style>
+            nav{
+                background-color: aliceblue;
+                position: sticky;
+                display: flex;
+                box-sizing: border-box;
+                border-bottom-width: 1px;
+                border-top-style: solid;
+                width: 100%;
+        
+                z-index: 1;
+                border: solid;
+                height: 100px;
+                margin-left: -1%;
+                /* margin: 50px; */
+            }
+            main {
+                position:fixed;
+                margin-top: 10px;
+
+                padding:100px;
+                
+                top:0;
+                left:0;
+
+                width: 100%;
+                height: 95%;
+                /* height:100%; */
+            }
+            #qw {
+                background-image: url(https://www.icegif.com/wp-content/uploads/2025/05/tralalelo-tralala-icegif-6.gif);
+                background-repeat: no-repeat;
+                background-size: cover; 
+                background-position: center;
+            }
+            body{
+                box-sizing: border-box;
+            }
+            #uwu{
+                font-size: 50px;
+                background-color: black;
+                color:rgb(0, 255, 42);
+            }
+
+        </style>
+
+        <nav>   --------------My Profile---------------   
+            <button onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ';">
+            button
+          </button> 
+        </nav>
+    
+        <main id="qw"> 
+            <p>NAME: JAN RUSSEL D. DERPO</p> 
+            <p1 id="uwu" class="testing"> my age is: </p1> 
+
+            <button onclick="sunshine(), test()">
+                click me to show age
+            </button> 
+            <script>
+                var age = 123
+                function test(){
+                    document.getElementById("uwu").innerHTML = "I am this old: "+age+"<br>";
+                }
+
+                function sunshine(){
+                    document.getElementById("qw").style.backgroundImage = "url('https://media1.tenor.com/m/0RRzrR7xGj4AAAAd/you-are-my-sunshine-lebron-james.gif')";
+                }
+                function hideMe(){
+                    
+                }
+            </script>
+        </main>
+    
+        <footer>FOOTER.COM</footer>
+
+    </body>
+</html>

@@ -1,3 +1,5 @@
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class StatusController {
 
     @GetMapping("/status")
-    public String getStatus() {
+    public ResponseEntity<String> getStatus() {
         // Return a basic health check message
-        return null; // replace this
+
+        return new ResponseEntity<>("Success", HttpStatus.OK); // replace this
     }
 }

@@ -1,15 +1,18 @@
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Controller for handling status check requests.
+ * REST controller for handling API status requests.
  */
 @RestController
 public class StatusController {
 
     @GetMapping("/status")
-    public String getStatus() {
-        // TODO: Return a message that confirms the API is running
-        return null; // Replace this
+    public ResponseEntity<String> getStatus() {
+        // Return a basic health check message
+
+        return new ResponseEntity<>("Success", HttpStatus.OK); // replace this
     }
 }

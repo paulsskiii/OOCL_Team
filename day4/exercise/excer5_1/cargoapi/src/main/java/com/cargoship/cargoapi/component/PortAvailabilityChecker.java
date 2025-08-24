@@ -1,3 +1,5 @@
+package com.cargoship.cargoapi.component;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +10,6 @@ public class PortAvailabilityChecker {
 
     public boolean isPortOperational(String portName) {
         // Basic logic: if portName equals "Damaged Port" (case-insensitive), return false
-        return true; // replace with actual condition
+        return !"Damaged Port".equalsIgnoreCase(portName);// replace with actual condition
     }
 }

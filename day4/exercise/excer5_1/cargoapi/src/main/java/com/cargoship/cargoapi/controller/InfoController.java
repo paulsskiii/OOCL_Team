@@ -1,3 +1,5 @@
+package com.cargoship.cargoapi.controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,11 +11,13 @@ public class InfoController {
 
     @GetMapping("/info")
     public String getInfo() {
-        // TODO: Get current date and time
+        // Get current date and time
+        LocalDateTime dateNow = LocalDateTime.now();
 
-        // TODO: Format it as "yyyy-MM-dd HH:mm:ss"
+        // Format it (yyyy-MM-dd HH:mm:ss)
+        String formattedDate = dateNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        // TODO: Return formatted string like: "Current date and time: 2025-08-07 10:30:00"
-        return null; // Replace this
+        // Return formatted date and time as a string
+        return formattedDate ; // replace this
     }
 }

@@ -1,9 +1,6 @@
 spring:
   config:
     import: "optional:configserver:"
-  profiles:
-    active:
-    - dev
   application:
     name: cargo-service
   datasource:
@@ -19,7 +16,6 @@ spring:
     console:
       enabled: true
       path: /h2-console
-  
-server:
-  port: 0
 
+server:
+  port: 8081

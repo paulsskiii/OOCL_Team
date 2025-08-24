@@ -7,11 +7,10 @@ import java.util.stream.Collectors;
 public class HighValueCargoFilter {
     public static void main(String[] args) {
         List<CargoItem> allCargo = Arrays.asList(
-            // Cargo items
-                new CargoItem(1,"Yes", 12.0, 5000),
-                new CargoItem(2,"Yes", 12.0,6000),
-                new CargoItem(3,"No", 12.0, 1110000)
-                );
+                // Cargo items
+                new CargoItem(1, "Yes", 12.0, 5000),
+                new CargoItem(2, "Yes", 12.0, 6000),
+                new CargoItem(3, "No", 12.0, 1110000));
 
         double threshold = 10000.0;
 

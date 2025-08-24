@@ -6,7 +6,7 @@ class CargoItem {
     double weight;
     double value;
 
-    public CargoItem(){
+    public CargoItem() {
 
     }
 
@@ -44,9 +44,7 @@ class CargoItem {
                 '}';
     }
 
-    }
-
-
+}
 
 // // Vars
 // CargoItem(201, "Gold Bars", 100.0, 500000.0)

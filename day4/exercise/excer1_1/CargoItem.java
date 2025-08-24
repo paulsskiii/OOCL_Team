@@ -1,5 +1,3 @@
-package Java34.OOCL_Team.day4.exercise.excer1_1;
-
 import java.util.Objects;
 
 public class CargoItem {
@@ -46,9 +44,12 @@ public class CargoItem {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CargoItem cargoItem = (CargoItem) o;
-        return getId() == cargoItem.getId() && Double.compare(getWeight(), cargoItem.getWeight()) == 0 && Objects.equals(getName(), cargoItem.getName()) && Objects.equals(getDestination(), cargoItem.getDestination());
+        return getId() == cargoItem.getId() && Doubl
+            .compare(getWeight(), cargoItem.getWeight()) == 0 && Objects.equals(getName(), cargoItem.getName()) && Objects.equals(getDestination(), cargoItem.getDestination());
     }
 
+                
+                
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getWeight(), getDestination());

@@ -1,5 +1,3 @@
-package Java34.OOCL_Team.day4.exercise.excer1_1;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +9,7 @@ public class CargoManifestManager {
         manifest.add(new CargoItem(4, "Name1", 12.0, "Manila"));
         manifest.add(new CargoItem(3,"Name2", 13.0,"Singapore"));
 
-        System.out.println("Initial Manifest:");
+        System.out.println("Initial M anifest:"); 
         printManifest(manifest);
 
         // Remove by ID

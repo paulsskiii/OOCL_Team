@@ -1,5 +1,3 @@
-package Java34.OOCL_Team.excer2;
-
 public class Tanker extends Ship {
     private String cargoTypeCarried;
 

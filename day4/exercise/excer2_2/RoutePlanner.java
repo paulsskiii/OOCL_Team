@@ -6,17 +6,24 @@ public class RoutePlanner {
 
     public void planRoute(String origin, String destination) throws PortNotRecognizedException {
         // Validation logic
+        if (validPorts.contains(origin) && validPorts.contains(destination)) {
+        } else {
+            throw new PortNotRecognizedException("Your origin or destination is not a valid port!");
+        }
     }
 
     public static void main(String[] args) {
         RoutePlanner planner = new RoutePlanner();
-
-        // Test cases
+        try {
+            planner.planRoute("Manila", "Singapore");
+            planner.planRoute("Tokyo", "New York");
+            planner.planRoute("London", "Busan");
+            planner.planRoute("London", "New York");
+        } catch (PortNotRecognizedException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
-
-
-
 
 // // test case
 

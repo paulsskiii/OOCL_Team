@@ -22,5 +22,5 @@ public class DispatchedShipTracker {
             System.out.println("Ship " + shipToCheck + " is not existing");
         }
 
-}
+    }
 }

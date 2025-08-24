@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tasks")
@@ -16,11 +18,18 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
+    @NotBlank(message = "Title cannot be empty")
+    @Size(max = 255, message = "Title too long")
     private String title;
+
+    @Size(max = 1000, message = "Description too long")
     private String description;
+
     @Column(nullable = false)
     private Boolean completed = false;
+
     private LocalDateTime createdAt = LocalDateTime.now();
 // Getters and setters
 

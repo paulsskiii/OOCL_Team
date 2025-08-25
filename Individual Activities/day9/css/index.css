@@ -1,0 +1,86 @@
+li {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    font-size: larger;
+}
+
+nav {
+    background-color: black;
+    white-space: pre-line
+}
+
+
+ul {
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner p {
+    font-size: 50px;
+}
+
+.content-containter{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100px;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 5px;
+    border: 2px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+li:hover{
+    cursor: pointer;
+}
+
+.new-content{
+    height: 600px;
+    border: 2px solid maroon;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../recources/negus.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+
+
+.new-content blockquote{
+    text-align: center;
+    font-size: 70px;
+    color: white;
+}
+
+.new-content p{
+    color: white;
+    font-size: larger;
+}
+
+.new-content #about li{
+    color: white;
+    font-size: larger;
+}

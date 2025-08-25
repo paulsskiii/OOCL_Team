@@ -45,4 +45,13 @@ public class CargoItem {
     public void setDestination(String destination) {
         this.destination = destination;
     }
+
+    @Override
+    public String toString() {
+        return "CargoItem: " +
+                "id=" + id +
+                ", name='" + name + "\'" +
+                ", weight=" + weight +
+                ", destination=" + destination;
+    }
 }

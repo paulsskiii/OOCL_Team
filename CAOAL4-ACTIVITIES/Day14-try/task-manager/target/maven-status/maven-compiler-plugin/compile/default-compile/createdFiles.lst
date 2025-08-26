@@ -1,0 +1,6 @@
+com\workshop\taskmanager\controller\TaskController.class
+com\workshop\taskmanager\entity\Task.class
+com\workshop\taskmanager\controller\PreAuthorize.class
+com\workshop\taskmanager\service\TaskService.class
+com\workshop\taskmanager\TaskManagerApplication.class
+com\workshop\taskmanager\repository\TaskRepository.class

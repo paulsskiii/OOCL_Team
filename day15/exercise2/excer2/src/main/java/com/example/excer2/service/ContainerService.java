@@ -1,6 +1,7 @@
 package com.example.excer2.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.excer2.model.Container;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class ContainerService {
         return containerRepository.findAll();
     }
 
-    public List<Container> getContainerById(String id) {
+    public Optional <List<Container>> getContainerById(String id) {
         return containerRepository.findByContainerNumber(id); // Uses JpaRepository's findById()
     }
 

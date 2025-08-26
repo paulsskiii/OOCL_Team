@@ -1,4 +1,4 @@
-package com.example.excer2.service;
+package com.example.excer2;
 
 import java.time.Instant;
 import java.util.Properties;

@@ -46,41 +46,50 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-    <!-- Use MySQL driver for database connectivity. Replace with h2 or others if needed -->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <optional>true</optional>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <scope>test</scope>
-    </dependency>
-
-	    <dependency> 
-        <groupId>org.apache.kafka</groupId> 
-        <artifactId>kafka-clients</artifactId> 
-        <version>3.5.1</version>  
-    </dependency> 
-    <dependency> 
-        <groupId>org.slf4j</groupId> 
-        <artifactId>slf4j-simple</artifactId> 
-        <version>2.0.7</version> 
-    </dependency> 
-
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Use MySQL driver for database connectivity. Replace with h2 or others if needed -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency> 
+			<groupId>org.apache.kafka</groupId> 
+			<artifactId>kafka-clients</artifactId> 
+			<version>3.5.1</version>  
+		</dependency> 
+		<dependency> 
+			<groupId>org.slf4j</groupId> 
+			<artifactId>slf4j-simple</artifactId> 
+			<version>2.0.7</version> 
+		</dependency> 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+			<scope>test</scope>
+			<version>4.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

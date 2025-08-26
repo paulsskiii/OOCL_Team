@@ -1,4 +1,4 @@
-package com.example.consumer;
+package com.example.excer2;
 import org.apache.kafka.clients.consumer.*; 
 import org.apache.kafka.common.serialization.StringDeserializer;
 

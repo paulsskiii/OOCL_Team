@@ -101,7 +101,7 @@ public class ContainerControllerTest {
         when(containerService.addContainers(any(Container.class))).thenReturn(new Container(1L, "@OOCL_123", 92399.99, "Ph", "Tokyo"));
         String orderJson = "{\"id\":1,\"containerName\":\"@OOCL_123\",\"weight\":92399.99,\"origin\":\"Ph\",\"destination\":\"Tokyo\"}";
         mockMvc.perform(MockMvcRequestBuilders.post("/api/container").contentType(org.springframework.http.MediaType.APPLICATION_JSON).content(orderJson))
-                .andExpect(status().is4xxClientError()
+                .andExpect(status().is4xxClientError();
     }
 
     //Test Invalid format for origin

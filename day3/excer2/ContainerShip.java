@@ -1,8 +1,16 @@
-public class ContainerShip extends ShipRepository {
+package OOCL_Team.day3.excer2;
+
+public class ContainerShip extends Ship {
     private int numberOfTEU;
 
     public ContainerShip(String shipName, String captainName, double speedKnots, int fuelLevelPercentage, int numberOfTEU) {
         super(shipName, captainName, speedKnots, fuelLevelPercentage);
         this.numberOfTEU = numberOfTEU;
+    }
+
+    @Override
+    public void displayShipInfo() {
+        super.displayShipInfo();
+        System.out.println("Number of TEU: " + this.numberOfTEU);
     }
 }

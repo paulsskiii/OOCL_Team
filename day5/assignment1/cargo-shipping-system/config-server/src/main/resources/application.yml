@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///C:/Users/AQUINHI/Documents/ITA10/cargo-shipping-system/config-repo
+
+server:
+  port: 8888

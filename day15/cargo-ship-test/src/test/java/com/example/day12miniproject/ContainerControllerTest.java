@@ -1,12 +1,13 @@
 package com.example.day12miniproject;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.example.day12miniproject.controller.ContainerController;
 import com.example.day12miniproject.model.Container;
@@ -29,8 +29,8 @@ public class ContainerControllerTest {
     private MockMvc mockMvc;
     @MockBean
     private ContainerService containerService;
-    @Autowired
-    private ContainerService conS;
+
+    private final Container container = new Container(1L, "OOLU184539", 100, "MNL", "JKT");
 
     String jsonContent = "{\r\n" + //
             "\"id\": 2,\r\n" + //
@@ -40,49 +40,69 @@ public class ContainerControllerTest {
             "\"destination\": \"asdfasdf\"\r\n" + //
             "}";
 
-    @BeforeEach
-    void createTestContainers() throws Exception {
-        when(containerService.addContainers(any(Container.class)))
-                .thenReturn(new Container(4L, "OOCU12345678", 55.00, "MLL", "SKZ"));
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/container").contentType(MediaType.APPLICATION_JSON)
-                .content(jsonContent))
-                .andExpect(status().isOk())
-                .andReturn();
-    }
+//     @BeforeEach
+//     void createTestContainers() throws Exception {
+//         when(containerService.addContainers(any(Container.class)))
+//                 .thenReturn(new Container(4L, "OOCU12345678", 55.00, "MLL", "SKZ"));
+//         mockMvc.perform(MockMvcRequestBuilders.post("/api/container").contentType(MediaType.APPLICATION_JSON)
+//                 .content(jsonContent))
+//                 .andExpect(status().isOk())
+//                 .andReturn();                
+//     }
 
     @Test
     void testAddContainer() throws Exception {
         when(containerService.addContainers(any(Container.class)))
-                .thenReturn(new Container(4L, "OOCU12345678", 55.00, "MLL", "SKZ"));
-        MvcResult res2 = mockMvc
-                .perform(MockMvcRequestBuilders.post("/api/container").contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonContent))
+                .thenReturn(container);
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/container").contentType(MediaType.APPLICATION_JSON)
+                .content(jsonContent))
                 .andExpect(status().isOk())
-                .andReturn();
-
-        System.out.println(res2.getResponse().getContentAsString());
+                .andExpect (jsonPath("$.length()").value (5))
+                .andExpect(jsonPath("$.id").value(container.getId ()))
+                .andExpect(jsonPath("$.containerName").value(container.getContainerName()))
+                .andExpect(jsonPath("$.weight").value(container.getWeight()))
+                .andExpect(jsonPath("$.origin").value(container.getOrigin()))
+                .andExpect(jsonPath("$.destination").value(container.getDestination()));
     }
 
     @Test
     void testGetAllContainer() throws Exception {
-        ArrayList<Container> conss = new ArrayList<>();
+        List<Container> containers = new ArrayList<>();
 
-        Container container = new Container(5L, "jsonContent", 100, "jsonContent", "jsonContent");
-        Container container2 = new Container(6L, "jsonContent", 100, "jsonContent", "jsonContent");
+        Container container2 = new Container(6L, "TEMU135481", 500, "SNG", "VAN");
 
-        conss.add(container);
-        conss.add(container2);
+        containers.add(container);
+        containers.add(container2);
 
-        when(containerService.getAllContainer()).thenReturn(conss);
+        when(containerService.getAllContainer()).thenReturn(containers);
 
-        List<Container> result = containerService.getAllContainer();
-        assertEquals(conss, result);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/container").contentType(MediaType.APPLICATION_JSON)
+                .content(jsonContent))
+                .andExpect (status().isOk())
+                .andExpect (jsonPath("$.length()").value (2))
+                .andExpect(jsonPath("$[0].id").value(containers.get (0).getId ()))
+                .andExpect(jsonPath("$[0].containerName").value(containers.get (0).getContainerName()))
+                .andExpect(jsonPath("$[0].weight").value(containers.get (0).getWeight()))
+                .andExpect(jsonPath("$[0].origin").value(containers.get (0).getOrigin()))
+                .andExpect(jsonPath("$[0].destination").value(containers.get (0).getDestination()))
+                .andExpect(jsonPath("$[1].id").value(containers.get (1).getId ()))
+                .andExpect(jsonPath("$[1].containerName").value(containers.get (1).getContainerName()))
+                .andExpect(jsonPath("$[1].weight").value(containers.get (1).getWeight()))
+                .andExpect(jsonPath("$[1].origin").value(containers.get (1).getOrigin()))
+                .andExpect(jsonPath("$[1].destination").value(containers.get (1).getDestination()));
     }
 
     @Test
-    void testGetByIdContainer () throws Exception {
-        mockMvc.perform (MockMvcRequestBuilders.get ("/api/container/2"))
-            .andExpect (status().isOk());
+    void testGetByIdContainer () throws Exception {        
+        when(containerService.getContainerById(1L)).thenReturn(Optional.of(container));
+        mockMvc.perform (MockMvcRequestBuilders.get ("/api/container/1"))
+            .andExpect (status().isOk())
+            .andExpect (jsonPath("$.length()").value (5))
+            .andExpect(jsonPath("$.id").value(container.getId ()))
+            .andExpect(jsonPath("$.containerName").value(container.getContainerName()))
+            .andExpect(jsonPath("$.weight").value(container.getWeight()))
+            .andExpect(jsonPath("$.origin").value(container.getOrigin()))
+            .andExpect(jsonPath("$.destination").value(container.getDestination()));
     }
 
 }

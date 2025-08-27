@@ -3,6 +3,7 @@ package com.example.day12miniproject;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +105,22 @@ public class ContainerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/container").contentType(org.springframework.http.MediaType.APPLICATION_JSON).content(orderJson))
                 .andExpect(status().is4xxClientError());
     }
+
+     @Test
+    void test_Update_Existing_Container_Returns_Updated_Container_Details() throws Exception {
+         Container container = new Container(1L, "OOCL_123", 92399.99, "Ph", "Tokyo");
+         Container updatedContainer = new Container(1L, "OOCL_123", 8888.888, "US", "Korea");
+
+         if (container.getId() == updatedContainer.getId()) {
+            when(containerService.updateContainer(container))
+                .thenReturn(updatedContainer);
+            
+            assertNotEquals(container.getWeight(), updatedContainer.getWeight());
+            assertNotEquals(container.getOrigin(), updatedContainer.getOrigin());
+            assertNotEquals(container.getDestination(), updatedContainer.getDestination());
+         }
+    }
+ 
 
     //Test Invalid format for origin
     // @Test

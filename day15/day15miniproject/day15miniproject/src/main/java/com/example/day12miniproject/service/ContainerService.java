@@ -49,4 +49,8 @@ public class ContainerService {
             .filter(container -> container.getOrigin().toUpperCase() == origin.toUpperCase())
             .count();
     }
+
+    public Container updateContainer(Container container) {
+        return containerRepository.save(container); // Uses JpaRepository's save() for create/update
+    }
 }

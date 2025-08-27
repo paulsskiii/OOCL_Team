@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -66,6 +67,17 @@ public class ContainerController {
         return ResponseEntity.notFound().build();
     }
 
+     @PutMapping("/{id}")
+    public ResponseEntity<Container> updateContainer(@PathVariable Long id, @RequestBody Container containerDetails) {
+        return containerService.getContainerById(id)
+                .map(container -> {
+                    container.setContainerName(containerDetails.getContainerName());
+                    container.setWeight(containerDetails.getWeight());
+                    container.setOrigin(containerDetails.getOrigin());
+                    container.setDestination(containerDetails.getDestination());
+                    return ResponseEntity.ok(containerService.updateContainer(container));
+                }).orElse(ResponseEntity.notFound().build());
+    }
     
     //  @PutMapping("/{id}")
     // public ResponseEntity<Container> updateContainer(@PathVariable Long id, @RequestBody Container containerDetails) {

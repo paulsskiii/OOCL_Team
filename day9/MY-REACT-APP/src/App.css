@@ -1,0 +1,139 @@
+/* Consolidated and updated CSS for centering content */
+
+/* Base Styles */
+body {
+  scroll-behavior: smooth;
+  background-color: #fff0f5;
+  color: #333;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h5 {
+  font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #ff69b4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: white;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffe4e9 !important;
+}
+
+/* Header */
+header {
+  background: linear-gradient(to right, #ffb6c1, #ff69b4);
+  color: white;
+  padding: 8rem 0 6rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+  font-weight: 300;
+}
+
+/* About Section */
+#about {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+#about img {
+  max-width: 200px;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 6px 12px rgba(255, 105, 180, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#about img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 105, 180, 0.6);
+}
+
+/* Skills Section */
+#skills {
+  background-color: #fffafc;
+  padding: 5rem 0;
+}
+
+/* General Section Headings */
+section h2 {
+  color: #ff69b4;
+  font-weight: bold;
+  font-size: 2.25rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+  border: none;
+  background-color: #ffe4e9;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #ff69b4;
+  font-weight: bold;
+}
+
+/* Projects Section */
+#projects {
+  padding: 5rem 0;
+}
+
+/* Footer */
+footer {
+  background: #ff69b4;
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffb6c1;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  section h2 {
+    font-size: 1.75rem;
+  }
+}

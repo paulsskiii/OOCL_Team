@@ -120,6 +120,20 @@ public class ContainerControllerTest {
             assertNotEquals(container.getDestination(), updatedContainer.getDestination());
          }
     }
+
+    @Test
+    void test_Update_Non_Existing_Container_Returns_Error() throws Exception {
+        Container container = new Container(1L, "OOCL_123", 8888.888, "US", "Korea");
+        when(containerService.addContainers(any(Container.class)))
+                .thenReturn(container);
+        String updatedContainer = "{\"id\":1,\"containerName\":\"OOCL_123\",\"weight\":92399.99,\"origin\":\"PH\",\"destination\":\"Tokyo\"}";
+        mockMvc.perform( MockMvcRequestBuilders
+                .put("/api/container/{id}", 2)
+                .content(updatedContainer)
+                .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+                .accept(org.springframework.http.MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
  
 
     //Test Invalid format for origin

@@ -15,14 +15,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // --- OrderControllerTest.java (@WebMvcTest) ---
 @WebMvcTest(OrderController.class)
 public class OrderControllerTest {
-    @Autowired private MockMvc mockMvc;
-    @MockBean private OrderService orderService;
-    
+    @Autowired
+    private MockMvc mockMvc;
+    @MockBean
+    private OrderService orderService;
+
     @Test
     void testCreateOrder() throws Exception {
         when(orderService.createOrder(any(Order.class))).thenReturn(new Order(1L, "Laptop", 999.99, "CONFIRMED"));
         String orderJson = "{\"product\":\"Laptop\",\"price\":999.99}";
         mockMvc.perform(post("/orders").contentType(MediaType.APPLICATION_JSON).content(orderJson))
-               .andExpect(status().isOk());
+                .andExpect(status().isOk());
     }
 }

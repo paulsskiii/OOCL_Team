@@ -13,7 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @AutoConfigureWireMock(port = 8081)
 public class OrderServiceIntegrationTest {
-    @Autowired private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
+
     @Test
     void testProcessPaymentSuccess() {
         stubFor(post(urlEqualTo("/payments/process"))

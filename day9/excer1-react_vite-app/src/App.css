@@ -1,0 +1,11 @@
+.fruit-list{
+  list-style-type: none;
+  padding: 0;
+}
+
+.fruit-item{
+ background-color: rgb(228, 158, 158);
+ margin: 5px, 0;
+ padding: 10px;
+ border-radius: 5px; 
+}

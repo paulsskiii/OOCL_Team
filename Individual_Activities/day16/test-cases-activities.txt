@@ -1,0 +1,25 @@
+assumptions:
+- container number as PK
+- container owner is nullable
+
+test cases(backend):
+
+add functionality
+- given a container object when inserted to database then should be successful and must reflect to database
+- given a container object without container number when inserted to database then should return an error
+- given a container object without container owner field when inserted to database then should be successful
+
+update functionality
+- given new container number when update to database then should not be successful and must reflect to database
+- given new container origin when updated to database then should be successful
+
+search functionality
+- given an existing container number when searched then should return container details
+- given the container origin when searched then should return empty details
+- given a non-existing container number when searched then should return empty details
+
+delete functionality
+- given a container number when deleted should erase its record from database
+
+test cases(frontend)
+- given a container object when add button is clicked should reflect new container in container lists

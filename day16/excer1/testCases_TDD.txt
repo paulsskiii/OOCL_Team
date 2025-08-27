@@ -1,0 +1,29 @@
+@Test
+    void testCreateExistingOrderShouldFailToAdd(){
+        
+    }
+    
+    @Test
+    void testDeleteSelectedOrderShouldDeleteSelectedOrder(){
+
+    }
+    
+    @Test
+    void testUpdateSelectedOrderShouldUpdateSelectedOrder(){
+
+    }
+
+    @Test
+    void testGetAllOrderShouldReturnAllOrder(){
+
+    }
+    
+    @Test
+    void testGetOrderByIdShouldReturnOrderWithSelectedId(){
+
+    }
+
+    @Test
+    void testPaginationShouldWorkCorrectly(){
+
+    }

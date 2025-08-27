@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -241,6 +242,53 @@ public class ContainerServiceTest {
         when(containerRepository.findAll()).thenReturn(allContainers);
 
         assertNotEquals(containerService.getAllContainers(), containerService.getContainerByDestination("Germany"));
+    }
+
+    @Test
+    void testUpdateWithNullContainerNumber(){
+        Container container = dummyContainerDetails();
+
+        when(containerRepository.save(any())).thenReturn(container);
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            containerService.updateContainer(null);
+        });
+
+        assertEquals("Container must have value", exception.getMessage());
+    }
+
+    @Test
+    void testUpdateContainerWithoutOrigin() {
+        Container container = new Container("OOLU12345", "", "Singapore", 1200.40);;
+
+        when(containerRepository.save(any())).thenReturn(container);
+        
+        assertEquals(container, dummyContainerDetailsWithoutOrigin());
+    }
+
+    @Test
+    void testUpdateContainerWithoutDestination() {
+        Container container = new Container("OOLU12345", "Manila", "", 1200.40);
+
+        when(containerRepository.save(any())).thenReturn(container);
+        
+        assertEquals(container, dummyContainerDetailsWithoutDestination());
+    }
+
+    private Container dummyContainerDetails(){
+        return new Container("OOLU12345", "Manila", "Singapore", 1200.40);
+    }
+
+    private Container dummyContainerDetailsWithoutDestination(){
+        Container contWithoutDest = dummyContainerDetails();
+        contWithoutDest.setDestination("");
+        return contWithoutDest;
+    }
+
+    private Container dummyContainerDetailsWithoutOrigin(){
+        Container contWithoutDest = dummyContainerDetails();
+        contWithoutDest.setOrigin("");
+        return contWithoutDest;
     }
 
 }

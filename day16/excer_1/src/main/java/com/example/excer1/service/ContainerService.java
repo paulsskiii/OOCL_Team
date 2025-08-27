@@ -55,6 +55,10 @@ public class ContainerService {
 
     public Container updateContainer(Container container) {
         containerProducer.sendMessage("UpdateContainer", container);
+
+        if(container == null)
+            throw new NullPointerException("Container must have value");
+
         return containerRepository.save(container);
     }
 

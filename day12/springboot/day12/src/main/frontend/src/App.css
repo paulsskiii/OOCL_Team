@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+.errorLoading{
+  text:center 
+  font-bold 
+  text-gray-700 
+  animate pulse
+}

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: db_demo
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/cgoshipping
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  env:
+    jdbc_url: ${JDBC_URL}
+    db: ${DB_CGO}
+    db_user: ${DB_USER}
+    db_password: ${DB_PASSWORD}

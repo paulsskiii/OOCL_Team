@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
+import java.util.List;
 
 class SeleniumGoogleSearchTest {
 
@@ -75,50 +76,130 @@ class SeleniumGoogleSearchTest {
         Assertions.assertEquals("Products", title.getText(),
                 "After login, the page should show 'Products'");
 
-        // WAIT 20 seconds (per your request) then test ends and @AfterEach will quit the browser
-        Thread.sleep(5_000);
+        // Click Add to Cart Button
+        List<WebElement> buttons = driver.findElements(By.className("btn_primary"));
+
+        for (WebElement btn : buttons) {
+            btn.click();
+            Thread.sleep(2000);
+        }
+
+        // Click Cart
+        WebElement cartIcon = driver.findElement(By.id("shopping_cart_container"));
+        cartIcon.click();
+
+        Thread.sleep(2000);
+
+        // Click Checkout
+        WebElement checkoutBtn = driver.findElement(By.className("checkout_button"));
+        checkoutBtn.click();
+
+        Thread.sleep(3000);
+
+        // Click Cancel
+        WebElement cancelBtn = driver.findElement(By.className("cart_cancel_link"));
+        cancelBtn.click();
+
+        Thread.sleep(3000);
+
+        // Click Burger Menu
+        WebElement menuBtn = driver.findElement(By.className("bm-burger-button"));
+        menuBtn.click();
+
+        Thread.sleep(2000);
+
+        // Click Logout
+        WebElement logoutBtn = driver.findElement(By.id("logout_sidebar_link"));
+        logoutBtn.click();
     }
 
-    /*TEST CASES
-    User will have single order and checkout
-    SC1: When a user logs in, they will browse the products
-         Then user will filter by price from lowest to highest
-         Then add an item to the cart and proceed to your cart
-         And then checkout page
-         The user will enter their information and redirected to the checkout overview for confirmation
-         User clicks finish then redirected to successs page and then log out
-    */
+    @Test
+    @DisplayName("Login to SauceDemo and checkout with no item")
+    void testSauceDemoLoginAndCheckoutWithNoItem() throws InterruptedException {
+        // 1) Open SauceDemo (you gave /v1/)
+        driver.get("https://www.saucedemo.com/v1/");
 
-    /*
-    Multiple orders
-     SC2: When a user logs in, they will browse the products
-         Then add an item to the cart and proceed to your cart
-         And then continue shopping
-         Then add an item to the cart and proceed to your cart
-         And then checkout page
-         The user will enter their information and redirected to the checkout overview for confirmation
-         User clicks finish then redirected to successs page  and then log out
+        // short explicit wait for the username field to appear
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='user-name']")));
 
-     Mutiple but remove one order
-     SC3: When a user logs in, they will browse the products
-         Then add multiple item to the cart and proceed to your cart
-         Then will remove one item from cart before proceeding to checkout page
-         The user will enter their information and redirected to the checkout overview for confirmation
-         User clicks finish then redirected to successs page and then log out
+        // VALIDATION: URL contains saucedemo
+        Assertions.assertTrue(driver.getCurrentUrl().contains("saucedemo"),
+                "Page URL should contain 'saucedemo'");
 
-      Mutiple but cancel
-     SC4: When a user logs in, they will browse the products
-         Then add multiple item to the cart and proceed to your cart
-         Then proceed to checkout page
-         The user will enter their information and redirected to the checkout overview for confirmation
-         User will cancel and then log out
+        // 2) Enter username
+        WebElement usernameBox = driver.findElement(By.xpath("//input[@id='user-name']"));
+        usernameBox.sendKeys("standard_user");
+        Thread.sleep(1000); // small pause as requested
+        Assertions.assertEquals("standard_user", usernameBox.getAttribute("value"),
+                "Username field should contain the entered username");
 
-     Checkout with no item
-     SC5: When a user logs in, they will browse the products
-         Then proceed to your cart
-         Then proceed to checkout page
-         The user will enter their information and redirected to the checkout overview for confirmation
-         User will confirm then redirected to successs page and then log out
-    * */
+        // 3) Enter password
+        WebElement passwordBox = driver.findElement(By.xpath("//input[@id='password']"));
+        passwordBox.sendKeys("secret_sauce");
+        Thread.sleep(1000); // small pause
+        Assertions.assertEquals("secret_sauce", passwordBox.getAttribute("value"),
+                "Password field should contain the entered password");
+
+        // 4) Click login button
+        WebElement loginBtn = driver.findElement(By.xpath("//input[@id='login-button']"));
+        loginBtn.click();
+
+        // wait until the inventory/products page is visible: in /v1/ the header has class "product_label"
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='product_label']")));
+
+        // Click Cart
+        WebElement cartIcon = driver.findElement(By.id("shopping_cart_container"));
+        cartIcon.click();
+
+        Thread.sleep(3000);
+
+        // Click Checkout
+        WebElement checkoutBtn = driver.findElement(By.className("checkout_button"));
+        checkoutBtn.click();
+
+        Thread.sleep(2000);
+
+        WebElement firstName = driver.findElement(By.id("first-name"));
+        firstName.sendKeys("Russ");
+        Thread.sleep(1000); // small pause as requested
+        Assertions.assertEquals("Russ", firstName.getAttribute("value"),
+                "First Name field should contain the entered First name");
+
+        WebElement lastName = driver.findElement(By.id("last-name"));
+        lastName.sendKeys("Paul");
+        Thread.sleep(1000); // small pause as requested
+        Assertions.assertEquals("Paul", lastName.getAttribute("value"),
+                "Last Name field should contain the entered last name");
+
+        WebElement zip = driver.findElement(By.id("postal-code"));
+        zip.sendKeys("1700");
+        Thread.sleep(1000); // small pause as requested
+        Assertions.assertEquals("1700", zip.getAttribute("value"),
+                "Zip Code field should contain the entered zip code");
+
+        // Click Cancel
+        WebElement continueBtn = driver.findElement(By.className("cart_button"));
+        continueBtn.click();
+
+        Thread.sleep(2000);
+
+        // Click Cancel
+        WebElement finishBtn = driver.findElement(By.className("cart_button"));
+        finishBtn.click();
+
+        Thread.sleep(2000);
+
+        // Click Burger Menu
+        WebElement menuBtn = driver.findElement(By.className("bm-burger-button"));
+        menuBtn.click();
+
+        Thread.sleep(2000);
+
+        // Click Logout
+        WebElement logoutBtn = driver.findElement(By.id("logout_sidebar_link"));
+        logoutBtn.click();
+
+    }
 
 }

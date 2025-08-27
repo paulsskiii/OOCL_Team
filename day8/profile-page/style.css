@@ -1,0 +1,13 @@
+* {
+    text-decoration: none;    
+    text-align: center;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+nav {
+    font-size: 200%;
+    text-align: right;
+}

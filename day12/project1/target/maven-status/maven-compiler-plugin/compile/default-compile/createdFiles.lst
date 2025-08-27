@@ -1,0 +1,8 @@
+com\example\day12\Day12Application.class
+com\example\day12\repository\TaskRepository.class
+com\example\day12\controller\TaskController.class
+com\example\day12\model\PersonalDetails.class
+com\example\day12\controller\PersonalDetailsController.class
+com\example\day12\repository\PersonalDetailsRepository.class
+com\example\day12\config\WebConfig.class
+com\example\day12\model\Task.class

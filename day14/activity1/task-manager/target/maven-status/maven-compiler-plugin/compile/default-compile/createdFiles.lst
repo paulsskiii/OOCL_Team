@@ -1,0 +1,6 @@
+com\workshop\taskmanager\controller\TaskController.class
+com\workshop\taskmanager\service\TaskService.class
+com\workshop\taskmanager\TaskManagerApplication.class
+com\workshop\taskmanager\repository\TaskRepository.class
+com\workshop\taskmanager\config\SecurityConfig.class
+com\workshop\taskmanager\model\Task.class

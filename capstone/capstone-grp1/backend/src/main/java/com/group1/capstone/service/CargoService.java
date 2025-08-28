@@ -39,7 +39,6 @@ public class CargoService {
     // 5. Update cargo    
     public Cargo updateCargo(Long id, Cargo updatedCargo) {
         return cargoRepository.findById(id).map(cargo -> {
-            // CHANGE nalang naten to depende sa kung ano mga columns sa model class naten
             cargo.setName(updatedCargo.getName());
             cargo.setDescriptions(updatedCargo.getDescriptions());
             cargo.setStatus(updatedCargo.getStatus());

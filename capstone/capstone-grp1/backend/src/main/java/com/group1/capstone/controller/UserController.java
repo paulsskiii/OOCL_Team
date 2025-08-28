@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.group1.capstone.model.Cargo;
-import com.group1.capstone.model.TrackingEvent;
-import com.group1.capstone.service.CargoService;
+import com.group1.capstone.model.User;
+import com.group1.capstone.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
@@ -24,7 +22,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-}
 
     // 1. Get all users
     @GetMapping
@@ -62,3 +59,4 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }
+}

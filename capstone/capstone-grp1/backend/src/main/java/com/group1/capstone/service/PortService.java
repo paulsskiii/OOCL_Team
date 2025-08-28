@@ -37,7 +37,7 @@ public class PortService {
     }
 
     // 5. Update port    
-    public Port updateCargo(Long id, Port updatedPort) {
+    public Port updatePort(Long id, Port updatedPort) {
         return portRepository.findById(id).map(port -> {            
             port.setPortLocation(updatedPort.getPortLocation());
             port.setPortCode(updatedPort.getPortCode());

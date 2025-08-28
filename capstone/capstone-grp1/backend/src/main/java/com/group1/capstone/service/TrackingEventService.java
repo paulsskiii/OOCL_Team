@@ -16,7 +16,7 @@ public class TrackingEventService {
     private TrackingEventRepository trackingEventRepository;
 
     // 1. Find all TrackingEvent
-    public List<TrackingEvent> getAllTrackingEvent() {
+    public List<TrackingEvent> getAllTrackingEvents() {
         return trackingEventRepository.findAll();
     }
 

@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.group1.capstone.model.Cargo;
-import com.group1.capstone.service.CargoService;
+import com.group1.capstone.model.Status;
+import com.group1.capstone.service.StatusService;
 
 @RestController
 @RequestMapping("/api/status")

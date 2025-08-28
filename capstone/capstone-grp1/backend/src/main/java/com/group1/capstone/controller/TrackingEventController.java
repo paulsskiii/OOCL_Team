@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.group1.capstone.model.Cargo;
 import com.group1.capstone.model.TrackingEvent;
-import com.group1.capstone.service.CargoService;
+import com.group1.capstone.service.TrackingEventService;
 
 @RestController
-@RequestMapping("/api/tracking-events")
+@RequestMapping("/api/tracking-event")
 public class TrackingEventController {
 
     private final TrackingEventService trackingEventService;
@@ -24,7 +22,7 @@ public class TrackingEventController {
     public TrackingEventController(TrackingEventService trackingEventService) {
         this.trackingEventService = trackingEventService;
     }
-}
+
 
     // 1. Get all tracking events
     @GetMapping

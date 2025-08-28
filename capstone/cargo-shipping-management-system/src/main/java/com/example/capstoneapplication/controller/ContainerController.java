@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,6 +44,11 @@ public class ContainerController {
     @PostMapping
     public ResponseEntity<Container> addContainer(@RequestBody Container container) {
         return ResponseEntity.ok(containerService.addContainers(container));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Container> updateContainer(@RequestBody Container container, @PathVariable Long id) {
+        return ResponseEntity.ok(containerService.updateContainer(container, id));
     }
 
     @DeleteMapping("/{id}")

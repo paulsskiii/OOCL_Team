@@ -12,6 +12,7 @@ COPY pom.xml ./
 COPY .mvn .mvn
 COPY mvnw ./
 RUN chmod +x ./mvnw
+RUN sed -i 's/\r$//' mvnw
 RUN ./mvnw dependency:resolve
 COPY src ./src
 RUN ./mvnw clean package -DskipTests

@@ -32,7 +32,7 @@ public class TrackingEventController {
 
     // 2. Get tracking event by ID
     @GetMapping("/{id}")
-    public ResponseEntity<TrackingEvent> getPortById(@PathVariable int id) {
+    public ResponseEntity<TrackingEvent> getTrackingEventById(@PathVariable int id) {
         return ResponseEntity.ok(trackingEventService.getTrackingEventById(id));
     }
 

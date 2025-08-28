@@ -29,7 +29,7 @@ public class StatusController {
         return ResponseEntity.ok(statusService.getAllStatus());
     }
 
-    // 2. Get cargo by ID
+    // 2. Get status by ID
     @GetMapping("/{id}")
     public ResponseEntity<Status> getStatusById(@PathVariable int id) {
         return ResponseEntity.ok(statusService.getStatusById(id));

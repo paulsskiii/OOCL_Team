@@ -36,7 +36,7 @@ public class ContainerService {
     }
 
     public Container addContainer(Container container) throws NullPointerException, SameOriginDestinationException {
-      //  containerProducer.sendMessage("AddContainer", container);
+        containerProducer.sendMessage("AddContainer", container);
 
         if (container.getContainerNumber() == null) {
             throw new NullPointerException("Container Number is null");
@@ -54,7 +54,7 @@ public class ContainerService {
     }
 
     public Container updateContainer(Container container) {
-    //    containerProducer.sendMessage("UpdateContainer", container);
+        containerProducer.sendMessage("UpdateContainer", container);
 
         if(container == null)
             throw new NullPointerException("Container must have value");
@@ -63,7 +63,7 @@ public class ContainerService {
     }
 
     public void deleteContainer(Container container) {
-    //    containerProducer.sendMessage("DeleteContainer", container);
+        containerProducer.sendMessage("DeleteContainer", container);
         containerRepository.deleteById(container.getContainerNumber());
     }
 

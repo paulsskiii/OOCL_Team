@@ -21,7 +21,7 @@ public class TrackingEventService {
     }
 
     // 2. Find TrackingEvent by ID
-    public TrackingEvent getTrackingEventById(Long id) {
+    public TrackingEvent getTrackingEventById(int id) {
         return trackingEventRepository.findById(id)
                 .orElseThrow(() -> new TrackingEventNotFoundException("Tracking Event with ID " + id + " not found."));
     }
@@ -37,7 +37,7 @@ public class TrackingEventService {
     }
 
     // 5. Update TrackingEvent    
-    public TrackingEvent updateTrackingEvent(Long id, TrackingEvent updatedTrackingEvent) {
+    public TrackingEvent updateTrackingEvent(int id, TrackingEvent updatedTrackingEvent) {
         return trackingEventRepository.findById(id).map(trackingEvent -> {
             trackingEvent.setCargo(updatedTrackingEvent.getCargo());
             trackingEvent.setStatus(updatedTrackingEvent.getStatus());
@@ -48,7 +48,7 @@ public class TrackingEventService {
     }
     
     // 6. Delete TrackingEvent
-    public void deleteTrackingEvent(Long id) {
+    public void deleteTrackingEvent(int id) {
         if (!trackingEventRepository.existsById(id)) {
             throw new TrackingEventNotFoundException("Tracking Event with ID " + id + " not found.");
         }

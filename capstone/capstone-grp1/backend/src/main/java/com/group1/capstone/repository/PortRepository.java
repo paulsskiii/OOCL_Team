@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.group1.capstone.model.Port;
 
 @Repository
-public interface PortRepository extends JpaRepository<Port, Long> {
+public interface PortRepository extends JpaRepository<Port, Integer> {
     
 }

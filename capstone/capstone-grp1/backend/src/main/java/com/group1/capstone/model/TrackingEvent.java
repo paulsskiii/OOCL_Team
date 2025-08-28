@@ -12,7 +12,7 @@ public class TrackingEvent {
    @Id
    @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+   private int id;
 
    @ManyToOne
    @JoinColumn(name = "cargo_id",referencedColumnName = "id", nullable = false)

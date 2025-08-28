@@ -21,7 +21,7 @@ public class CargoService {
     }
 
     // 2. Find cargo by ID
-    public Cargo getCargoById(Long id) {
+    public Cargo getCargoById(int id) {
         return cargoRepository.findById(id)
                 .orElseThrow(() -> new CargoNotFoundException("Cargo with ID " + id + " not found."));
     }
@@ -37,7 +37,7 @@ public class CargoService {
     }
 
     // 5. Update cargo    
-    public Cargo updateCargo(Long id, Cargo updatedCargo) {
+    public Cargo updateCargo(int id, Cargo updatedCargo) {
         return cargoRepository.findById(id).map(cargo -> {
             cargo.setName(updatedCargo.getName());
             cargo.setDescriptions(updatedCargo.getDescriptions());
@@ -52,7 +52,7 @@ public class CargoService {
     }
     
     // 6. Delete cargo
-    public void deleteCargo(Long id) {
+    public void deleteCargo(int id) {
         if (!cargoRepository.existsById(id)) {
             throw new CargoNotFoundException("Cargo with ID " + id + " not found.");
         }

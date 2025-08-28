@@ -32,7 +32,7 @@ public class CargoController {
 
     // 2. Get cargo by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Cargo> getCargoById(@PathVariable Long id) {
+    public ResponseEntity<Cargo> getCargoById(@PathVariable int id) {
         return ResponseEntity.ok(cargoService.getCargoById(id));
     }
 
@@ -50,13 +50,13 @@ public class CargoController {
 
     // 5. Update cargo
     @PutMapping("/{id}")
-    public ResponseEntity<Cargo> updateCargo(@PathVariable Long id, @RequestBody Cargo updatedCargo) {
+    public ResponseEntity<Cargo> updateCargo(@PathVariable int id, @RequestBody Cargo updatedCargo) {
         return ResponseEntity.ok(cargoService.updateCargo(id, updatedCargo));
     }
 
     // 6. Delete cargo
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCargo(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCargo(@PathVariable int id) {
         cargoService.deleteCargo(id);
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }

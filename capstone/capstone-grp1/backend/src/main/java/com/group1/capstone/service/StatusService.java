@@ -21,7 +21,7 @@ public class StatusService {
     }
 
     // 2. Find status by ID
-    public Status getStatusById(Long id) {
+    public Status getStatusById(int id) {
         return statusRepository.findById(id)
                 .orElseThrow(() -> new StatusNotFoundException("Status with ID " + id + " not found."));
     }
@@ -37,7 +37,7 @@ public class StatusService {
     }
 
     // 5. Update status    
-    public Status updateStatus(Long id, Status updatedStatus) {
+    public Status updateStatus(int id, Status updatedStatus) {
         return statusRepository.findById(id).map(status -> {
             status.setStatusType(updatedStatus.getStatusType());
             status.setStatusCode(updatedStatus.getStatusCode());
@@ -48,7 +48,7 @@ public class StatusService {
     }
     
     // 6. Delete status
-    public void deleteStatus(Long id) {
+    public void deleteStatus(int id) {
         if (!statusRepository.existsById(id)) {
             throw new StatusNotFoundException("Status with ID " + id + " not found.");
         }

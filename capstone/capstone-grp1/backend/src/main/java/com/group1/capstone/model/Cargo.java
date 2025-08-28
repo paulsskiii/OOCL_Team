@@ -12,7 +12,7 @@ public class Cargo {
    @Id
    @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+   private int id;
 
    @Column(name = "name", nullable = false, length = 50)
    private String name;

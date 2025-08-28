@@ -32,7 +32,7 @@ public class TrackingEventController {
 
     // 2. Get tracking event by ID
     @GetMapping("/{id}")
-    public ResponseEntity<TrackingEvent> getPortById(@PathVariable Long id) {
+    public ResponseEntity<TrackingEvent> getPortById(@PathVariable int id) {
         return ResponseEntity.ok(trackingEventService.getTrackingEventById(id));
     }
 
@@ -50,13 +50,13 @@ public class TrackingEventController {
 
     // 5. Update tracking event
     @PutMapping("/{id}")
-    public ResponseEntity<TrackingEvent> updateTrackingEvent(@PathVariable Long id, @RequestBody TrackingEvent updatedTrackingEvent) {
+    public ResponseEntity<TrackingEvent> updateTrackingEvent(@PathVariable int id, @RequestBody TrackingEvent updatedTrackingEvent) {
         return ResponseEntity.ok(trackingEventService.updateTrackingEvent(id, updatedTrackingEvent));
     }
 
     // 6. Delete tracking event
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTrackingEvent(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTrackingEvent(@PathVariable int id) {
         trackingEventService.deleteTrackingEvent(id);
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }

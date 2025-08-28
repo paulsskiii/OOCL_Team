@@ -21,7 +21,7 @@ public class PortService {
     }
 
     // 2. Find port by ID
-    public Port getPortById(Long id) {
+    public Port getPortById(int id) {
         return portRepository.findById(id)
                 .orElseThrow(() -> new PortNotFoundException("Port with ID " + id + " not found."));
     }
@@ -37,7 +37,7 @@ public class PortService {
     }
 
     // 5. Update port    
-    public Port updatePort(Long id, Port updatedPort) {
+    public Port updatePort(int id, Port updatedPort) {
         return portRepository.findById(id).map(port -> {            
             port.setPortLocation(updatedPort.getPortLocation());
             port.setPortCode(updatedPort.getPortCode());
@@ -48,7 +48,7 @@ public class PortService {
     }
     
     // 6. Delete port
-    public void deletePort(Long id) {
+    public void deletePort(int id) {
         if (!portRepository.existsById(id)) {
             throw new PortNotFoundException("Port with ID " + id + " not found.");
         }

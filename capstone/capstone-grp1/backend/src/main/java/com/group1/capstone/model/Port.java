@@ -1,21 +1,18 @@
 package com.group1.capstone.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "port")
 public class Port {
+
    @Id
+   @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+   private Long id;
 
    @Column(name = "port_location", nullable = false, length = 100)
    private String portLocation;

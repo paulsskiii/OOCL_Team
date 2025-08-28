@@ -8,9 +8,11 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "status")
 public class Status {
+
    @Id
+   @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+   private Long id;
 
    @Column(name = "status_type", nullable = false, length = 100)
    private String statusType;

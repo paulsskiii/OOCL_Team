@@ -1,20 +1,19 @@
 package com.group1.capstone.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
 @Entity
 @Table(name = "user")
 public class User {
+
    @Id
+   @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+   private Long id;
 
    @Column(name = "first_name", nullable = false, length = 50)
    private String firstName;

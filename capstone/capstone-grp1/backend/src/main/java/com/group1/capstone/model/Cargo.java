@@ -1,41 +1,39 @@
 package com.group1.capstone.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "cargo")
 public class Cargo {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
 
-   @Column(name = "name", length = 50)
+   @Id
+   @Column(name = "id", nullable = false)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
+
+   @Column(name = "name", nullable = false, length = 50)
    private String name;
 
-   @Column(name = "descriptions",length = 254)
+   @Column(name = "descriptions", length = 254)
    private String descriptions;
 
    @ManyToOne
-   @JoinColumn(name = "status_id", nullable = false)
+   @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
    private Status status;
 
    @ManyToOne
-   @JoinColumn(name = "destination", nullable = false)
+   @JoinColumn(name = "destination", referencedColumnName = "id", nullable = false)
    private Port destination;
-
+   
    @ManyToOne
-   @JoinColumn(name = "origin", nullable = false)
+   @JoinColumn(name = "origin", referencedColumnName = "id", nullable = false)
    private Port origin;
 
    @ManyToOne
-   @JoinColumn(name = "created_by", nullable = false)
+   @JoinColumn(name = "created_by", referencedColumnName = "id", nullable = false)
    private User createdBy;
 
    @Column(name = "weight", nullable = false)
@@ -43,7 +41,8 @@ public class Cargo {
 
    @Column(name = "created_at", nullable = false)
    private LocalDateTime createdAt;
-   
+
    @Column(name = "updated_at", nullable = false)
    private LocalDateTime updatedAt;
+
 }

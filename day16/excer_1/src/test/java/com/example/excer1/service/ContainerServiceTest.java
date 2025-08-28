@@ -259,19 +259,15 @@ public class ContainerServiceTest {
 
     @Test
     void testUpdateContainerWithoutOrigin() {
-        Container container = new Container("OOLU12345", "", "Singapore", 1200.40);;
-
-        when(containerRepository.save(any())).thenReturn(container);
-        
+        when(containerRepository.save(any())).thenReturn(dummyContainerDetailsWithoutOrigin());
+        Container container = containerService.updateContainer(new Container("OOLU12345", "", "Singapore", 1200.40));        
         assertEquals(container, dummyContainerDetailsWithoutOrigin());
     }
 
     @Test
     void testUpdateContainerWithoutDestination() {
-        Container container = new Container("OOLU12345", "Manila", "", 1200.40);
-
-        when(containerRepository.save(any())).thenReturn(container);
-        
+        when(containerRepository.save(any())).thenReturn(dummyContainerDetailsWithoutDestination());
+        Container container = containerService.updateContainer(new Container("OOLU12345", "Manila", "", 1200.40)) ;
         assertEquals(container, dummyContainerDetailsWithoutDestination());
     }
 

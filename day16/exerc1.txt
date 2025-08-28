@@ -1,0 +1,43 @@
+ ADD, SEARCH, DELETE
+ 
+Test scenarios
+
+ADD
+- Given a valid container object
+- When I send a POST request to /api/containers with the container data
+- Then the response should be 201 Created and the container should be added
+
+Update
+- Given a container with ID {id} exists
+- When I update the container with new data
+- Then the response should be 200 OK and the container should be updated
+
+Delete
+- Given a container with ID {id} exists
+- When I send a DELETE request to /api/containers/{id}
+- Then the response should be 204 No Content and the container should be deleted
+
+adding new container
+    - Given the user fills out the new container form with valid data
+    - When the user submits the form
+    - Then a POST request should be sent to /api/containers with the container data
+
+error handling
+    - Given the backend is unreachable or returns an error
+    - When the user tries to fetch or add containers
+    - Then an appropriate error message should be displayed to the user
+
+search functionality
+    - Given the user types a search term in the search box
+    - When the user types
+    - Then the container list should be filtered to show only matching containers
+
+delete container
+    - Given a container with ID {id} exists
+    - When I send a DELETE request to /api/containers/{id}
+    - Then the response should be 204 No Content and the container should be deleted
+
+response status
+    - Given a container with ID {id} exists
+    - When I update the container with new data
+    - Then the response should be 200 OK and the container should be updated

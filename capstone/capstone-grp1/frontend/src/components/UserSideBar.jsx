@@ -35,7 +35,7 @@ function UserSideBar({ user, collapsed }) {
 	}, [collapsed]);
 
 	return (
-		<div className="flex items-center w-full gap-2 overflow-hidden">
+		<div className="sticky flex items-center w-full gap-2 overflow-hidden">
 			{showText ? (
 				<Dropdown menu={{ items: menuItems }} placement="topRight" arrow>
 					<div className="flex items-center w-full min-w-0 cursor-pointer">

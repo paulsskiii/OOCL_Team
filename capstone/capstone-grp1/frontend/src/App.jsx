@@ -114,13 +114,17 @@ const App = () => {
 		);
 
 	return (
-		<Layout>
+		<Layout className="overflow-auto">
 			<Sider
 				width={240}
 				style={{
 					background: colorBgContainer,
 					display: "flex",
 					flexDirection: "column",
+					height: "100vh",
+					position: "sticky",
+					top: 0,
+					left: 0,
 				}}
 				className="border-r"
 				trigger={null}
@@ -131,7 +135,7 @@ const App = () => {
 				<div className="flex flex-row items-center gap-1 px-2 py-5">
 					{!collapsed ? (
 						<div className="flex flex-row items-center w-full gap-2">
-							<img src=".\public\caplogo.png" className="w-10 h-10" />
+							<img src=".\caplogo.png" className="w-10 h-10" />
 							<span className="flex-1 text-2xl font-bold">CargoGo</span>
 							<Button
 								type="text"
@@ -141,7 +145,7 @@ const App = () => {
 						</div>
 					) : (
 						<div className="flex flex-row w-full gap-1">
-							<img src=".\public\caplogo.png" className="w-10 h-10" />
+							<img src=".\caplogo.png" className="w-10 h-10" />
 							<Button
 								type="text"
 								className="text-gray-7700"

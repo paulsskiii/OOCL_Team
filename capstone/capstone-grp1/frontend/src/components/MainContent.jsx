@@ -1,46 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { AudioOutlined } from "@ant-design/icons";
-import { Input, Space, Dropdown } from "antd";
-import { LayoutDashboard, SquareUserRound, ScrollText } from "lucide-react";
+import { DownloadOutlined, PlusOutlined } from "@ant-design/icons";
+import { Input, DatePicker, Space, Dropdown, Button } from "antd";
 import DashboardCard from "./DashboardCard";
+import CargoTable from "./CargoTable";
+
 import {
+	LayoutDashboard,
 	Truck,
 	Container as LucideContainer,
 	Ship,
 	PlusCircle,
-	Search,
-	ChevronUp,
-	ChevronDown,
 	CalendarArrowUp,
 	CalendarArrowDown,
 	CircleCheckBig,
 	ArrowUpDown,
 	ArrowUpAZ,
 	ArrowDownAZ,
+	CalendarFold,
 } from "lucide-react";
 
 function MainContent() {
 	const { Search } = Input;
 	const [currentSortLabel, setCurrentSortLabel] = useState("Sort by");
+	const [currentDateLabel, setCurrentDateLabel] = useState("Filter date");
+	const { RangePicker } = DatePicker;
+
+	const dateRangeItems = [
+		{
+			label: "Day",
+			key: 0,
+			//	icon: <CalendarArrowUp size={15} />,
+		},
+		{
+			label: "Month",
+			key: 1,
+			//	icon: <CalendarArrowDown size={15} />,
+		},
+		{
+			label: "Year",
+			key: 2,
+			//	icon: <ArrowUpAZ size={15} />,
+		},
+	];
 	const items = [
 		{
 			label: "Date Asc.",
-			key: "1",
+			key: 0,
 			icon: <CalendarArrowUp size={15} />,
 		},
 		{
 			label: "Date Desc.",
-			key: "2",
+			key: 1,
 			icon: <CalendarArrowDown size={15} />,
 		},
 		{
 			label: "A-Z Asc.",
-			key: "3",
+			key: 2,
 			icon: <ArrowUpAZ size={15} />,
 		},
 		{
 			label: "A-Z Desc.",
-			key: "4",
+			key: 3,
 			icon: <ArrowDownAZ size={15} />,
 		},
 	];
@@ -49,14 +69,56 @@ function MainContent() {
 		console.log("Insert the search logic here MyNaga");
 	}
 
+	useEffect(() => {
+		if (currentSortLabel == "" || currentSortLabel == null) {
+			setCurrentSortLabel("Sort by");
+		}
+	}, [currentSortLabel]);
+
 	function handleSortClick(e) {
-		setCurrentSortLabel(e.target.value?.label);
+		//console.log(e);
+		setCurrentSortLabel(items[e].label);
+	}
+
+	function handleDateClick(e) {
+		//console.log(e);
+		setCurrentDateLabel(dateRangeItems[e].label);
 	}
 	return (
 		<section className="flex flex-col w-screen h-screen p-5 bg-white">
 			<article className="flex flex-row items-center w-full gap-3 pb-5 border-b">
 				<LayoutDashboard size={40} className="text-blue-600" />
 				<div className="text-2xl font-semibold">Cargo Monitoring Dashboard</div>
+				<div className="flex flex-row items-center gap-2 ml-auto">
+					<Dropdown.Button
+						menu={{
+							items: dateRangeItems,
+							onClick: ({ key }) => handleDateClick(key),
+						}}
+						placement="bottom"
+						icon={<CalendarFold size={17} />}
+						size="large"
+						className="w-64"
+					>
+						{currentDateLabel}
+					</Dropdown.Button>
+
+					<span className="mr-3 font-semibold text-md">Date Range:</span>
+					<RangePicker
+						picker="year"
+						className="h-[40px]"
+						id={{
+							start: "startInput",
+							end: "endInput",
+						}}
+						onFocus={(_, info) => {
+							console.log("Focus:", info.range);
+						}}
+						onBlur={(_, info) => {
+							console.log("Blur:", info.range);
+						}}
+					/>
+				</div>
 			</article>
 			{/* Cards Section for Summary */}
 			<article className="flex flex-row w-full gap-5 my-5 ">
@@ -95,26 +157,55 @@ function MainContent() {
 			</article>
 
 			{/* Table Portion */}
-			<article className="h-full border-2 border-gray-200 rounded-lg">
-				<div className="m-5">
+			<article className="border-2 border-gray-200 rounded-lg">
+				<div className="flex flex-row items-center gap-3 p-5">
+					{/* Search Input */}
 					<Search
 						placeholder="Input Container #"
 						onSearch={onSearch}
 						enterButton
+						size="large"
 						className="w-64"
 					/>
-				</div>
 
-				<div>
+					{/* Dropdown */}
 					<Dropdown.Button
-						menu={{ items }}
+						menu={{ items, onClick: ({ key }) => handleSortClick(key) }}
 						placement="bottom"
-						onClick={(e) => handleSortClick(e)}
 						icon={<ArrowUpDown size={17} />}
+						size="large"
+						className="w-64"
 					>
 						{currentSortLabel}
 					</Dropdown.Button>
+
+					{/* Action Buttons */}
+					<div className="flex items-center gap-2 ml-auto">
+						<Button
+							type="primary"
+							size="large"
+							className="text-gray-700 bg-white border border-gray-300"
+							icon={<PlusOutlined />}
+						>
+							Create Cargo
+						</Button>
+						<a
+							href="https://www.youtube.com/watch?v=0FUuPgoWRYU"
+							target="_blank"
+						>
+							<Button
+								type="primary"
+								size="large"
+								className="text-gray-700 bg-white border border-gray-300"
+								icon={<DownloadOutlined />}
+							>
+								Generate Report
+							</Button>
+						</a>
+					</div>
 				</div>
+
+				<CargoTable />
 			</article>
 		</section>
 	);

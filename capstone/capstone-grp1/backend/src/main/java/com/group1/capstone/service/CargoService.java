@@ -71,11 +71,6 @@ public class CargoService {
     }
     
     // 9. Get all cargo moving for the day, month, year
-    public List<Cargo> getCargoMovingOnDate(int year, int month, int day) {
-        return cargoRepository.findCargoMovingOnDate(year, month, day);
-    }
-    
-    // 10. Get all cargo moving for the specific date (alternative method)
     public List<Cargo> getCargoMovingOnDate(LocalDate date) {
         return cargoRepository.findCargoMovingOnDate(date);
     }

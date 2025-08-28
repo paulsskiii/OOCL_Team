@@ -19,12 +19,8 @@ public interface CargoRepository extends JpaRepository<Cargo, Integer> {
     // All cargo coming from selected location for the day
     @Query(value = "SELECT * FROM cargo WHERE origin = :portId AND DATE(created_at) = :date", nativeQuery = true)
     List<Cargo> findCargoComingFromPortOnDate(@Param("portId") int portId, @Param("date") LocalDate date);
-    
+        
     // All cargo moving for the day, month, year
-    @Query(value = "SELECT * FROM cargo WHERE YEAR(created_at) = :year AND MONTH(created_at) = :month AND DAY(created_at) = :day", nativeQuery = true)
-    List<Cargo> findCargoMovingOnDate(@Param("year") int year, @Param("month") int month, @Param("day") int day);
-    
-    // Alternative query 3 using LocalDate
     @Query(value = "SELECT * FROM cargo WHERE DATE(created_at) = :date", nativeQuery = true)
     List<Cargo> findCargoMovingOnDate(@Param("date") LocalDate date);
 }

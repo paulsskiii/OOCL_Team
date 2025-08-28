@@ -1,5 +1,6 @@
 package com.group1.capstone.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -57,5 +58,25 @@ public class CargoService {
             throw new CargoNotFoundException("Cargo with ID " + id + " not found.");
         }
         cargoRepository.deleteById(id);
+    }
+
+    // 7. Get all cargo going to selected location for the day
+    public List<Cargo> getCargoGoingToPortOnDate(int portId, LocalDate date) {
+        return cargoRepository.findCargoGoingToPortOnDate(portId, date);
+    }
+    
+    // 8. Get all cargo coming from selected location for the day
+    public List<Cargo> getCargoComingFromPortOnDate(int portId, LocalDate date) {
+        return cargoRepository.findCargoComingFromPortOnDate(portId, date);
+    }
+    
+    // 9. Get all cargo moving for the day, month, year
+    public List<Cargo> getCargoMovingOnDate(int year, int month, int day) {
+        return cargoRepository.findCargoMovingOnDate(year, month, day);
+    }
+    
+    // 10. Get all cargo moving for the specific date (alternative method)
+    public List<Cargo> getCargoMovingOnDate(LocalDate date) {
+        return cargoRepository.findCargoMovingOnDate(date);
     }
 }

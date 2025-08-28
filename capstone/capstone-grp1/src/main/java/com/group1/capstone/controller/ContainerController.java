@@ -1,6 +1,6 @@
 package com.group1.capstone.controller;
 
-import com.group1.capstone.exception.SameOriginDestinationException;
+import com.group1.capstone.exceptions.SameOriginDestinationException;
 import com.group1.capstone.model.Container;
 import com.group1.capstone.service.ContainerService;
 import org.springframework.http.HttpStatus;

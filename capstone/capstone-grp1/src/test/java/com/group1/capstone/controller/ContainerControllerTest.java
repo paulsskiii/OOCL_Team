@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.group1.capstone.CapstoneApplication;
-import com.group1.capstone.exception.SameOriginDestinationException;
+import com.group1.capstone.exceptions.SameOriginDestinationException;
 import com.group1.capstone.model.Container;
 import com.group1.capstone.service.ContainerService;
 import org.junit.jupiter.api.BeforeEach;

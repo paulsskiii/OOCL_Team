@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Arrays;
 
 import com.group1.capstone.CapstoneApplication;
-import com.group1.capstone.exception.SameOriginDestinationException;
 import com.group1.capstone.model.Container;
 import com.group1.capstone.repository.ContainerRepository;
 import org.junit.jupiter.api.Test;
@@ -24,6 +23,8 @@ import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.group1.capstone.ContainerProducer;
+import com.group1.capstone.exceptions.SameOriginDestinationException;
+
 import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest(classes = ContainerService.class)

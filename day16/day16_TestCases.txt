@@ -1,0 +1,39 @@
+Test Scenario: Ability to create containers
+Requirements: Containers should have container name/ID, origin, destination, and its weight
+Inputs: 1L, "OOCU712345", "MNL", "HKG", 20.00
+Expected Output: 201 or 200
+
+Edge Case:
+- Duplicate container name
+Expected Output: Should return a prompt saying that given container name is already existing.
+
+- Missing input requirements (Container Name/Origin/Destination/Weight)
+Expected Output: Should return an alert stating that there is a missing input field.
+
+------------------
+Test Scenario: Ability to search containers
+Requirements: Container Name/Container ID or filter by Origin/Destination
+Inputs: "OOCU712345", "OOLU237890", "HKG", "MNL"
+Expected Output: 200, should fetch Container details
+
+Edge Case:
+- Searched a non-existing container
+Expected output: Should return an alert stating that the container does not exist.
+
+- Searched a non-existing Origin/Destination
+Expected output: Should return an alert stating that there are no containers found.
+
+
+Test Scenario: Ability to get all containers
+Expected Output: 200, should fetch all existing containers
+
+------------------
+Test Scenario: Ability to delete containers
+Requirements: Existing Container ID
+Inputs: "1456"
+Expected Output: 204, should delete the existing container
+
+Edge Case:
+- Deleted a non-existing container
+Expected Output: Should return a prompt stating that no containers trying to be 
+deleted are not existing

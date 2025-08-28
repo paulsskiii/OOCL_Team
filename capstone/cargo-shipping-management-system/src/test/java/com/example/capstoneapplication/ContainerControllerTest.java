@@ -1,4 +1,4 @@
-package com.example.capstone;
+package com.example.capstoneapplication;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -19,9 +19,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.day12miniproject.controller.ContainerController;
-import com.example.day12miniproject.model.Container;
-import com.example.day12miniproject.service.ContainerService;
+import com.example.capstoneapplication.controller.ContainerController;
+import com.example.capstoneapplication.model.Container;
+import com.example.capstoneapplication.service.ContainerService;
 
 @WebMvcTest(ContainerController.class)
 public class ContainerControllerTest {

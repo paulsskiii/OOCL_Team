@@ -1,4 +1,4 @@
-package com.example.capstone;
+package com.example.capstoneapplication;
  
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,9 +21,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.example.day12miniproject.model.Container;
-import com.example.day12miniproject.repository.ContainerRepository;
-import com.example.day12miniproject.service.ContainerService;
+import com.example.capstoneapplication.model.Container;
+import com.example.capstoneapplication.repository.ContainerRepository;
+import com.example.capstoneapplication.service.ContainerService;
 
  
 @ExtendWith(MockitoExtension.class)

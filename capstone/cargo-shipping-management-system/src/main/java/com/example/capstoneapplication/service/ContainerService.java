@@ -1,4 +1,4 @@
-package com.example.capstone.service;
+package com.example.capstoneapplication.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.day12miniproject.model.Container;
-import com.example.day12miniproject.repository.ContainerRepository;
+import com.example.capstoneapplication.model.Container;
+import com.example.capstoneapplication.repository.ContainerRepository;
 
 @Service
 public class ContainerService {

@@ -1,10 +1,10 @@
-package com.example.capstone;
+package com.example.capstoneapplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Day12miniprojectApplicationTests {
+class CapstoneApplicationTests {
 
 	@Test
 	void contextLoads() {

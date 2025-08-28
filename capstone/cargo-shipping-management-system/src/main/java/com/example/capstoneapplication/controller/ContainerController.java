@@ -1,4 +1,4 @@
-package com.example.capstone.controller;
+package com.example.capstoneapplication.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.day12miniproject.model.Container;
-import com.example.day12miniproject.service.ContainerService;
+import com.example.capstoneapplication.model.Container;
+import com.example.capstoneapplication.service.ContainerService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

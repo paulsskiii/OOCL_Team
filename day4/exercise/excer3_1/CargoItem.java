@@ -10,8 +10,30 @@ class CargoItem {
         this.weight = weight;
         this.value = value;
     }
-
     // Getters and toString
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return "CargoItem Cargo Id = " + getId() + ", Name = " + getName() + ", Weight = " + getWeight()
+                + ", Value = " + getValue();
+    }
+
 }
 
 

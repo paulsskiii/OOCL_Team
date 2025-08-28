@@ -202,4 +202,109 @@ class SeleniumGoogleSearchTest {
 
     }
 
+    @Test
+    @DisplayName("Single Order and Checkout")
+    void testSingleOrderAndCheckout() throws InterruptedException {
+        //Select Filter
+        WebElement filterBtn = driver.findElement(By.xpath("//select[@class='product_sort_container']"));
+
+        Select select = new Select(filterBtn);
+        select.selectByValue("lohi");
+        Thread.sleep(2000);
+
+        // Select item
+        clickButton("//div[@class='inventory_list']//div[1]//div[3]//button[1]", 2000);
+
+        //go to your cart
+        clickButton("//*[name()='path' and contains(@fill,'currentCol')]", 1000);
+
+        //user reviews
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cart_contents_container")));
+        Thread.sleep(2000);
+
+        // go to checkout
+        clickButton("//a[@class='btn_action checkout_button']", 1_000);
+
+
+        // input credentials
+        WebElement firstName = inputField("first-name","Jan Russel");
+        Assertions.assertEquals("Jan Russel", firstName.getAttribute("value"),
+                "First name field should be 'Jan Russel'");
+
+        WebElement lastName = inputField("last-name","Derpoja");
+        Assertions.assertEquals("Jan Russel", lastName.getAttribute("value"),
+                "Last name field should be 'Derpoja'");
+
+        WebElement postalCode = inputField("postal-code","Tiga laguna");
+        Assertions.assertEquals("Jan Russel", postalCode.getAttribute("value"),
+                "Postal code field should be 'Tiga laguna'");
+
+
+        clickButton("//input[@value='CONTINUE']", 1_000);
+
+        //user reviews checkout
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout_summary_container")));
+        Thread.sleep(3000);
+
+        //user confirms checkout
+        clickButton("//a[@class='btn_action cart_button']", 2000);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout_complete_container")));
+        Thread.sleep(3000);
+
+        //User opens sidebar
+        clickButton("//button[normalize-space()='Open Menu']", 2000);
+
+        //User Logs out
+        clickButton("//a[@id='logout_sidebar_link']", 3000);
+        Thread.sleep(5_000);
+    }
+
+    private WebElement inputField(String id, String value) throws InterruptedException {
+        WebElement element = driver.findElement(By.id(id));
+        element.sendKeys(value);
+        Thread.sleep(1000);
+
+        return element;
+    }
+
+    private void clickButton(String xpathExpression, int millis) throws InterruptedException {
+        WebElement button = driver.findElement(By.xpath(xpathExpression));
+        button.click();
+        Thread.sleep(millis);
+    }
+
+    private void login() throws InterruptedException {
+        // 1) Open SauceDemo (you gave /v1/)
+        driver.get("https://www.saucedemo.com/v1/");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='user-name']")));
+
+        // VALIDATION: URL contains saucedemo
+        Assertions.assertTrue(driver.getCurrentUrl().contains("saucedemo"),
+                "Page URL should contain 'saucedemo'");
+
+        Thread.sleep(2000);
+        // 2) Enter username
+        WebElement usernameBox = driver.findElement(By.xpath("//input[@id='user-name']"));
+        usernameBox.sendKeys("standard_user");
+        Thread.sleep(1000); // small pause as requested
+
+        // 3) Enter password
+        WebElement passwordBox = driver.findElement(By.xpath("//input[@id='password']"));
+        passwordBox.sendKeys("secret_sauce");
+        Thread.sleep(1000); // small pause
+
+        // 4) Click login button
+        WebElement loginBtn = driver.findElement(By.xpath("//input[@id='login-button']"));
+        loginBtn.click();
+
+        // wait until the inventory/products page is visible: in /v1/ the header has class "product_label"
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='product_label']")));
+
+        // VALIDATION: page shows "Products"
+        WebElement title = driver.findElement(By.className("product_label"));
+        Thread.sleep(3000);
+    }
+
 }

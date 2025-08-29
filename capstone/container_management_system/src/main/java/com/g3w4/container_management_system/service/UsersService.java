@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class UsersService {
+
     @Autowired
     private UsersRepository usersRepository;
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -41,7 +42,7 @@ public class UsersService {
         role.setRoleId(2);
         role.setRoleName("user");
         user.setRole(role);
-          
+
         return usersRepository.save(user);
     }
 }

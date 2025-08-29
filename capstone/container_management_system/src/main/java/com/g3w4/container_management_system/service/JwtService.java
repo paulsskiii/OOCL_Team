@@ -53,8 +53,8 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
 
         if (userDetails instanceof Users user) {
-            claims.put("role", user.getRole());
             claims.put("userId", user.getLoginId());
+            claims.put("role", user.getRole());
         }
 
         return buildToken(claims, userDetails, jwtExpiration);

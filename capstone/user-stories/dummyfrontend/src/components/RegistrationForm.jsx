@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React, { Component } from "react";
 
 function RegistrationForm() {
@@ -10,6 +10,10 @@ function RegistrationForm() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [passwordMessage, setPasswordMessage] = useState("");
+
+  const isInvalidEmail = true;
+  const isInvalidPassword = true;
 
   const [newUser, setNewUser] = useState({
     username: "",
@@ -39,7 +43,24 @@ function RegistrationForm() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewUser((prev) => ({ ...prev, [name]: value }));
+    if (name !== "email" || name !== "password") {
+      setNewUser((prev) => ({ ...prev, [name]: value }));
+    }
+
+    if (name === "email") {
+      if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value)) {
+        console.log("Invalid email");
+      }
+      setNewUser((prev) => ({ ...prev, [name]: value }));
+    }
+    if (name === "password") {
+      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
+        console.log(
+          "Password should contain atleast one uppercase letter and one number"
+        );
+      }
+      setNewUser((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   return (
@@ -149,7 +170,11 @@ function RegistrationForm() {
                     >
                       Sign up
                     </button>
-                    <a id="already_has_account" className="d-flex my-4 h-12">
+                    <a
+                      id="already_has_account"
+                      className="d-flex my-4 h-12"
+                      href="/"
+                    >
                       Already have an account?
                     </a>
                   </div>

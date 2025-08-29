@@ -1,21 +1,13 @@
+import { useState } from "react";
 import Card from "react-bootstrap/Card";
-import { useEffect, useState } from "react";
-import React, { Component } from "react";
 
-function RegistrationForm() {
+function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [newUser, setNewUser] = useState({
+  const [userLogin, setUserLogin] = useState({
     username: "",
     password: "",
-    email: "",
-    contactNumber: "",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,12 +26,12 @@ function RegistrationForm() {
     //   console.error("Failed to add user:", e);
     //   setError("Failed to add new user. Please check the backend.");
     // }
-    console.log(newUser);
+    console.log(userLogin);
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewUser((prev) => ({ ...prev, [name]: value }));
+    setUserLogin((prev) => ({ ...prev, [name]: value }));
+    console.log("hi");
   };
 
   return (
@@ -54,7 +46,7 @@ function RegistrationForm() {
                   {/* <!--Username input--> */}
                   <div className="text-center">
                     <h4 className="mb-12 py-4 pb-1 text-xl font-semibold">
-                      Create an account
+                      Login
                     </h4>
                   </div>
                   <div className="mb-4">
@@ -71,7 +63,7 @@ function RegistrationForm() {
                       placeholder="Enter your username"
                       onChange={handleInputChange}
                       name="username"
-                      value={newUser.username}
+                      value={userLogin.username}
                       required
                     />
                   </div>
@@ -91,48 +83,7 @@ function RegistrationForm() {
                       placeholder="Enter your password"
                       onChange={handleInputChange}
                       name="password"
-                      value={newUser.password}
-                      required
-                    />
-                  </div>
-
-                  {/* <!-- Email Input --> */}
-                  <hr />
-                  <div className="mb-4">
-                    <label
-                      htmlFor="email"
-                      className="form-label d-flex justify-content-start"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="email_reg"
-                      placeholder="Enter your email"
-                      onChange={handleInputChange}
-                      name="email"
-                      value={newUser.email}
-                      required
-                    />
-                  </div>
-
-                  {/* <!-- Contact Number --> */}
-                  <div className="mb-3">
-                    <label
-                      htmlFor="contact_number"
-                      className="form-label d-flex justify-content-start"
-                    >
-                      Contact Number
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="contact_no_reg"
-                      placeholder="Enter your phone number"
-                      onChange={handleInputChange}
-                      name="contactNumber"
-                      value={newUser.contactNumber}
+                      value={userLogin.password}
                       required
                     />
                   </div>
@@ -150,11 +101,11 @@ function RegistrationForm() {
                       Sign up
                     </button>
                     <a
-                      id="already_has_account"
+                      id="create_an_account"
                       className="d-flex my-4 h-12"
-                      href="/"
+                      href="/register"
                     >
-                      Already have an account?
+                      Create an account now.
                     </a>
                   </div>
                 </form>
@@ -166,5 +117,4 @@ function RegistrationForm() {
     </section>
   );
 }
-
-export default RegistrationForm;
+export default LoginForm;

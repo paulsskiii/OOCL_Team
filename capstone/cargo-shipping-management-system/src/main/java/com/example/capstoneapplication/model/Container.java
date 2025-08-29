@@ -22,7 +22,6 @@ public class Container {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id")
-    @NonNull
     private Long id;
 
     @NonNull
@@ -47,12 +46,18 @@ public class Container {
     @Column(name ="arrival_date", columnDefinition="datetime")
     private String arrivalDate;
 
+    @Column(name ="booked_by", nullable=false)
+    @NonNull
+    private Long bookedBy;
 
-    public Container (String name, double weight, String origin, String destination) {
-        this.name=name;
-        this.weight=weight;
-        this.origin=origin;
-        this.destination=destination;
+    public Container (String name, String origin, String destination, String status, double weight, String departureDate, String arrivalDate, Long bookedBy) {
+        this.name = name;
+        this.origin = origin;
+        this.destination = destination;
+        this.status = status;
+        this.weight = weight;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.bookedBy = bookedBy;
     }
-
 }

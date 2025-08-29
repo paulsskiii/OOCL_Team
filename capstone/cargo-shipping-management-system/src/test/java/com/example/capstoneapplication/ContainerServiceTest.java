@@ -135,7 +135,34 @@ public class ContainerServiceTest {
 
     }
 
-    
+    @Test
+    void test_given_existing_container_when_updated_return_updated_container(){
+
+        Container updatedContainer = expectedContainers.get(0);
+        when(containerRepository.findById(updatedContainer.getId())).thenReturn(Optional.of(updatedContainer));
+        updatedContainer.setStatus("AR");
+        when(containerRepository.save(updatedContainer)).thenReturn(updatedContainer);
+
+        containerService.updateContainer(updatedContainer, updatedContainer.getId());
+
+        assertEquals(updatedContainer.getStatus(), expectedContainers.get(0).getStatus());
+        verify(containerRepository, times(1)).save(updatedContainer);
+
+    }
+
+    @Test
+    void test_given_id_is_not_existing_when_updated_then_return_exception(){
+
+        Container newContainer = new Container(3L, "TEMU123481", "SNG", "VAN", "AR", 100.20, "2025-08-28 00:00:00", "2025-09-12 00:00:00", 1L);
+        when(containerRepository.findById(newContainer.getId())).thenReturn(Optional.empty());
+        newContainer.setStatus("AR");
+
+        assertThatThrownBy(() -> containerService.updateContainer(newContainer, newContainer.getId()))
+                .isInstanceOf(ResponseStatusException.class);
+
+        verify(containerRepository, never()).save(newContainer);
+
+    }
 
     // Test to delete existing container
     // expected: success, 1 container with matching id deleted
@@ -153,7 +180,7 @@ public class ContainerServiceTest {
     // Test to delete non existing container (e.g., ID not in system)
     // expected: error, no containers deleted
     @Test
-    void test_given_id_is_not_existing_when_deleted_by_id_no_container_is_deleted() {
+    void test_given_id_is_not_existing_when_deleted_by_id_then_return_exception() {
 
         when(containerRepository.existsById(nonExistingID)).thenReturn(false);
 

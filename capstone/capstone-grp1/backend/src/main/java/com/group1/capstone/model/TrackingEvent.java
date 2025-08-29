@@ -4,33 +4,36 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Data
 @Entity
 @Table(name = "tracking_event")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TrackingEvent {
    @Id
    @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
 
-   @ManyToOne
    @JoinColumn(name = "cargo_id",referencedColumnName = "id", nullable = false)
-   @JsonIdentityReference(alwaysAsId = true)
-   private Cargo cargoId;
+   private int cargoId;
 
-   @ManyToOne
    @JoinColumn(name = "status_code", referencedColumnName = "status_code", nullable = false)
-   @JsonIdentityReference(alwaysAsId = true)
-   private Status statusCode;
+   private String statusCode;
 
    @Column(name = "created_at", nullable = false)
    private LocalDateTime createdAt;
 
    @Column(name = "updated_at", nullable = false)
    private LocalDateTime updatedAt;
+
+   @PrePersist
+   protected void onCreate() {
+      createdAt = LocalDateTime.now();
+      updatedAt = LocalDateTime.now();
+   }
+
+   @PreUpdate
+   protected void onUpdate() {
+      updatedAt = LocalDateTime.now();
+   }
 }

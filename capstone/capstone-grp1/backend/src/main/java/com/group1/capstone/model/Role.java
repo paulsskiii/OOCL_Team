@@ -4,13 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Data
 @Entity
 @Table(name = "role")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Role {
     @Id
     @Column(name = "name", length = 20, nullable = false)
@@ -21,6 +17,17 @@ public class Role {
  
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+       createdAt = LocalDateTime.now();
+       updatedAt = LocalDateTime.now();
+    }
+ 
+    @PreUpdate
+    protected void onUpdate() {
+       updatedAt = LocalDateTime.now();
+    }
 }
 
 

@@ -4,13 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Data
 @Entity
 @Table(name = "port")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "portCode")
 public class Port {
    @Id
    @Column(name = "port_code", nullable = false, unique = true, length = 10)
@@ -23,5 +20,16 @@ public class Port {
    private LocalDateTime createdAt;
 
    @Column(name = "updated_at", nullable = false)
-   private LocalDateTime updatedAt;  
+   private LocalDateTime updatedAt;
+   
+   @PrePersist
+   protected void onCreate() {
+      createdAt = LocalDateTime.now();
+      updatedAt = LocalDateTime.now();
+   }
+
+   @PreUpdate
+   protected void onUpdate() {
+      updatedAt = LocalDateTime.now();
+   }
 }

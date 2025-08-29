@@ -1,11 +1,11 @@
 -- insert role
-INSERT INTO role (name) VALUES 
+INSERT IGNORE INTO role (name) VALUES 
 ("USER"), 
 ("ADMIN"), 
 ("COURIER");
 
 -- Insert user
-INSERT INTO user (first_name, last_name, username, email, role, password, contact_number) VALUES
+INSERT IGNORE INTO user (first_name, last_name, username, email, role, password, contact_number) VALUES
 ('John', 'Doe', 'jdoe1', 'jdoe1@example.com', 'USER', 'password123', '+639171111111'),
 ('Jane', 'Smith', 'jsmith2', 'jsmith2@example.com', 'USER', 'pass456', '+639171111112'),
 ('Alice', 'Johnson', 'alicej3', 'alicej3@example.com', 'ADMIN', 'adminpass', '+639171111113'),
@@ -62,7 +62,7 @@ INSERT INTO user (first_name, last_name, username, email, role, password, contac
 ('Henry', 'Stewart', 'henrys50', 'henrys50@example.com', 'USER', 'stewartpass', '+639171111160');
 
 -- Insert ports
-INSERT INTO port (port_location, port_code) VALUES
+INSERT IGNORE INTO port (port_location, port_code) VALUES
 ('Manila North Harbor', 'MNL001'),
 ('Manila South Harbor', 'MNL002'),
 ('Batangas', 'BAT003'),
@@ -119,7 +119,7 @@ INSERT INTO port (port_location, port_code) VALUES
 ('Copenhagen', 'CPH050');
 
 -- Insert status 
-INSERT INTO status (status_type, status_code) VALUES
+INSERT IGNORE INTO status (status_type, status_code) VALUES
 ('Delivered', 'DLV'),
 ('In-Transit', 'ITR'),
 ('Loaded', 'LOD'),
@@ -129,7 +129,7 @@ INSERT INTO status (status_type, status_code) VALUES
 ('Not-Delivered', 'NDL');
 
 -- Insert cargo
-INSERT INTO cargo (name, descriptions, weight, status_code, destination, origin, created_by, consignee, courier) VALUES
+INSERT IGNORE INTO cargo (name, descriptions, weight, status_code, destination, origin, created_by, consignee, courier) VALUES
 ('Container A', 'Electronics shipment', 1250.5, 'DLV', 'SIN011', 'MNL001', 3, 1, 1),
 ('Container B', 'Furniture cargo', 3100.0, 'ITR', 'HKG012', 'LAX017', 10, 2, 2),
 ('Container C', 'Perishable goods', 890.75, 'LOD', 'TYO014', 'BUS015', 2, 3, 3),
@@ -182,8 +182,7 @@ INSERT INTO cargo (name, descriptions, weight, status_code, destination, origin,
 ('Container AX', 'Sporting equipment', 2020.6, 'PND', 'VLC024', 'LAX017', 9, 50, 50);
 
 -- Insert tracking events
-INSERT INTO tracking_event (cargo_id, status_code) VALUES
-(1, 'ITR'),
+INSERT IGNORE INTO tracking_event (cargo_id, status_code) VALUES
 (1, 'DSC'),
 (2, 'LOD'),
 (3, 'DLV'),
@@ -191,7 +190,6 @@ INSERT INTO tracking_event (cargo_id, status_code) VALUES
 (5, 'ITR'),
 (6, 'PRC'),
 (7, 'DSC'),
-(8, 'DLV'),
 (8, 'PND'),
 (9, 'LOD'),
 (10, 'NDL'),
@@ -199,7 +197,6 @@ INSERT INTO tracking_event (cargo_id, status_code) VALUES
 (12, 'DLV'),
 (13, 'PRC'),
 (14, 'ITR'),
-(15, 'DLV'),
 (15, 'DSC'),
 (16, 'LOD'),
 (17, 'PND'),
@@ -216,7 +213,6 @@ INSERT INTO tracking_event (cargo_id, status_code) VALUES
 (28, 'DLV'),
 (29, 'PRC'),
 (30, 'LOD'),
-(31, 'DLV'),
 (31, 'ITR'),
 (32, 'DSC'),
 (33, 'ITR'),

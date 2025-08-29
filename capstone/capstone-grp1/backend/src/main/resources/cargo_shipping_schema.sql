@@ -2,7 +2,6 @@ CREATE SCHEMA `cargo_shipping`;
 
 USE cargo_shipping;
 
--- DROP SCHEMA CARGO_SHIPPING;
 
 CREATE TABLE role(
     name VARCHAR(20) PRIMARY KEY,
@@ -11,7 +10,7 @@ CREATE TABLE role(
 );
 
 CREATE TABLE user (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+ id INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
@@ -26,7 +25,7 @@ CREATE TABLE user (
 
 
 CREATE TABLE port (
-	port_code VARCHAR(10) PRIMARY KEY NOT NULL,
+ port_code VARCHAR(10) PRIMARY KEY NOT NULL,
     port_location VARCHAR(100) NOT NULL,    
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -40,8 +39,8 @@ CREATE TABLE status (
 );
 
 CREATE TABLE cargo (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	name VARCHAR(50) NOT NULL,
+ id INTEGER PRIMARY KEY AUTO_INCREMENT,
+ name VARCHAR(50) NOT NULL,
     descriptions VARCHAR(254),
     weight FLOAT(5) NOT NULL,
     status_code VARCHAR(5) NOT NULL,
@@ -57,17 +56,19 @@ CREATE TABLE cargo (
     FOREIGN KEY (origin) REFERENCES port(port_code),
     FOREIGN KEY (created_by) REFERENCES user(id),
     FOREIGN KEY (consignee) REFERENCES user(id),
-    FOREIGN KEY (courier) REFERENCES user(id)
+    FOREIGN KEY (courier) REFERENCES user(id),
+    CONSTRAINT unique_cargo_name_user UNIQUE (name, created_by)
 );
 
 CREATE TABLE tracking_event(
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+ id INTEGER PRIMARY KEY AUTO_INCREMENT,
     cargo_id INTEGER NOT NULL,
     status_code VARCHAR(5) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (cargo_id) REFERENCES cargo(id),
-    FOREIGN KEY (status_code) REFERENCES status(status_code)
+    FOREIGN KEY (status_code) REFERENCES status(status_code),
+    CONSTRAINT unique_tracking_event UNIQUE (cargo_id, status_code)
 );
 
 -- INDEXES
@@ -102,7 +103,4 @@ CREATE INDEX idx_cargo_status_destination ON cargo(status_code, destination);
 CREATE INDEX idx_cargo_origin_destination ON cargo(origin, destination);
 CREATE INDEX idx_tracking_event_cargo_created ON tracking_event(cargo_id, created_at);
 
-
-
-
-
+ 

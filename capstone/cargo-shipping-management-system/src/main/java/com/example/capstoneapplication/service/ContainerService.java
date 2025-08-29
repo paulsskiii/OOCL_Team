@@ -13,29 +13,36 @@ import com.example.capstoneapplication.repository.ContainerRepository;
 
 @Service
 public class ContainerService {
-    @Autowired
-    private final  ContainerRepository containerRepository;
 
-      public ContainerService(ContainerRepository containerRepository) {
+    @Autowired
+    private final ContainerRepository containerRepository;
+
+    public ContainerService(ContainerRepository containerRepository) {
         this.containerRepository = containerRepository;
     }
 
     public List<Container> getAllContainer() {
-        return containerRepository.findAll(); // Uses JpaRepository's findAll()
+        return containerRepository.findAll();
     }
 
     public Optional<Container> getContainerById(Long id) {
-        return containerRepository.findById(id); // Uses JpaRepository's findById()
+        return containerRepository.findById(id);
     }
 
-    public Container addContainers(Container container) {
-        return containerRepository.save(container); // Uses JpaRepository's save() for create/update
+    public Container addContainer(Container container) {
+        Optional<Container> existingContainer = containerRepository.findByName(container.getName());
+
+        if (existingContainer.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Container already exists");
+        }
+
+        return containerRepository.save(container);
     }
 
     public Container updateContainer(Container updatedContainer, Long id) {
         return containerRepository.findById(id)
             .map(container -> {
-                container.setContainerName(updatedContainer.getContainerName());
+                container.setName(updatedContainer.getName());
                 container.setOrigin(updatedContainer.getOrigin());
                 container.setDestination(updatedContainer.getDestination());
                 container.setWeight(updatedContainer.getWeight());
@@ -43,26 +50,14 @@ public class ContainerService {
             })
             .orElseThrow(() -> new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Container with id " + id + " not found"
-            )); // throw an error if container id doesn't exist
+            ));
     }
 
     public void deleteContainer(Long id) {
-        containerRepository.deleteById(id); // Uses JpaRepository's deleteById()
-    }
-    
-    public Long countbyDestination (Long id, String destination) {
-        List<Container> containerList = containerRepository.findAll();
-
-        return containerList.stream()
-            .filter(container -> container.getDestination().toUpperCase() == destination.toUpperCase())
-            .count();
+        if(!containerRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Container ID does not exists");
+        }
+        containerRepository.deleteById(id);
     }
 
-    public Long countbyOrigin (Long id, String origin) {
-        List<Container> containerList = containerRepository.findAll();
-
-        return containerList.stream()
-            .filter(container -> container.getOrigin().toUpperCase() == origin.toUpperCase())
-            .count();
-    }
 }

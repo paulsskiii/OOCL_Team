@@ -35,10 +35,13 @@ public class ContainerService {
     public Container updateContainer(Container updatedContainer, Long id) {
         return containerRepository.findById(id)
             .map(container -> {
-                container.setContainerName(updatedContainer.getContainerName());
+                container.setName(updatedContainer.getName());
                 container.setOrigin(updatedContainer.getOrigin());
                 container.setDestination(updatedContainer.getDestination());
+                container.setStatus(updatedContainer.getStatus());
                 container.setWeight(updatedContainer.getWeight());
+                container.setDepartureDate(updatedContainer.getDepartureDate());
+                container.setArrivalDate(updatedContainer.getArrivalDate());
                 return containerRepository.save(container);
             })
             .orElseThrow(() -> new ResponseStatusException(

@@ -51,7 +51,6 @@ public class ContainerServiceTest {
     void test_given_user_added_new_container_with_complete_details_when_created_then_return_added_container() {
 
         Container newContainer = new Container(3L, "TEMU123481", "SNG", "VAN", "AR", 100.20, "2025-08-28 00:00:00", "2025-09-12 00:00:00", 1L);
-        when(containerRepository.findByName(newContainer.getName())).thenReturn(Optional.empty());
         when(containerRepository.save(newContainer)).thenReturn(newContainer);
 
         Container savedContainer = containerService.addContainer(newContainer);
@@ -120,7 +119,7 @@ public class ContainerServiceTest {
     }
 
     @Test
-    void test_given_existing_container_when_updated_return_updated_container(){
+    void test_given_existing_container_when_updated_return_updated_container() {
 
         Container updatedContainer = expectedContainers.get(0);
         when(containerRepository.findById(updatedContainer.getId())).thenReturn(Optional.of(updatedContainer));
@@ -135,7 +134,7 @@ public class ContainerServiceTest {
     }
 
     @Test
-    void test_given_id_is_not_existing_when_updated_then_return_exception(){
+    void test_given_id_is_not_existing_when_updated_then_return_exception() {
 
         Container newContainer = new Container(3L, "TEMU123481", "SNG", "VAN", "AR", 100.20, "2025-08-28 00:00:00", "2025-09-12 00:00:00", 1L);
         when(containerRepository.findById(newContainer.getId())).thenReturn(Optional.empty());

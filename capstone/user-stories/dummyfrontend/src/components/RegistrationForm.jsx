@@ -16,6 +16,8 @@ function RegistrationForm() {
   const [isInvalidEmail, setIsInvalidEmail] = useState(true);
   const [isInvalidPassword, setIsInvalidPassword] = useState(true);
 
+  const API_URL = "http://localhost:8080/api/register";
+
   const [newUser, setNewUser] = useState({
     username: "",
     password: "",
@@ -35,16 +37,16 @@ function RegistrationForm() {
         );
         throw new Error("Failed to add user");
       }
-      //   const response = await fetch(API_URL, {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(newUser),
-      //   });
-      //   if (!response.ok) {
-      //     throw new Error(`HTTP error! status: ${response.status}`);
-      //   }
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       console.log(newUser);
     } catch (e) {

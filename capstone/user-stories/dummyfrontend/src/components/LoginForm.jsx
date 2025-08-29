@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -23,12 +23,13 @@ function LoginForm() {
     const returnedUser = await response.json();
     if (!response.ok) {
       console.log(returnedUser);
-      toast.alert("Invalid login credentials");
+      toast.error("Invalid login credentials");
       throw new Error(`HTTP error! status: ${response.status}`);
     } else {
+      toast.success("Login good");
       console.log(returnedUser);
-      localStorage.setItem("user", response.data);
-      console.log(response.data);
+      localStorage.setItem("username", userLogin.username);
+      console.log(localStorage.getItem("username"));
     }
     console.log(userLogin);
   };
@@ -102,7 +103,7 @@ function LoginForm() {
                         background: "#F7E6CA",
                       }}
                     >
-                      Sign up
+                      Sign in
                     </button>
                     <a
                       id="create_an_account"

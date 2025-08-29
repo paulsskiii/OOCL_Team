@@ -4,15 +4,19 @@ import "./index.css";
 import LoginForm from "./components/LoginForm";
 import RegistrationForm from "./components/RegistrationForm";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="/register" element={<RegistrationForm />} />
-      </Routes>
-    </Router>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegistrationForm />} />
+        </Routes>
+      </Router>
+      <Toaster />
+    </div>
   );
 }
 

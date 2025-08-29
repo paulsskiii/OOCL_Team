@@ -12,5 +12,9 @@ import com.example.capstoneapplication.service.UserCredentialService;
 public class UserRegistrationController {
     private final UserCredentialService userCredService;
 
+    public UserRegistrationController (UserCredentialService userCredService) {
+        this.userCredService = userCredService;
+    }
+
 
 }

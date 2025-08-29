@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
+import toast from "react-hot-toast";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -9,23 +10,26 @@ function LoginForm() {
     username: "",
     password: "",
   });
+  const API_URL = "http://localhost:8080/api/login";
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await fetch(API_URL, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newUser),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`);
-    //   }
-    // } catch (e) {
-    //   console.error("Failed to add user:", e);
-    //   setError("Failed to add new user. Please check the backend.");
-    // }
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userLogin),
+    });
+    const returnedUser = await response.json();
+    if (!response.ok) {
+      console.log(returnedUser);
+      toast.alert("Invalid login credentials");
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      console.log(returnedUser);
+      localStorage.setItem("user", response.data);
+      console.log(response.data);
+    }
     console.log(userLogin);
   };
   const handleInputChange = (e) => {
@@ -35,14 +39,14 @@ function LoginForm() {
   };
 
   return (
-    <section className="registration_form h-full bg-neutral-200 dark:bg-neutral-700 ">
+    <section className="login_form h-full bg-neutral-200 dark:bg-neutral-700 ">
       <div className="container h-full p-10 ">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200 w-full block rounded-lg bg-white shadow-lg dark:bg-neutral-800 g-0 lg:flex lg:flex-wrap">
           <div className="g-0 lg:flex lg:flex-wrap">
             {/* <!-- Left column container--> */}
             <div className="px-4 md:px-0 my:px-12 lg:w-6/12">
               <div className="md:mx-6 md:p-12 my:px-12">
-                <form>
+                <form onSubmit={handleSubmit}>
                   {/* <!--Username input--> */}
                   <div className="text-center">
                     <h4 className="mb-12 py-4 pb-1 text-xl font-semibold">

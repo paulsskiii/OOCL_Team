@@ -1,6 +1,7 @@
 import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import React, { Component } from "react";
+import toast from "react-hot-toast";
 
 function RegistrationForm() {
   const [username, setUsername] = useState("");
@@ -12,8 +13,8 @@ function RegistrationForm() {
   const [error, setError] = useState(null);
   const [passwordMessage, setPasswordMessage] = useState("");
 
-  const isInvalidEmail = true;
-  const isInvalidPassword = true;
+  const [isInvalidEmail, setIsInvalidEmail] = useState(true);
+  const [isInvalidPassword, setIsInvalidPassword] = useState(true);
 
   const [newUser, setNewUser] = useState({
     username: "",
@@ -23,44 +24,51 @@ function RegistrationForm() {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await fetch(API_URL, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newUser),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`);
-    //   }
-    // } catch (e) {
-    //   console.error("Failed to add user:", e);
-    //   setError("Failed to add new user. Please check the backend.");
-    // }
-    console.log(newUser);
+    try {
+      if (isInvalidEmail) {
+        toast.error("Invalid email");
+        throw new Error("Failed to add user");
+      }
+      if (isInvalidPassword) {
+        toast.error(
+          "Password should contain atleast one uppercase letter and one number"
+        );
+        throw new Error("Failed to add user");
+      }
+      //   const response = await fetch(API_URL, {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(newUser),
+      //   });
+      //   if (!response.ok) {
+      //     throw new Error(`HTTP error! status: ${response.status}`);
+      //   }
+
+      console.log(newUser);
+    } catch (e) {
+      console.error("Failed to add user:", e);
+      setError("Failed to add new user. Please check the backend.");
+    }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name !== "email" || name !== "password") {
-      setNewUser((prev) => ({ ...prev, [name]: value }));
-    }
 
     if (name === "email") {
-      if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value)) {
-        console.log("Invalid email");
+      setIsInvalidEmail(true);
+      if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value)) {
+        setIsInvalidEmail(false);
       }
-      setNewUser((prev) => ({ ...prev, [name]: value }));
     }
     if (name === "password") {
-      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
-        console.log(
-          "Password should contain atleast one uppercase letter and one number"
-        );
+      setIsInvalidPassword(true);
+      if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
+        setIsInvalidPassword(false);
       }
-      setNewUser((prev) => ({ ...prev, [name]: value }));
     }
+    setNewUser((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -71,7 +79,7 @@ function RegistrationForm() {
             {/* <!-- Left column container--> */}
             <div className="px-4 md:px-0 my:px-12 lg:w-6/12">
               <div className="md:mx-6 md:p-12 my:px-12">
-                <form>
+                <form onSubmit={handleSubmit}>
                   {/* <!--Username input--> */}
                   <div className="text-center">
                     <h4 className="mb-12 py-4 pb-1 text-xl font-semibold">

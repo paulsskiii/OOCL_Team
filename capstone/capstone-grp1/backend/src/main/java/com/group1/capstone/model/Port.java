@@ -4,9 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Data
 @Entity
 @Table(name = "port")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "portCode")
 public class Port {
    @Id
    @Column(name = "port_code", nullable = false, unique = true, length = 10)

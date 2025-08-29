@@ -2,7 +2,9 @@ package com.group1.capstone.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDateTime;
+
 
 @Data
 @Entity
@@ -22,34 +24,43 @@ public class Cargo {
    @Column(name = "weight", nullable = false)
    private float weight;
 
-   @ManyToOne
-   @JoinColumn(name = "status_code", referencedColumnName = "status_code", nullable = false)
-   private Status statusCode;
+   @JoinColumn(name = "status_code", nullable = false, referencedColumnName = "status_code")
+   private String statusCode;
 
-   @ManyToOne
-   @JoinColumn(name = "destination", referencedColumnName = "port_code", nullable = false)
-   private Port destination;
+   @JoinColumn(name = "destination", nullable = false, referencedColumnName = "port_code")
+   private String destination;
    
-   @ManyToOne
-   @JoinColumn(name = "origin", referencedColumnName = "port_code", nullable = false)
-   private Port origin;
+   @JoinColumn(name = "origin", nullable = false, referencedColumnName = "port_code")
+   private String origin;
 
-   @ManyToOne
-   @JoinColumn(name = "created_by", referencedColumnName = "id", nullable = false)
-   private User createdBy;
+   @JoinColumn(name = "created_by", nullable = false, referencedColumnName = "id")
+   private int createdBy;
 
-   @ManyToOne
-   @JoinColumn(name = "consignee", referencedColumnName = "id", nullable = false)
-   private User consignee;
+   @JoinColumn(name = "consignee", nullable = false, referencedColumnName = "id")
+   private int consignee;
 
-   @ManyToOne
-   @JoinColumn(name = "courier", referencedColumnName = "id", nullable = false)
-   private User courier;
+   @JoinColumn(name = "courier", nullable = false, referencedColumnName = "id")
+   private int courier;
 
    @Column(name = "created_at", nullable = false)
    private LocalDateTime createdAt;
 
    @Column(name = "updated_at", nullable = false)
    private LocalDateTime updatedAt;
+
+   
+   
+   @PrePersist
+   protected void onCreate() {
+      createdAt = LocalDateTime.now();
+      updatedAt = LocalDateTime.now();
+   }
+
+   @PreUpdate
+   protected void onUpdate() {
+      updatedAt = LocalDateTime.now();
+   }
+
+
 
 }

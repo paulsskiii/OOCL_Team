@@ -4,10 +4,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Data
 @Entity
 @Table(name = "user")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
    @Id
    @Column(name = "id", nullable = false)
@@ -27,6 +32,7 @@ public class User {
    private String email;
 
    @JoinColumn(name = "role", referencedColumnName = "name", nullable = false)
+   @JsonIdentityReference(alwaysAsId = true)
    private String role;
 
    @Column(name = "password", nullable = false, length = 50)

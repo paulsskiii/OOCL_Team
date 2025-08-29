@@ -32,7 +32,7 @@ public class CargoService {
     }
 
     // 4. Add cargo
-    public Cargo addCargo(Cargo cargo) {
+    public Cargo addCargo(Cargo cargo) {  
         return cargoRepository.save(cargo);
     }
 

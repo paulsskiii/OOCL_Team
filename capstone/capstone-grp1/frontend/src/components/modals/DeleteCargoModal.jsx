@@ -1,7 +1,6 @@
 import { Modal, Button } from "antd";
 import { useEffect, useState } from "react";
 import { Container as LucideContainer, TriangleAlert } from "lucide-react";
-import { Input, Select, Form } from "antd";
 
 function DeleteCargoModal({
   open,
@@ -24,7 +23,7 @@ function DeleteCargoModal({
       onOk={handleDelete}
       onCancel={handleCancel}
       footer={[
-        <Button key="back" onClick={handleCancel}>
+        <Button size={"large"} key="back" onClick={handleCancel}>
           Cancel
         </Button>,
         <Button
@@ -33,6 +32,7 @@ function DeleteCargoModal({
           className="bg-red-500 hover:bg-red-700"
           loading={loading}
           onClick={handleDelete}
+          size={"large"}
         >
           Delete Field
         </Button>,

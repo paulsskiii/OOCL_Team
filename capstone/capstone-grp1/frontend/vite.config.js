@@ -9,4 +9,7 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
+  optimizeDeps: {
+    exclude: ["js-big-decimal"],
+  },
 });

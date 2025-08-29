@@ -61,7 +61,7 @@ function CreateCargoModal({ open, handleOk, setIsCreateModalOpen, ports }) {
       onOk={handleOk}
       onCancel={handleCancel}
       footer={[
-        <Button key="back" onClick={handleCancel}>
+        <Button key="back" onClick={handleCancel} size={"large"}>
           Cancel
         </Button>,
         <Button
@@ -70,6 +70,7 @@ function CreateCargoModal({ open, handleOk, setIsCreateModalOpen, ports }) {
           loading={loading}
           onClick={handleValidate}
           htmlType="submit"
+          size={"large"}
         >
           Submit
         </Button>,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DownloadOutlined, PlusOutlined } from "@ant-design/icons";
-import { Input, DatePicker, Space, Dropdown, Button } from "antd";
+import { Input, DatePicker, Select, Dropdown, Button } from "antd";
 import DashboardCard from "./DashboardCard";
 import CargoTable from "./CargoTable";
 import CreateCargoModal from "./modals/createCargoModal";
@@ -25,7 +25,7 @@ import {
 function MainContent() {
   const { Search } = Input;
   const [currentSortLabel, setCurrentSortLabel] = useState("Sort by");
-  const [currentDateLabel, setCurrentDateLabel] = useState("Filter date");
+  const [currentDateLabel, setCurrentDateLabel] = useState("Day");
   const { RangePicker } = DatePicker;
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -37,15 +37,15 @@ function MainContent() {
   const dateRangeItems = [
     {
       label: "Day",
-      key: 0,
+      value: 0,
     },
     {
       label: "Month",
-      key: 1,
+      value: 1,
     },
     {
       label: "Year",
-      key: 2,
+      value: 2,
     },
   ];
   const items = [
@@ -115,34 +115,47 @@ function MainContent() {
           Cargo Monitoring Dashboard (Admin)
         </div>
         <div className="flex flex-row items-center gap-2 ml-auto">
-          <Dropdown.Button
-            menu={{
-              items: dateRangeItems,
-              onClick: ({ key }) => handleDateClick(key),
-            }}
-            placement="bottom"
-            icon={<CalendarFold size={17} />}
-            size="large"
-            className="w-64"
-          >
-            {currentDateLabel}
-          </Dropdown.Button>
-
           <span className="mr-3 font-semibold text-md">Date Range:</span>
-          <RangePicker
-            picker="year"
-            className="h-[40px]"
-            id={{
-              start: "startInput",
-              end: "endInput",
-            }}
-            onFocus={(_, info) => {
-              console.log("Focus:", info.range);
-            }}
-            onBlur={(_, info) => {
-              console.log("Blur:", info.range);
+
+          <Select
+            value={currentDateLabel}
+            style={{ width: 120 }}
+            allowClear
+            options={dateRangeItems}
+            placeholder="Select Day"
+            size={"large"}
+            onChange={(e) => {
+              handleDateClick(e);
             }}
           />
+          {currentDateLabel === "Year" ? (
+            <RangePicker
+              picker="year"
+              className="h-[40px]"
+              id={{
+                start: "startInput",
+                end: "endInput",
+              }}
+            />
+          ) : currentDateLabel === "Day" ? (
+            <RangePicker
+              picker="date"
+              className="h-[40px]"
+              id={{
+                start: "startInput",
+                end: "endInput",
+              }}
+            />
+          ) : (
+            <RangePicker
+              picker="month"
+              className="h-[40px]"
+              id={{
+                start: "startInput",
+                end: "endInput",
+              }}
+            />
+          )}
         </div>
       </article>
       {/* Cards Section for Summary */}

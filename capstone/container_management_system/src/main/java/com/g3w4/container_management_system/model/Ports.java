@@ -20,7 +20,7 @@ public class Ports {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "port_id")
-    private long portId;
+    private int portId;
 
     @Column(name = "port_name")
     private String portName;

@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -39,18 +40,13 @@ public class Users implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    // Unsure if added
-    @Column(name = "token")
-    private String token;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     private Roles role;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

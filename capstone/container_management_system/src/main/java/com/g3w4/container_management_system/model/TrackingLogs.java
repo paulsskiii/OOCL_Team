@@ -25,7 +25,7 @@ public class TrackingLogs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "log_id")
-    private long logId;
+    private int logId;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -33,7 +33,7 @@ public class TrackingLogs {
     @Column(name = "message")
     private String message;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "tracking_events_id")
     private TrackingEvent trackingEvent;
 }

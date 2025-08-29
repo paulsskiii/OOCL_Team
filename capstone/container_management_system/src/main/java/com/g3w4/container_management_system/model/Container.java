@@ -19,10 +19,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "container")
 public class Container {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "container_id")
-    private long containerId;
+    private int containerId;
 
     @Column(name = "container_name")
     private String containerName;
@@ -30,23 +31,19 @@ public class Container {
     @Column(name = "weight")
     private double weight;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
-    @Column(name = "sender_id")
+    @ManyToOne
+    @JoinColumn(name = "sender_id", referencedColumnName = "customer_id")
     private Customer senderId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
-    @Column(name = "receiver_id")
+    @ManyToOne
+    @JoinColumn(name = "receiver_id", referencedColumnName = "customer_id")
     private Customer receiverId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "port_id")
-    @Column(name = "origin_id")
+    @ManyToOne
+    @JoinColumn(name = "origin_id", referencedColumnName = "port_id")
     private Ports originId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "port_id")
-    @Column(name = "destination_id")
+    @ManyToOne
+    @JoinColumn(name = "destination_id", referencedColumnName = "port_id")
     private Ports destinationId;
 }

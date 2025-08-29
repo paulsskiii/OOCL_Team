@@ -20,7 +20,7 @@ public class TrackingStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id")
-    private long statusId;
+    private int statusId;
 
     @Column(name = "status_name")
     private String statusName;

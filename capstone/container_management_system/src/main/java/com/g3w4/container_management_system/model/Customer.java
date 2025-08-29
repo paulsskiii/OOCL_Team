@@ -16,10 +16,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "customer")
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private long customerId;
+    private int customerId;
 
     @Column(name = "first_name")
     private String firstName;

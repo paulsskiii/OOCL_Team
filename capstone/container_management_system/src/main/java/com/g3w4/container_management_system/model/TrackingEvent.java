@@ -25,7 +25,7 @@ public class TrackingEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tracking_events_id")
-    private long trackingEventsId;
+    private int trackingEventsId;
 
     @Column(name = "arrival_at")
     private Date arrivalAt;
@@ -39,11 +39,11 @@ public class TrackingEvent {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "container_id")
+    @ManyToOne
+    @JoinColumn(name = "container_id", referencedColumnName = "container_id")
     private Container container;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_id")
+    @ManyToOne
+    @JoinColumn(name = "status_id", referencedColumnName = "status_id")
     private TrackingStatus trackingStatus;
 }

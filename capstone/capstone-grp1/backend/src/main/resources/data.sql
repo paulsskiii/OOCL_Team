@@ -1,91 +1,242 @@
--- Initial data seeding for cargo shipping system
--- This file will be executed automatically when the application starts
+-- insert role
+INSERT INTO role (name) VALUES 
+("USER"), 
+("ADMIN"), 
+("COURIER");
 
--- Insert default status values
+-- Insert user
+INSERT INTO user (first_name, last_name, username, email, role, password, contact_number) VALUES
+('John', 'Doe', 'jdoe1', 'jdoe1@example.com', 'USER', 'password123', '+639171111111'),
+('Jane', 'Smith', 'jsmith2', 'jsmith2@example.com', 'USER', 'pass456', '+639171111112'),
+('Alice', 'Johnson', 'alicej3', 'alicej3@example.com', 'ADMIN', 'adminpass', '+639171111113'),
+('Bob', 'Williams', 'bobw4', 'bobw4@example.com', 'USER', 'mysecret', '+639171111114'),
+('Eve', 'Brown', 'eveb5', 'eveb5@example.com', 'USER', 'qwerty', '+639171111115'),
+('Tom', 'Davis', 'tomd6', 'tomd6@example.com', 'COURIER', 'pass123', '+639171111116'),
+('Sara', 'Miller', 'saram7', 'saram7@example.com', 'COURIER', 'hello123', '+639171111117'),
+('Mike', 'Wilson', 'mikew8', 'mikew8@example.com', 'COURIER', 'securepass', '+639171111118'),
+('Lucy', 'Moore', 'lucym9', 'lucym9@example.com', 'ADMIN', 'lucypass', '+639171111119'),
+('Nick', 'Taylor', 'nickt10', 'nickt10@example.com', 'USER', 'testpass', '+639171111120'),
+
+('Anna', 'Anderson', 'annaa11', 'annaa11@example.com', 'USER', 'passanna', '+639171111121'),
+('Steve', 'Thomas', 'stevet12', 'stevet12@example.com', 'USER', 'thomaspass', '+639171111122'),
+('Rachel', 'Jackson', 'rachelj13', 'rachelj13@example.com', 'USER', 'jack123', '+639171111123'),
+('Chris', 'White', 'chrisw14', 'chrisw14@example.com', 'USER', 'whitepass', '+639171111124'),
+('Megan', 'Harris', 'meganh15', 'meganh15@example.com', 'ADMIN', 'meghanpass', '+639171111125'),
+('Peter', 'Martin', 'peterm16', 'peterm16@example.com', 'ADMIN', 'martinpass', '+639171111126'),
+('Laura', 'Thompson', 'laurat17', 'laurat17@example.com', 'ADMIN', 'laurapass', '+639171111127'),
+('Dan', 'Garcia', 'dang18', 'dang18@example.com', 'USER', 'garciapass', '+639171111128'),
+('Tina', 'Martinez', 'tinam19', 'tinam19@example.com', 'ADMIN', 'admin1234', '+639171111129'),
+('Victor', 'Robinson', 'victorr20', 'victorr20@example.com', 'USER', 'victorpass', '+639171111130'),
+
+('Grace', 'Clark', 'gracec21', 'gracec21@example.com', 'USER', 'clarkpass', '+639171111131'),
+('Adam', 'Rodriguez', 'adamr22', 'adamr22@example.com', 'USER', 'adamspass', '+639171111132'),
+('Sophia', 'Lewis', 'sophial23', 'sophial23@example.com', 'USER', 'lewispass', '+639171111133'),
+('Nathan', 'Lee', 'nathanl24', 'nathanl24@example.com', 'USER', 'leepass', '+639171111134'),
+('Emily', 'Walker', 'emilyw25', 'emilyw25@example.com', 'USER', 'walkerpass', '+639171111135'),
+('Jake', 'Hall', 'jakeh26', 'jakeh26@example.com', 'USER', 'hallpass', '+639171111136'),
+('Olivia', 'Allen', 'oliviaa27', 'oliviaa27@example.com', 'USER', 'oliviapass', '+639171111137'),
+('Ryan', 'Young', 'ryany28', 'ryany28@example.com', 'USER', 'youngpass', '+639171111138'),
+('Lily', 'Hernandez', 'lilyh29', 'lilyh29@example.com', 'USER', 'lilypass', '+639171111139'),
+('Sean', 'King', 'seank30', 'seank30@example.com', 'ADMIN', 'kingadmin', '+639171111140'),
+
+('Zoe', 'Wright', 'zoew31', 'zoew31@example.com', 'USER', 'wrightpass', '+639171111141'),
+('Jason', 'Lopez', 'jasonl32', 'jasonl32@example.com', 'USER', 'lopezpass', '+639171111142'),
+('Chloe', 'Hill', 'chloeh33', 'chloeh33@example.com', 'USER', 'hillpass', '+639171111143'),
+('Brian', 'Scott', 'brians34', 'brians34@example.com', 'USER', 'scottpass', '+639171111144'),
+('Diana', 'Green', 'dianag35', 'dianag35@example.com', 'USER', 'greenpass', '+639171111145'),
+('Tyler', 'Adams', 'tylera36', 'tylera36@example.com', 'USER', 'adamspass', '+639171111146'),
+('Ella', 'Baker', 'ellab37', 'ellab37@example.com', 'ADMIN', 'bakerpass', '+639171111147'),
+('Noah', 'Nelson', 'noahn38', 'noahn38@example.com', 'USER', 'nelsonpass', '+639171111148'),
+('Ava', 'Carter', 'avac39', 'avac39@example.com', 'USER', 'carterpass', '+639171111149'),
+('Kyle', 'Mitchell', 'kylem40', 'kylem40@example.com', 'USER', 'mitchellpass', '+639171111150'),
+
+('Mia', 'Perez', 'miap41', 'miap41@example.com', 'COURIER', 'perezpass', '+639171111151'),
+('Kevin', 'Roberts', 'kevinr42', 'kevinr42@example.com', 'COURIER', 'robertspass', '+639171111152'),
+('Isla', 'Turner', 'islat43', 'islat43@example.com', 'COURIER', 'turnerpass', '+639171111153'),
+('Zach', 'Phillips', 'zachp44', 'zachp44@example.com', 'COURIER', 'phillipspass', '+639171111154'),
+('Luna', 'Campbell', 'lunac45', 'lunac45@example.com', 'ADMIN', 'campbellpass', '+639171111155'),
+('Owen', 'Parker', 'owenp46', 'owenp46@example.com', 'USER', 'parkerpass', '+639171111156'),
+('Ruby', 'Evans', 'rubye47', 'rubye47@example.com', 'USER', 'evanspass', '+639171111157'),
+('Leo', 'Edwards', 'leoe48', 'leoe48@example.com', 'USER', 'edwardspass', '+639171111158'),
+('Bella', 'Collins', 'bellac49', 'bellac49@example.com', 'USER', 'collinspass', '+639171111159'),
+('Henry', 'Stewart', 'henrys50', 'henrys50@example.com', 'USER', 'stewartpass', '+639171111160');
+
+-- Insert ports
+INSERT INTO port (port_location, port_code) VALUES
+('Manila North Harbor', 'MNL001'),
+('Manila South Harbor', 'MNL002'),
+('Batangas', 'BAT003'),
+('Cebu', 'CEB004'),
+('Davao', 'DVO005'),
+('Cagayan de Oro', 'CDO006'),
+('Subic', 'SUB007'),
+('Iloilo', 'ILO008'),
+('Zamboanga', 'ZAM009'),
+('General Santos', 'GES010'),
+
+('Singapore', 'SIN011'),
+('Hong Kong', 'HKG012'),
+('Shanghai', 'SHA013'),
+('Tokyo', 'TYO014'),
+('Busan', 'BUS015'),
+('Jakarta', 'JKT016'),
+('Los Angeles', 'LAX017'),
+('New York', 'NYC018'),
+('Rotterdam', 'RTM019'),
+('Antwerp', 'ANR020'),
+
+('Hamburg', 'HAM021'),
+('Sydney', 'SYD022'),
+('Santos', 'STS023'),
+('Valencia', 'VLC024'),
+('Dubai', 'DXB025'),
+('Ho Chi Minh', 'HCM026'),
+('Kuala Lumpur', 'KUL027'),
+('Auckland', 'AKL028'),
+('Vancouver', 'YVR029'),
+('Montreal', 'YUL030'),
+
+('Jeddah', 'JED031'),
+('Doha', 'DOH032'),
+('Durban', 'DUR033'),
+('Abu Dhabi', 'AUH034'),
+('London Gateway', 'LGW035'),
+('Le Havre', 'LEH036'),
+('Genoa', 'GOA037'),
+('Barcelona', 'BCN038'),
+('Mumbai', 'BOM039'),
+('Chennai', 'MAA040'),
+
+('Colombo', 'CMB041'),
+('Melbourne', 'MEL042'),
+('Osaka', 'OSA043'),
+('Incheon', 'ICN044'),
+('Brisbane', 'BNE045'),
+('Lima', 'LIM046'),
+('Istanbul', 'IST047'),
+('Tallinn', 'TLL048'),
+('Stockholm', 'STO049'),
+('Copenhagen', 'CPH050');
+
+-- Insert status 
 INSERT INTO status (status_type, status_code) VALUES
-('PENDING', 'PENDING'),
-('IN_TRANSIT', 'IN_TRANSIT', NOW(), NOW()),
-('DELIVERED', 'DELIVERED', NOW(), NOW()),
-('CANCELLED', 'CANCELLED', NOW(), NOW()),
-('DELAYED', 'DELAYED', NOW(), NOW()),
-('CUSTOMS', 'CUSTOMS', NOW(), NOW()),
-('WAREHOUSE', 'WAREHOUSE', NOW(), NOW());
+('Delivered', 'DLV'),
+('In-Transit', 'ITR'),
+('Loaded', 'LOD'),
+('Discharged', 'DSC'),
+('Pending', 'PND'),
+('In-Process', 'PRC'),
+('Not-Delivered', 'NDL');
 
--- Insert default admin user
-INSERT INTO user (first_name, last_name, username, email, role, password, contact_number, created_at, updated_at) VALUES
-('Admin', 'User', 'admin', 'admin@cargoshipping.com', 'ADMIN', 'admin123', '+1234567890', NOW(), NOW()),
-('John', 'Doe', 'john.doe', 'john.doe@cargoshipping.com', 'MANAGER', 'password123', '+1234567891', NOW(), NOW()),
-('Jane', 'Smith', 'jane.smith', 'jane.smith@cargoshipping.com', 'OPERATOR', 'password123', '+1234567892', NOW(), NOW());
+-- Insert cargo
+INSERT INTO cargo (name, descriptions, weight, status_code, destination, origin, created_by, consignee, courier) VALUES
+('Container A', 'Electronics shipment', 1250.5, 'DLV', 'SIN011', 'MNL001', 3, 1, 1),
+('Container B', 'Furniture cargo', 3100.0, 'ITR', 'HKG012', 'LAX017', 10, 2, 2),
+('Container C', 'Perishable goods', 890.75, 'LOD', 'TYO014', 'BUS015', 2, 3, 3),
+('Container D', 'Textiles shipment', 1420.2, 'DSC', 'RTM019', 'HAM021', 5, 4, 4),
+('Container E', 'Pharmaceuticals cargo', 560.3, 'PND', 'SYD022', 'MNL001', 8, 5, 5),
+('Container F', 'Construction materials', 4500.9, 'DLV', 'SHA013', 'SIN011', 7, 6, 6),
+('Container G', 'Clothing cargo', 1350.6, 'ITR', 'DXB025', 'JKT016', 10, 7, 7),
+('Container H', 'Food supplies', 720.4, 'LOD', 'ANR020', 'LAX017', 4, 8, 8),
+('Container I', 'Machinery parts', 2800.0, 'DSC', 'STS023', 'HAM021', 3, 9, 9),
+('Container J', 'Automobile cargo', 5200.7, 'PND', 'VLC024', 'NYC018', 4, 10, 10),
+('Container K', 'Stationery supplies', 980.3, 'DLV', 'TYO014', 'SIN011', 2, 11, 11),
+('Container L', 'Toys and games', 670.5, 'ITR', 'HKG012', 'RTM019', 1, 12, 12),
+('Container M', 'Agricultural produce', 1750.8, 'LOD', 'DXB025', 'BUS015', 10, 13, 13),
+('Container N', 'Books shipment', 450.9, 'DSC', 'ANR020', 'JKT016', 7, 14, 14),
+('Container O', 'Medical equipment', 2100.0, 'PND', 'SHA013', 'MNL001', 1, 15, 15),
+('Container P', 'Chemicals shipment', 3300.6, 'DLV', 'STS023', 'SYD022', 10, 16, 16),
+('Container Q', 'Frozen seafood', 1450.2, 'ITR', 'RTM019', 'BUS015', 4, 17, 17),
+('Container R', 'Household appliances', 2750.8, 'LOD', 'SIN011', 'TYO014', 9, 18, 18),
+('Container S', 'Cosmetics shipment', 850.0, 'DSC', 'HKG012', 'HAM021', 7, 19, 19),
+('Container T', 'Sports equipment', 1900.4, 'PND', 'VLC024', 'LAX017', 4, 20, 20),
+('Container U', 'Paper goods', 780.5, 'DLV', 'SHA013', 'SIN011', 2, 21, 21),
+('Container V', 'Electronic parts', 1340.0, 'ITR', 'DXB025', 'JKT016', 10, 22, 22),
+('Container W', 'Glassware shipment', 560.2, 'LOD', 'ANR020', 'LAX017', 1, 23, 23),
+('Container X', 'Heavy machinery', 4800.7, 'DSC', 'STS023', 'HAM021', 8, 24, 24),
+('Container Y', 'Automotive parts', 2950.4, 'PND', 'VLC024', 'NYC018', 2, 25, 25),
+('Container Z', 'Plastic goods', 1240.3, 'DLV', 'TYO014', 'SIN011', 3, 26, 26),
+('Container AA', 'Metals shipment', 2780.9, 'ITR', 'HKG012', 'RTM019', 10, 27, 27),
+('Container AB', 'Textile cargo', 1340.7, 'LOD', 'DXB025', 'BUS015', 7, 28, 28),
+('Container AC', 'Toys and games', 760.6, 'DSC', 'ANR020', 'JKT016', 3, 29, 29),
+('Container AD', 'Pharmaceuticals', 1950.1, 'PND', 'SHA013', 'MNL001', 10, 30, 30),
+('Container AE', 'Construction equipment', 3750.8, 'DLV', 'STS023', 'SYD022', 7, 31, 31),
+('Container AF', 'Frozen food', 2100.0, 'ITR', 'RTM019', 'BUS015', 6, 32, 32),
+('Container AG', 'Household goods', 1425.4, 'LOD', 'SIN011', 'TYO014', 2, 33, 33),
+('Container AH', 'Cosmetics', 670.8, 'DSC', 'HKG012', 'HAM021', 5, 34, 34),
+('Container AI', 'Sporting goods', 1980.5, 'PND', 'VLC024', 'LAX017', 5, 35, 35),
+('Container AJ', 'Electronic appliances', 2375.3, 'DLV', 'SHA013', 'SIN011', 1, 36, 36),
+('Container AK', 'Food products', 1340.9, 'ITR', 'DXB025', 'JKT016', 8, 37, 37),
+('Container AL', 'Furniture', 3250.0, 'LOD', 'ANR020', 'LAX017', 5, 38, 38),
+('Container AM', 'Machinery', 4180.6, 'DSC', 'STS023', 'HAM021', 9, 39, 39),
+('Container AN', 'Automotive parts', 2800.7, 'PND', 'VLC024', 'NYC018', 4, 40, 40),
+('Container AO', 'Paper products', 1120.4, 'DLV', 'TYO014', 'SIN011', 9, 41, 41),
+('Container AP', 'Metals', 2600.2, 'ITR', 'HKG012', 'RTM019', 3, 42, 42),
+('Container AQ', 'Textiles', 1390.7, 'LOD', 'DXB025', 'BUS015', 2, 43, 43),
+('Container AR', 'Toys', 720.3, 'DSC', 'ANR020', 'JKT016', 2, 44, 44),
+('Container AS', 'Pharmaceuticals', 1850.0, 'PND', 'SHA013', 'MNL001', 6, 45, 45),
+('Container AT', 'Construction materials', 3650.8, 'DLV', 'STS023', 'SYD022', 9, 46, 46),
+('Container AU', 'Frozen goods', 2200.3, 'ITR', 'RTM019', 'BUS015', 10, 47, 47),
+('Container AV', 'Household appliances', 1450.5, 'LOD', 'SIN011', 'TYO014', 6, 48, 48),
+('Container AW', 'Cosmetics', 680.9, 'DSC', 'HKG012', 'HAM021', 1, 49, 49),
+('Container AX', 'Sporting equipment', 2020.6, 'PND', 'VLC024', 'LAX017', 9, 50, 50);
 
--- Insert sample ports
-INSERT INTO port (port_location, port_code, created_at, updated_at) VALUES
-('Los Angeles, USA', 'LAX', NOW(), NOW()),
-('New York, USA', 'NYC', NOW(), NOW()),
-('Hamburg, Germany', 'HAM', NOW(), NOW()),
-('Rotterdam, Netherlands', 'RTM', NOW(), NOW()),
-('Singapore', 'SIN', NOW(), NOW()),
-('Shanghai, China', 'SHA', NOW(), NOW()),
-('Tokyo, Japan', 'TYO', NOW(), NOW()),
-('Dubai, UAE', 'DXB', NOW(), NOW());
+-- Insert tracking events
+INSERT INTO tracking_event (cargo_id, status_code) VALUES
+(1, 'ITR'),
+(1, 'DSC'),
+(2, 'LOD'),
+(3, 'DLV'),
+(4, 'PND'),
+(5, 'ITR'),
+(6, 'PRC'),
+(7, 'DSC'),
+(8, 'DLV'),
+(8, 'PND'),
+(9, 'LOD'),
+(10, 'NDL'),
+(11, 'DSC'),
+(12, 'DLV'),
+(13, 'PRC'),
+(14, 'ITR'),
+(15, 'DLV'),
+(15, 'DSC'),
+(16, 'LOD'),
+(17, 'PND'),
+(18, 'ITR'),
+(19, 'NDL'),
+(20, 'DLV'),
+(21, 'PRC'),
+(22, 'ITR'),
+(23, 'DSC'),
+(24, 'LOD'),
+(25, 'PND'),
+(26, 'ITR'),
+(27, 'NDL'),
+(28, 'DLV'),
+(29, 'PRC'),
+(30, 'LOD'),
+(31, 'DLV'),
+(31, 'ITR'),
+(32, 'DSC'),
+(33, 'ITR'),
+(34, 'NDL'),
+(35, 'DLV'),
+(36, 'PND'),
+(37, 'PRC'),
+(38, 'DSC'),
+(39, 'LOD'),
+(40, 'DLV'),
+(41, 'ITR'),
+(42, 'LOD'),
+(43, 'NDL'),
+(44, 'DSC'),
+(45, 'PRC'),
+(46, 'ITR'),
+(47, 'DLV'),
+(48, 'PND'),
+(49, 'LOD'),
+(50, 'NDL');
+ 
 
--- Insert sample cargo
-INSERT INTO cargo (name, descriptions, status_id, destination, origin, created_by, weight, created_at, updated_at) VALUES
-('Electronics Shipment', 'High-value electronics including laptops and tablets', 2, 1, 3, 1, 25.5, NOW(), NOW()),
-('Clothing Container', 'Fashion items and textiles', 1, 2, 5, 2, 15.0, NOW(), NOW()),
-('Automotive Parts', 'Car components and spare parts', 2, 4, 6, 1, 45.2, NOW(), NOW()),
-('Food Products', 'Frozen food items', 3, 7, 1, 3, 12.8, NOW(), NOW()),
-('Pharmaceuticals', 'Medical supplies and medicines', 2, 8, 2, 2, 8.5, NOW(), NOW()),
-('Furniture', 'Office furniture and home decor', 1, 3, 4, 1, 35.0, NOW(), NOW()),
-('Books and Media', 'Educational materials and books', 2, 5, 7, 3, 18.3, NOW(), NOW()),
-('Machinery', 'Industrial equipment and tools', 4, 6, 8, 2, 75.5, NOW(), NOW());
-
--- Insert sample tracking events
-INSERT INTO tracking_event (cargo_id, status_id, created_at, updated_at) VALUES
-(1, 1, NOW() - INTERVAL 2 DAY, NOW() - INTERVAL 2 DAY),
-(1, 2, NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY),
-(2, 1, NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY),
-(3, 1, NOW() - INTERVAL 3 DAY, NOW() - INTERVAL 3 DAY),
-(3, 2, NOW() - INTERVAL 2 DAY, NOW() - INTERVAL 2 DAY),
-(4, 1, NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY),
-(4, 2, NOW() - INTERVAL 12 HOUR, NOW() - INTERVAL 12 HOUR),
-(4, 3, NOW(), NOW()),
-(5, 1, NOW() - INTERVAL 2 DAY, NOW() - INTERVAL 2 DAY),
-(5, 2, NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY),
-(6, 1, NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY),
-(7, 1, NOW() - INTERVAL 3 DAY, NOW() - INTERVAL 3 DAY),
-(7, 2, NOW() - INTERVAL 2 DAY, NOW() - INTERVAL 2 DAY),
-(8, 1, NOW() - INTERVAL 1 DAY, NOW() - INTERVAL 1 DAY),
-(8, 4, NOW(), NOW());
-
--- Create indexes for better performance
--- USER INDEXES
-CREATE INDEX idx_user_email ON user(email);
-CREATE INDEX idx_user_username ON user(username);
-CREATE INDEX idx_user_role ON user(role);
-CREATE INDEX idx_user_contact_number ON user(contact_number);
-
--- PORT INDEXES
-CREATE INDEX idx_port_code ON port(port_code);
-CREATE INDEX idx_port_location ON port(port_location);
-
--- STATUS INDEXES
-CREATE INDEX idx_status_code ON status(status_code);
-CREATE INDEX idx_status_type ON status(status_type);
-
--- CARGO INDEXES
-CREATE INDEX idx_cargo_status_id ON cargo(status_id);
-CREATE INDEX idx_cargo_destination ON cargo(destination);
-CREATE INDEX idx_cargo_origin ON cargo(origin);
-CREATE INDEX idx_cargo_created_by ON cargo(created_by);
-CREATE INDEX idx_cargo_name ON cargo(name);
-CREATE INDEX idx_cargo_created_at ON cargo(created_at);
-
--- TRACKING EVENT INDEXES
-CREATE INDEX idx_tracking_event_cargo_id ON tracking_event(cargo_id);
-CREATE INDEX idx_tracking_event_status_id ON tracking_event(status_id);
-CREATE INDEX idx_tracking_event_created_at ON tracking_event(created_at);
-
--- COMPOSITE INDEXES FOR QUERY PATTERNS
-CREATE INDEX idx_cargo_status_destination ON cargo(status_id, destination);
-CREATE INDEX idx_cargo_origin_destination ON cargo(origin, destination);
-CREATE INDEX idx_tracking_event_cargo_created ON tracking_event(cargo_id, created_at);
+ 

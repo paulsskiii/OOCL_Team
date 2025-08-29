@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "port")
 public class Port {
    @Id
-   @Column(name = "port_code", nullable = false, unique = true, length = 5)
+   @Column(name = "port_code", nullable = false, unique = true, length = 10)
    private String portCode;
 
    @Column(name = "port_location", nullable = false, length = 100)

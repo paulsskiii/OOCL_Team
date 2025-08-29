@@ -30,12 +30,6 @@ public class ContainerService {
     }
 
     public Container addContainer(Container container) {
-        Optional<Container> existingContainer = containerRepository.findByName(container.getName());
-
-        if (existingContainer.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Container already exists");
-        }
-
         return containerRepository.save(container);
     }
 

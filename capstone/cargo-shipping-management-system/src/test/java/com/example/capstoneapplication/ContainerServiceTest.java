@@ -59,22 +59,6 @@ public class ContainerServiceTest {
 
     }
 
-    // Test to add container with duplicate name
-    // expected: error
-    @Test
-    void test_given_user_adds_new_container_with_duplicate_name_when_created_then_return_exception() {
-
-        Container duplicateContainer = expectedContainers.get(0);
-        when(containerRepository.findByName(duplicateContainer.getName())).thenReturn(Optional.of(expectedContainers.get(0)));
-
-        assertThatThrownBy(() -> containerService.addContainer(duplicateContainer))
-                .isInstanceOf(ResponseStatusException.class);
-
-        verify(containerRepository, times(1)).findByName(duplicateContainer.getName());
-        verify(containerRepository, never()).save(duplicateContainer);
-
-    }
-
     // Test to get all containers
     // expected: success, return populated list
     @Test

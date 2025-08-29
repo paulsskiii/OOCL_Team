@@ -1,0 +1,98 @@
+[
+  {
+    "portCode": "SGP",
+    "portLocation": "Port of Singapore",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "MNL",
+    "portLocation": "Port of Manila",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "TYO",
+    "portLocation": "Port of Tokyo",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "LAX",
+    "portLocation": "Port of Los Angeles",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "RTM",
+    "portLocation": "Port of Rotterdam",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "HAM",
+    "portLocation": "Port of Hamburg",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "HKG",
+    "portLocation": "Port of Hong Kong",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "SYD",
+    "portLocation": "Port of Sydney",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "PUS",
+    "portLocation": "Port of Busan",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "SHA",
+    "portLocation": "Port of Shanghai",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "DXB",
+    "portLocation": "Port of Dubai",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "STS",
+    "portLocation": "Port of Santos",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "NYC",
+    "portLocation": "Port of New York",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "ANR",
+    "portLocation": "Port of Antwerp",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "VLC",
+    "portLocation": "Port of Valencia",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "portCode": "JKT",
+    "portLocation": "Port of Jakarta",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]

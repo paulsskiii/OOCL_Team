@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name="container")
+@Table(name="containers")
 public class Container {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

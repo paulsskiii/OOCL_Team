@@ -18,15 +18,28 @@ public class UserCredentialService {
     }
 
     public boolean isUsernameNotExisting (UserCredentials userCred) {
-        Optional<UserCredentials> returnedUser = userCredRepo.findByUsername (userCred.getUsername ());
+        Optional<UserCredentials> returnedUser = userCredRepo.findByActiveUsername (userCred.getUsername ());
 
         return returnedUser.isEmpty ();
     }
 
-    public UserCredentials addUser (UserCredentials userCred) {
-        if (this.isUsernameNotExisting (userCred))
-            return userCredRepo.save (userCred);
-        else
-            return new UserCredentials (-1L, "Failed", "Failed", 0);
-    }   
+    public UserCredentials registerUser (UserCredentials userCred) {
+        try {    
+            if (this.isUsernameNotExisting (userCred))
+                return userCredRepo.save (userCred);
+            else
+                return new UserCredentials (-1L, "exist", "exist", 0);
+        } catch (Exception e) {
+            e.printStackTrace ();
+            return new UserCredentials (-1L, "error", "error", 0);
+        }
+    }
+
+    public UserCredentials findByUser (UserCredentials userCred) {
+        Optional<UserCredentials> returnedUser = userCredRepo.findActiveUser (userCred.getUsername (), userCred.getPassword ());
+        if (returnedUser.isEmpty ())
+            return new UserCredentials (-1L, "none", "none", 0);
+        
+        return returnedUser.get ();
+    }
 }

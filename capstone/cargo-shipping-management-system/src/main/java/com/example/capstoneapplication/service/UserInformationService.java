@@ -18,13 +18,20 @@ public class UserInformationService {
     }
 
     public boolean isEmailNotExisting (String email) {
-        Optional<UserInformation> returnedUser = userInfoRepo.findByEmail(email);
+        Optional<UserInformation> returnedUser = userInfoRepo.findByActiveEmail(email);
 
         return returnedUser.isEmpty ();
     }
 
-    public UserInformationRepository addUserInfo (UserInformation userInfo) {
-        if (this.isEmailNotExisting(userInfo.getEmail ()))
-            return UserInfoRepo.save (userInfo);
+    public UserInformation addUserInfo (UserInformation userInfo) {
+        try {
+            if (this.isEmailNotExisting(userInfo.getEmail ()))
+                return userInfoRepo.save (userInfo);
+            else
+                return new UserInformation (-1L, "existing User", "existing User", -1L);
+        } catch (Exception e) {
+            e.printStackTrace ();
+            return new UserInformation (-999L, "error", "error", -999L);
+        }
     }
 }

@@ -7,12 +7,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <h1>----- MONIQUE -----</h1>
-      <LoginForm />
-      <h1>----- ABI -----</h1>
-      <RegistrationForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/register" element={<RegistrationForm />} />
+      </Routes>
+    </Router>
   );
 }
 

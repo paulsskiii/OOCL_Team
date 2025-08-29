@@ -13,6 +13,9 @@ import com.group1.capstone.repository.CargoRepository;
 @Service
 public class CargoService {
     @Autowired
+    private KafkaProducerService kafkaProducerService;
+
+    @Autowired
     private CargoRepository cargoRepository;
 
     // 1. Find all cargos
@@ -33,6 +36,7 @@ public class CargoService {
 
     // 4. Add cargo
     public Cargo addCargo(Cargo cargo) {  
+        kafkaProducerService.sendMessage(cargo);
         return cargoRepository.save(cargo);
     }
 

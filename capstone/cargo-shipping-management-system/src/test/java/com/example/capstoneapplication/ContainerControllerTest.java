@@ -52,7 +52,7 @@ public class ContainerControllerTest {
 
     @Test
     void testAddContainer() throws Exception {
-        when(containerService.addContainers(any(Container.class)))
+        when(containerService.addContainer(any(Container.class)))
                 .thenReturn(container);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/container").contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent))

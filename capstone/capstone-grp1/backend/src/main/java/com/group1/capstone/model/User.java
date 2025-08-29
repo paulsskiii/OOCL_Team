@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user")
 public class User {
-
    @Id
    @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +26,7 @@ public class User {
    @Column(name = "email", nullable = false, unique = true, length = 50)
    private String email;
 
-   @Column(name = "role", nullable = false, length = 50)
+   @JoinColumn(name = "role", referencedColumnName = "name", nullable = false)
    private String role;
 
    @Column(name = "password", nullable = false, length = 50)

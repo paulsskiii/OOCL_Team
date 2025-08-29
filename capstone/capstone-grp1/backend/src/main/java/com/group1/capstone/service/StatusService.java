@@ -1,6 +1,5 @@
 package com.group1.capstone.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ public class StatusService {
     }
 
     // 2. Find status by ID
-    public Status getStatusById(int id) {
-        return statusRepository.findById(id)
-                .orElseThrow(() -> new StatusNotFoundException("Status with ID " + id + " not found."));
+    public Status getStatusById(String statusCode) {
+        return statusRepository.findById(statusCode)
+                .orElseThrow(() -> new StatusNotFoundException("Status with Code " + statusCode + " not found."));
     }
 
     // 3. Get status count
@@ -37,22 +36,20 @@ public class StatusService {
     }
 
     // 5. Update status    
-    public Status updateStatus(int id, Status updatedStatus) {
-        return statusRepository.findById(id).map(status -> {
+    public Status updateStatus(String statusCode, Status updatedStatus) {
+        return statusRepository.findById(statusCode).map(status -> {
             status.setStatusType(updatedStatus.getStatusType());
-            status.setStatusCode(updatedStatus.getStatusCode());
-            status.setUpdatedAt(LocalDateTime.now());
 
             return statusRepository.save(status);
-        }).orElseThrow(() -> new StatusNotFoundException("Status with ID " + id + " not found."));
+        }).orElseThrow(() -> new StatusNotFoundException("Status with Code " + statusCode + " not found."));
     }
     
     // 6. Delete status
-    public void deleteStatus(int id) {
-        if (!statusRepository.existsById(id)) {
-            throw new StatusNotFoundException("Status with ID " + id + " not found.");
+    public void deleteStatus(String statusCode) {
+        if (!statusRepository.existsById(statusCode)) {
+            throw new StatusNotFoundException("Status with Code " + statusCode + " not found.");
         }
-        statusRepository.deleteById(id);
+        statusRepository.deleteById(statusCode);
     }
 
 

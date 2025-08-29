@@ -1,6 +1,5 @@
 package com.group1.capstone.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ public class PortService {
     }
 
     // 2. Find port by ID
-    public Port getPortById(int id) {
-        return portRepository.findById(id)
-                .orElseThrow(() -> new PortNotFoundException("Port with ID " + id + " not found."));
+    public Port getPortById(String portCode) {
+        return portRepository.findById(portCode)
+                .orElseThrow(() -> new PortNotFoundException("Port with Code " + portCode + " not found."));
     }
 
     // 3. Get port count
@@ -37,21 +36,19 @@ public class PortService {
     }
 
     // 5. Update port    
-    public Port updatePort(int id, Port updatedPort) {
-        return portRepository.findById(id).map(port -> {            
+    public Port updatePort(String portCode, Port updatedPort) {
+        return portRepository.findById(portCode).map(port -> {            
             port.setPortLocation(updatedPort.getPortLocation());
-            port.setPortCode(updatedPort.getPortCode());
-            port.setUpdatedAt(LocalDateTime.now());
 
             return portRepository.save(port);
-        }).orElseThrow(() -> new PortNotFoundException("Port with ID " + id + " not found."));
+        }).orElseThrow(() -> new PortNotFoundException("Port with Code " + portCode + " not found."));
     }
     
     // 6. Delete port
-    public void deletePort(int id) {
-        if (!portRepository.existsById(id)) {
-            throw new PortNotFoundException("Port with ID " + id + " not found.");
+    public void deletePort(String portCode) {
+        if (!portRepository.existsById(portCode)) {
+            throw new PortNotFoundException("Port with Code " + portCode + " not found.");
         }
-        portRepository.deleteById(id);
+        portRepository.deleteById(portCode);
     }
 }

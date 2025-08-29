@@ -65,23 +65,23 @@ public class CargoController {
     }
 
     // 7. Get all cargo going to selected location for the day
-    // GET /api/cargo/destination/{portId}/date/{date}
+    // GET /api/cargo/destination/{portCode}/date/{date}
     // GET /api/cargo/destination/5/date/2024-01-15
-    @GetMapping("/destination/{portId}/date/{date}")
+    @GetMapping("/destination/{portCode}/date/{date}")
     public ResponseEntity<List<Cargo>> getCargoGoingToPortOnDate(
-            @PathVariable int portId, 
+            @PathVariable String portCode, 
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return ResponseEntity.ok(cargoService.getCargoGoingToPortOnDate(portId, date));
+        return ResponseEntity.ok(cargoService.getCargoGoingToPortOnDate(portCode, date));
     }
     
     // 8. Get all cargo coming from selected location for the day
-    // GET /api/cargo/origin/{portId}/date/{date}
+    // GET /api/cargo/origin/{portCode}/date/{date}
     // GET /api/cargo/origin/3/date/2024-01-15
-    @GetMapping("/origin/{portId}/date/{date}")
+    @GetMapping("/origin/{portCode}/date/{date}")
     public ResponseEntity<List<Cargo>> getCargoComingFromPortOnDate(
-            @PathVariable int portId, 
+            @PathVariable String portCode, 
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return ResponseEntity.ok(cargoService.getCargoComingFromPortOnDate(portId, date));
+        return ResponseEntity.ok(cargoService.getCargoComingFromPortOnDate(portCode, date));
     }
     
     // 9. Get all cargo moving for the day, month, year

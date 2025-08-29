@@ -2,32 +2,38 @@ CREATE SCHEMA `cargo_shipping`;
 
 USE cargo_shipping;
 
+
+CREATE TABLE role(
+    name VARCHAR(20) PRIMARY KEY,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 CREATE TABLE user (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    username VARCHAR(50) UNIQUE NOT NULL,
+    username VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
-    role VARCHAR(50) NOT NULL, 
+    role VARCHAR(20) NOT NULL, -- "USER" / "ADMIN" / "COURIER" 
     password VARCHAR(50) NOT NULL,
     contact_number VARCHAR(16) UNIQUE NOT NULL,
+    FOREIGN KEY (role) REFERENCES role(name),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE port (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    port_location VARCHAR(100) NOT NULL,
-    port_code VARCHAR(50) UNIQUE NOT NULL,
+	port_code VARCHAR(5) PRIMARY KEY NOT NULL,
+    port_location VARCHAR(100) NOT NULL,    
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE status (
-	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    status_code VARCHAR(5) PRIMARY KEY NOT NULL,
     status_type VARCHAR(100) NOT NULL,
-    status_code VARCHAR(50) UNIQUE NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -36,23 +42,27 @@ CREATE TABLE cargo (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(50) NOT NULL,
     descriptions VARCHAR(254),
-    status_id INTEGER NOT NULL,
-    destination INTEGER NOT NULL,
-    origin INTEGER NOT NULL,
+    status_code VARCHAR(5) NOT NULL,
+    destination VARCHAR(5) NOT NULL,
+    origin VARCHAR(5) NOT NULL,
     created_by INTEGER NOT NULL,
+    consignee INTEGER NOT NULL,
+    courier INTEGER NOT NULL,
     weight FLOAT(5) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (status_id) REFERENCES status(id),
-    FOREIGN KEY (destination) REFERENCES port(id),
-    FOREIGN KEY (origin) REFERENCES port(id),
-    FOREIGN KEY (created_by) REFERENCES user(id)
+    FOREIGN KEY (status_code) REFERENCES status(status_code),
+    FOREIGN KEY (destination) REFERENCES port(port_code),
+    FOREIGN KEY (origin) REFERENCES port(port_code),
+    FOREIGN KEY (created_by) REFERENCES user(id),
+    FOREIGN KEY (consignee) REFERENCES user(id),
+    FOREIGN KEY (courier) REFERENCES user(id)
 );
 
 CREATE TABLE tracking_event(
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
     cargo_id INTEGER NOT NULL,
-    status_id INTEGER NOT NULL,
+    status_code VARCHAR(5) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (cargo_id) REFERENCES cargo(id),
@@ -87,13 +97,4 @@ CREATE INDEX idx_tracking_event_created_at ON tracking_event(created_at);
 CREATE INDEX idx_cargo_status_destination ON cargo(status_id, destination);
 CREATE INDEX idx_cargo_origin_destination ON cargo(origin, destination);
 CREATE INDEX idx_tracking_event_cargo_created ON tracking_event(cargo_id, created_at);
-
-
-
-
-
-
-
-
-
 

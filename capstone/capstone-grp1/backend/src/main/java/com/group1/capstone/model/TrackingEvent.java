@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "tracking_event")
 public class TrackingEvent {
-
    @Id
    @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +15,11 @@ public class TrackingEvent {
 
    @ManyToOne
    @JoinColumn(name = "cargo_id",referencedColumnName = "id", nullable = false)
-   private Cargo cargo;
+   private Cargo cargoId;
 
    @ManyToOne
-   @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
-   private Status status;
+   @JoinColumn(name = "status_code", referencedColumnName = "status_code", nullable = false)
+   private Status statusCode;
 
    @Column(name = "created_at", nullable = false)
    private LocalDateTime createdAt;

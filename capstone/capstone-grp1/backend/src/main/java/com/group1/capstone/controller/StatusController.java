@@ -2,14 +2,7 @@ package com.group1.capstone.controller;
 
 import java.util.List;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.group1.capstone.model.Status;
 import com.group1.capstone.service.StatusService;
 
@@ -30,9 +23,9 @@ public class StatusController {
     }
 
     // 2. Get status by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Status> getStatusById(@PathVariable int id) {
-        return ResponseEntity.ok(statusService.getStatusById(id));
+    @GetMapping("/{statusCode}")
+    public ResponseEntity<Status> getStatusById(@PathVariable String statusCode) {
+        return ResponseEntity.ok(statusService.getStatusById(statusCode));
     }
 
     // 3. Get status count
@@ -48,15 +41,15 @@ public class StatusController {
     }
 
     // 5. Update status
-    @PutMapping("/{id}")
-    public ResponseEntity<Status> updateStatus(@PathVariable int id, @RequestBody Status updatedStatus) {
-        return ResponseEntity.ok(statusService.updateStatus(id, updatedStatus));
+    @PutMapping("/{statusCode}")
+    public ResponseEntity<Status> updateStatus(@PathVariable String statusCode, @RequestBody Status updatedStatus) {
+        return ResponseEntity.ok(statusService.updateStatus(statusCode, updatedStatus));
     }
 
     // 6. Delete status
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStatus(@PathVariable int id) {
-        statusService.deleteStatus(id);
+    @DeleteMapping("/{statusCode}")
+    public ResponseEntity<Void> deleteStatus(@PathVariable String statusCode) {
+        statusService.deleteStatus(statusCode);
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }
 }

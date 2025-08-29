@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "cargo")
 public class Cargo {
-
    @Id
    @Column(name = "id", nullable = false)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,24 +19,32 @@ public class Cargo {
    @Column(name = "descriptions", length = 254)
    private String descriptions;
 
-   @ManyToOne
-   @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
-   private Status status;
+   @Column(name = "weight", nullable = false)
+   private float weight;
 
    @ManyToOne
-   @JoinColumn(name = "destination", referencedColumnName = "id", nullable = false)
+   @JoinColumn(name = "status_code", referencedColumnName = "status_code", nullable = false)
+   private Status statusCode;
+
+   @ManyToOne
+   @JoinColumn(name = "destination", referencedColumnName = "port_code", nullable = false)
    private Port destination;
    
    @ManyToOne
-   @JoinColumn(name = "origin", referencedColumnName = "id", nullable = false)
+   @JoinColumn(name = "origin", referencedColumnName = "port_code", nullable = false)
    private Port origin;
 
    @ManyToOne
    @JoinColumn(name = "created_by", referencedColumnName = "id", nullable = false)
    private User createdBy;
 
-   @Column(name = "weight", nullable = false)
-   private float weight;
+   @ManyToOne
+   @JoinColumn(name = "consignee", referencedColumnName = "id", nullable = false)
+   private User consignee;
+
+   @ManyToOne
+   @JoinColumn(name = "courier", referencedColumnName = "id", nullable = false)
+   private User courier;
 
    @Column(name = "created_at", nullable = false)
    private LocalDateTime createdAt;

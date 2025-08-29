@@ -1,7 +1,6 @@
 package com.group1.capstone.service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +41,10 @@ public class CargoService {
         return cargoRepository.findById(id).map(cargo -> {
             cargo.setName(updatedCargo.getName());
             cargo.setDescriptions(updatedCargo.getDescriptions());
-            cargo.setStatus(updatedCargo.getStatus());
+            cargo.setStatusCode(updatedCargo.getStatusCode());
             cargo.setDestination(updatedCargo.getDestination());
             cargo.setOrigin(updatedCargo.getOrigin());
             cargo.setWeight(updatedCargo.getWeight());
-            cargo.setUpdatedAt(LocalDateTime.now());
 
             return cargoRepository.save(cargo);
         }).orElseThrow(() -> new CargoNotFoundException("Cargo with ID " + id + " not found."));
@@ -61,13 +59,13 @@ public class CargoService {
     }
 
     // 7. Get all cargo going to selected location for the day
-    public List<Cargo> getCargoGoingToPortOnDate(int portId, LocalDate date) {
-        return cargoRepository.findCargoGoingToPortOnDate(portId, date);
+    public List<Cargo> getCargoGoingToPortOnDate(String portCode, LocalDate date) {
+        return cargoRepository.findCargoGoingToPortOnDate(portCode, date);
     }
     
     // 8. Get all cargo coming from selected location for the day
-    public List<Cargo> getCargoComingFromPortOnDate(int portId, LocalDate date) {
-        return cargoRepository.findCargoComingFromPortOnDate(portId, date);
+    public List<Cargo> getCargoComingFromPortOnDate(String portCode, LocalDate date) {
+        return cargoRepository.findCargoComingFromPortOnDate(portCode, date);
     }
     
     // 9. Get all cargo moving for the day, month, year

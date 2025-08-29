@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.group1.capstone.model.Status;
 
 @Repository
-public interface StatusRepository extends JpaRepository<Status, Integer> {
+public interface StatusRepository extends JpaRepository<Status, String> {
     
 }

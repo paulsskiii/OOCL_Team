@@ -8,22 +8,16 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "port")
 public class Port {
-
    @Id
-   @Column(name = "id", nullable = false)
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+   @Column(name = "port_code", nullable = false, unique = true, length = 5)
+   private String portCode;
 
    @Column(name = "port_location", nullable = false, length = 100)
-   private String portLocation;
-
-   @Column(name = "port_code", nullable = false, unique = true, length = 50)
-   private String portCode;
+   private String portLocation;   
 
    @Column(name = "created_at", nullable = false)
    private LocalDateTime createdAt;
 
    @Column(name = "updated_at", nullable = false)
-   private LocalDateTime updatedAt;
-  
+   private LocalDateTime updatedAt;  
 }

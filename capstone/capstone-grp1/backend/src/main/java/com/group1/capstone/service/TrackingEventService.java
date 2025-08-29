@@ -4,7 +4,6 @@ import com.group1.capstone.exceptions.TrackingEventNotFoundException;
 import com.group1.capstone.model.TrackingEvent;
 import com.group1.capstone.repository.TrackingEventRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +38,8 @@ public class TrackingEventService {
     // 5. Update TrackingEvent    
     public TrackingEvent updateTrackingEvent(int id, TrackingEvent updatedTrackingEvent) {
         return trackingEventRepository.findById(id).map(trackingEvent -> {
-            trackingEvent.setCargo(updatedTrackingEvent.getCargo());
-            trackingEvent.setStatus(updatedTrackingEvent.getStatus());
-            trackingEvent.setUpdatedAt(LocalDateTime.now());
+            trackingEvent.setCargoId(updatedTrackingEvent.getCargoId());
+            trackingEvent.setStatusCode(updatedTrackingEvent.getStatusCode());
 
             return trackingEventRepository.save(trackingEvent);
         }).orElseThrow(() -> new TrackingEventNotFoundException("Tracking Event with ID " + id + " not found."));

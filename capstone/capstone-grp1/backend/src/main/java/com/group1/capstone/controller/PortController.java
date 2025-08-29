@@ -30,9 +30,9 @@ public class PortController {
     }
 
     // 2. Get port by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Port> getPortById(@PathVariable int id) {
-        return ResponseEntity.ok(portService.getPortById(id));
+    @GetMapping("/{portCode}")
+    public ResponseEntity<Port> getPortById(@PathVariable String portCode) {
+        return ResponseEntity.ok(portService.getPortById(portCode));
     }
 
     // 3. Get port count
@@ -48,15 +48,15 @@ public class PortController {
     }
 
     // 5. Update port
-    @PutMapping("/{id}")
-    public ResponseEntity<Port> updatePort(@PathVariable int id, @RequestBody Port updatedPort) {
-        return ResponseEntity.ok(portService.updatePort(id, updatedPort));
+    @PutMapping("/{portCode}")
+    public ResponseEntity<Port> updatePort(@PathVariable String portCode, @RequestBody Port updatedPort) {
+        return ResponseEntity.ok(portService.updatePort(portCode, updatedPort));
     }
 
     // 6. Delete port
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePort(@PathVariable int id) {
-        portService.deletePort(id);
+    @DeleteMapping("/{portCode}")
+    public ResponseEntity<Void> deletePort(@PathVariable String portCode) {
+        portService.deletePort(portCode);
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }
 }

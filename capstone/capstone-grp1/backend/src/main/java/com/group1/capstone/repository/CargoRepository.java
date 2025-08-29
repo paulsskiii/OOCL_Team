@@ -13,12 +13,12 @@ import com.group1.capstone.model.Cargo;
 @Repository
 public interface CargoRepository extends JpaRepository<Cargo, Integer> {
     // All cargo going to selected location for the day
-    @Query(value = "SELECT * FROM cargo WHERE destination = :portId AND DATE(created_at) = :date", nativeQuery = true)
-    List<Cargo> findCargoGoingToPortOnDate(@Param("portId") int portId, @Param("date") LocalDate date);
+    @Query(value = "SELECT * FROM cargo WHERE destination = :portCode AND DATE(created_at) = :date", nativeQuery = true)
+    List<Cargo> findCargoGoingToPortOnDate(@Param("portCode") String portCode, @Param("date") LocalDate date);
 
     // All cargo coming from selected location for the day
-    @Query(value = "SELECT * FROM cargo WHERE origin = :portId AND DATE(created_at) = :date", nativeQuery = true)
-    List<Cargo> findCargoComingFromPortOnDate(@Param("portId") int portId, @Param("date") LocalDate date);
+    @Query(value = "SELECT * FROM cargo WHERE origin = :portCode AND DATE(created_at) = :date", nativeQuery = true)
+    List<Cargo> findCargoComingFromPortOnDate(@Param("portCode") String portCode, @Param("date") LocalDate date);
         
     // All cargo moving for the day, month, year
     @Query(value = "SELECT * FROM cargo WHERE DATE(created_at) = :date", nativeQuery = true)

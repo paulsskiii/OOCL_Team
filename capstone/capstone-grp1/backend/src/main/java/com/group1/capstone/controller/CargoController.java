@@ -7,7 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 import com.group1.capstone.model.Cargo;
 import com.group1.capstone.service.CargoService;
 
@@ -63,30 +62,29 @@ public class CargoController {
     // GET /api/cargo/destination/5/date/2024-01-15
     @GetMapping("/destination/{portCode}/date/{date}")
     public ResponseEntity<List<Cargo>> getCargoGoingToPortOnDate(
-            @PathVariable String portCode, 
+            @PathVariable String portCode,
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.ok(cargoService.getCargoGoingToPortOnDate(portCode, date));
     }
-    
+
     // 8. Get all cargo coming from selected location for the day
     // GET /api/cargo/origin/{portCode}/date/{date}
     // GET /api/cargo/origin/3/date/2024-01-15
     @GetMapping("/origin/{portCode}/date/{date}")
     public ResponseEntity<List<Cargo>> getCargoComingFromPortOnDate(
-            @PathVariable String portCode, 
+            @PathVariable String portCode,
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.ok(cargoService.getCargoComingFromPortOnDate(portCode, date));
     }
-    
+
     // 9. Get all cargo moving for the day, month, year
-    // GET /api/cargo/moving/date/{date}    
+    // GET /api/cargo/moving/date/{date}
     // GET /api/cargo/moving/date/2024-01-15
-    @GetMapping("/moving/date/{date}")
+    @GetMapping("/moving/filter")
     public ResponseEntity<List<Cargo>> getCargoMovingOnDate(
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return ResponseEntity.ok(cargoService.getCargoMovingOnDate(date));
+            @RequestParam(value = "from", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @RequestParam(value = "to", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
+        return ResponseEntity.ok(cargoService.getCargoMovingOnDate(from, to));
     }
-    
-    
+
 }
- 

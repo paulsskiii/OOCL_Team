@@ -24,13 +24,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "login")
 public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "login_id")
+    private long userId;
 
     @Column(name = "username")
     private String username;
@@ -38,16 +38,15 @@ public class Users implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    // Unsure if added
-    @Column(name = "token")
-    private String token;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    private Roles role;
 
+    // @OneToOne
+    // @JoinColumn(name = "customer_id", referencedColumnName  = "customer_id")
+    // private Customer customer
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getRoleName()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
     }
 }

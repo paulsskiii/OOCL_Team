@@ -3,9 +3,11 @@ package com.g3w4.container_management_system.controller;
 
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-
+@WebMvcTest(controllers = ContainerController.class)
 public class RegistrationControllerTest {
+    
     @Test
     void test_given_a_user_when_enters_valid_credentials_return_to_login_page() throws Exception {
         

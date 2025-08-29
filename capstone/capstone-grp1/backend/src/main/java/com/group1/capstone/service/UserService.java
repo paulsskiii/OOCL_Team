@@ -1,6 +1,5 @@
 package com.group1.capstone.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,6 @@ public class UserService {
             user.setRole(updatedUser.getRole());
             user.setPassword(updatedUser.getPassword());
             user.setContactNumber(updatedUser.getContactNumber());
-            user.setUpdatedAt(LocalDateTime.now());
 
             return userRepository.save(user);
         }).orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found."));

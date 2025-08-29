@@ -2,7 +2,8 @@ package com.group1.capstone.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -12,22 +13,23 @@ public class Role {
     @Column(name = "name", length = 20, nullable = false)
     private String name;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
- 
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
+   @Column(name = "created_at", nullable = false)
+   private Timestamp createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-       createdAt = LocalDateTime.now();
-       updatedAt = LocalDateTime.now();
-    }
- 
-    @PreUpdate
-    protected void onUpdate() {
-       updatedAt = LocalDateTime.now();
-    }
+   @Column(name = "updated_at", nullable = false)
+   private Timestamp updatedAt;
+   
+   @PrePersist
+   protected void onCreate() {
+      Timestamp now = new Timestamp(System.currentTimeMillis());
+      createdAt = now;
+      updatedAt = now;
+   }
+
+   @PreUpdate
+   protected void onUpdate() {
+      updatedAt = new Timestamp(System.currentTimeMillis());
+   }
 }
 
 

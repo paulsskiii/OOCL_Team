@@ -13,8 +13,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
-
-import com.group1.capstone.model.Cargo;
+import org.springframework.messaging.Message;
 
 @EnableKafka
 @Configuration
@@ -30,13 +29,7 @@ public class ConsumerConfigs {
     private String groupId;
 
     @Bean
-    public ConsumerFactory<String, Cargo> consumerFactory() {
-        // JsonDeserializer<Cargo> deserializer = new JsonDeserializer<>(Cargo.class);
-
-        // deserializer.addTrustedPackages("com.group1.capstone.model");
-
-        // deserializer.setRemoveTypeHeaders(false);
-
+    public ConsumerFactory<String, Object> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -45,14 +38,14 @@ public class ConsumerConfigs {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.group1.capstone.model");
-        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, Cargo.class);
+        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, Object.class);
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Cargo> kafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, Message<Object>> kafkaListenerContainerFactory() {
 
-        ConcurrentKafkaListenerContainerFactory<String, Cargo> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, Message<Object>> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }

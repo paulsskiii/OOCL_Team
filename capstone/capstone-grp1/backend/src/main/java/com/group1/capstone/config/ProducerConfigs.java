@@ -12,14 +12,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.group1.capstone.model.Cargo;
-
 @Configuration
 public class ProducerConfigs {
 
 
     @Bean
-    public ProducerFactory<String, Cargo> producerFactory() {
+    public ProducerFactory<String, Object
+    > producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -28,7 +27,7 @@ public class ProducerConfigs {
     }
 
     @Bean
-    public KafkaTemplate<String, Cargo> kafkaTemplate() {
+    public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

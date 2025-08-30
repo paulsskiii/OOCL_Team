@@ -23,4 +23,14 @@ public class TopicsConfig {
     public NewTopic topic1() {
         return new NewTopic("cargo-events", 5, (short) 1);
     }
+
+    @Bean
+    public NewTopic topic2() {
+        return new NewTopic("user-events", 5, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topic3() {
+        return new NewTopic("tracking-e-events", 5, (short) 1);
+    }
 }

@@ -32,14 +32,11 @@ public class Cargo {
    @JoinColumn(name = "origin", nullable = false, referencedColumnName = "port_code")
    private String origin;
 
-   @JoinColumn(name = "created_by", nullable = false, referencedColumnName = "id")
+   @JoinColumn(name = "shipper", nullable = false, referencedColumnName = "id")
    private int createdBy;
 
    @JoinColumn(name = "consignee", nullable = false, referencedColumnName = "id")
    private int consignee;
-
-   @JoinColumn(name = "courier", nullable = false, referencedColumnName = "id")
-   private int courier;
 
    @Column(name = "created_at", nullable = false)
    private Timestamp createdAt;

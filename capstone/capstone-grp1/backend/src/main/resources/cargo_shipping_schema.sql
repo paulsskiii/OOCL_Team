@@ -3,24 +3,17 @@ CREATE SCHEMA `cargo_shipping`;
 USE cargo_shipping;
 
 
-CREATE TABLE role(
-    name VARCHAR(20) PRIMARY KEY,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
 CREATE TABLE user (
  id INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
-    role VARCHAR(20) NOT NULL, -- "USER" / "ADMIN" / "COURIER" 
+    role VARCHAR(20) NOT NULL, -- "USER" / "ADMIN"
     password VARCHAR(50) NOT NULL,
     contact_number VARCHAR(16) UNIQUE NOT NULL,    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (role) REFERENCES role(name)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -46,18 +39,16 @@ CREATE TABLE cargo (
     status_code VARCHAR(5) NOT NULL,
     destination VARCHAR(10) NOT NULL,
     origin VARCHAR(10) NOT NULL,
-    created_by INTEGER NOT NULL,
+    shipper INTEGER NOT NULL,
     consignee INTEGER NOT NULL,
-    courier INTEGER NOT NULL,    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (status_code) REFERENCES status(status_code),
     FOREIGN KEY (destination) REFERENCES port(port_code),
     FOREIGN KEY (origin) REFERENCES port(port_code),
-    FOREIGN KEY (created_by) REFERENCES user(id),
+    FOREIGN KEY (shipper) REFERENCES user(id),
     FOREIGN KEY (consignee) REFERENCES user(id),
-    FOREIGN KEY (courier) REFERENCES user(id),
-    CONSTRAINT unique_cargo_name_user UNIQUE (name, created_by)
+    CONSTRAINT unique_cargo_name_user UNIQUE (name, shipper)
 );
 
 CREATE TABLE tracking_event(
@@ -87,9 +78,8 @@ CREATE INDEX idx_status_type ON status(status_type);
 CREATE INDEX idx_cargo_status_code ON cargo(status_code);
 CREATE INDEX idx_cargo_destination ON cargo(destination);
 CREATE INDEX idx_cargo_origin ON cargo(origin);
-CREATE INDEX idx_cargo_created_by ON cargo(created_by);
+CREATE INDEX idx_cargo_shipper ON cargo(shipper);
 CREATE INDEX idx_cargo_consignee ON cargo(consignee);
-CREATE INDEX idx_cargo_courier ON cargo(courier);
 CREATE INDEX idx_cargo_name ON cargo(name);
 CREATE INDEX idx_cargo_created_at ON cargo(created_at);
 

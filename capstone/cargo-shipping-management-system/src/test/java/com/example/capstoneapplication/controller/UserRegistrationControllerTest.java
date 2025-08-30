@@ -28,7 +28,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.example.capstoneapplication.model.UserCredential;
 import com.example.capstoneapplication.model.UserInformation;
 import com.example.capstoneapplication.service.UserService;
-import com.example.capstoneapplication.util.UserDetail;
+import com.example.capstoneapplication.util.UserRegistrationDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(UserRegistrationController.class)
@@ -45,7 +45,7 @@ public class UserRegistrationControllerTest {
     private final UserCredential validUserCred = new UserCredential (1L, "test", "test_password", 1);
     private final UserCredential validUserCredReg = new UserCredential ("test", "test_password", 1);
     private final UserInformation validUserInfo = new UserInformation (1L, "test", "test_password", 1L);
-    private final UserInformation validUserInfoReg = new UserInformation ("test", "test_password", 1L);
+    private final UserInformation validUserInfoReg = new UserInformation ("test", "test_password", -1L);
 
     private Map<String, Object> registerSuccessResult;
     private Map<String, Object> registerFailResult;
@@ -65,7 +65,7 @@ public class UserRegistrationControllerTest {
         registerFailResult.put ("message", "username_conflict");
         when (userService.registerUser (validUserCredReg, validUserInfoReg)).thenReturn (registerFailResult);
 
-        UserDetail userDetail = new UserDetail (validUserCredReg, validUserInfoReg);
+        UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
         MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
@@ -83,7 +83,7 @@ public class UserRegistrationControllerTest {
         registerFailResult.put ("message", "email_conflict");
         when (userService.registerUser (validUserCredReg, validUserInfoReg)).thenReturn (registerFailResult);
 
-        UserDetail userDetail = new UserDetail (validUserCredReg, validUserInfoReg);
+        UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
         MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
@@ -101,7 +101,7 @@ public class UserRegistrationControllerTest {
         registerFailResult.put ("message", "db_error");
         when (userService.registerUser (validUserCredReg, validUserInfoReg)).thenReturn (registerFailResult);
 
-        UserDetail userDetail = new UserDetail (validUserCredReg, validUserInfoReg);
+        UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
         MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
@@ -119,12 +119,12 @@ public class UserRegistrationControllerTest {
         registerFailResult.put ("message", "error");
         when (userService.registerUser (validUserCredReg, validUserInfoReg)).thenReturn (registerFailResult);
 
-        UserDetail userDetail = new UserDetail (validUserCredReg, validUserInfoReg);
+        UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
         MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (validUserCred)))
         .andExpect (jsonPath ("$.success").value(false))
-        .andExpect (jsonPath ("$.message").value ("error"))
+        .andExpect (jsonPath ("$.message").value ("bad_error"))
         .andReturn ();
 
         assertEquals(400, mvcResult.getResponse ().getStatus ());
@@ -136,7 +136,7 @@ public class UserRegistrationControllerTest {
     void test_controller_register_happy () throws Exception {
         when (userService.registerUser (validUserCredReg, validUserInfoReg)).thenReturn (registerSuccessResult);
 
-        UserDetail userDetail = new UserDetail (validUserCredReg, validUserInfoReg);
+        UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
         MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))

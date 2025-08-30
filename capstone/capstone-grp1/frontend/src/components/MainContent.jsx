@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DownloadOutlined, PlusOutlined } from "@ant-design/icons";
 import { Input, DatePicker, Select, Dropdown, Button } from "antd";
 import DashboardCard from "./DashboardCard";
@@ -21,7 +21,7 @@ import {
 	ArrowDownAZ,
 	CalendarFold,
 } from "lucide-react";
-
+import { MainPageContext } from "../pages/MainAppPage";
 function MainContent() {
 	const { Search } = Input;
 	const [currentSortLabel, setCurrentSortLabel] = useState("Sort by");
@@ -31,8 +31,8 @@ function MainContent() {
 	const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 	const [isViewModalOpen, setIsViewModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-	const [ports, setPorts] = useState(PortDummyData);
 	const [cargoToBeDeleted, setCargoToBeDeleted] = useState(null);
+	const { ports, fetchPorts } = useContext(MainPageContext);
 
 	const dateRangeItems = [
 		{
@@ -97,10 +97,6 @@ function MainContent() {
 			<CreateCargoModal
 				open={isCreateModalOpen}
 				setIsCreateModalOpen={setIsCreateModalOpen}
-				ports={ports.map((port) => ({
-					value: port.portCode,
-					label: port.portLocation,
-				}))}
 			/>
 			<DeleteCargoModal
 				open={isDeleteModalOpen}

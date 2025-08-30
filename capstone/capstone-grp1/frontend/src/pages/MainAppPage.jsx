@@ -6,7 +6,6 @@ import { LayoutDashboard, SquareUserRound } from "lucide-react";
 import MainContent from "../components/MainContent";
 
 const { Sider } = Layout;
-const API_URL = "http://localhost:8080/api";
 
 export const MainPageContext = createContext();
 
@@ -19,7 +18,7 @@ const MainAppPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [collapsed, setCollapsed] = useState(false);
-
+	const API_URL = "http://localhost:8080/api";
 	const transformCargoes = (cargoes, users, ports, statuses) => {
 		return cargoes.map((cargo) => {
 			// find port objects
@@ -151,6 +150,7 @@ const MainAppPage = () => {
 				statusList,
 				setCargoes,
 				fetchCargoes,
+				API_URL,
 			}}
 		>
 			<Layout className="overflow-auto bg-white">

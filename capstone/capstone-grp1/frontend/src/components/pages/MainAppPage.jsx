@@ -2,13 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import UserSideBar from "../components/UserSideBar";
+import UserSideBar from "../UserSideBar";
 const { Sider } = Layout;
 import { LayoutDashboard, SquareUserRound, ScrollText } from "lucide-react";
-import MainContent from "../components/MainContent";
+import MainContent from "../MainContent";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-const API_URL = "http://localhost:8080/api/containers";
 
 const MainAppPage = () => {
 	const [containers, setContainers] = useState([]);

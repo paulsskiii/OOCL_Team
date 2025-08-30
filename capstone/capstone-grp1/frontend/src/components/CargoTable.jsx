@@ -16,8 +16,7 @@ function CargoTable({
 	cargoToBeDeleted,
 	setCargoToBeDeleted,
 }) {
-	const [data, setData] = useState(CargoDummyData);
-	//const [data, setData] = useState([]);
+	// const [data, setData] = useState(CargoDummyData);
 	const { cargoes, fetchCargoes } = useContext(MainPageContext);
 
 	const handleMenuClick = (e, record) => {

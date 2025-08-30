@@ -13,8 +13,7 @@ public interface UserCredentialRepository extends JpaRepository<UserCredential, 
     
     @Query(value="SELECT * FROM user_credentials WHERE username=?1 AND is_active=1 LIMIT 1", nativeQuery = true)
     public Optional<UserCredential> findByActiveUsername (String username);
-    public Optional<UserCredential> findByUsernameAndPassword (String username, String password);
 
     @Query(value="SELECT * FROM user_credentials WHERE username=?1 AND password=?2 AND is_active=1 LIMIT 1", nativeQuery = true)
-    public Optional<UserCredential> findActiveUser (String username, String password);
+    public Optional<UserCredential> findByActiveUsernamePassword (String username, String password);
 }

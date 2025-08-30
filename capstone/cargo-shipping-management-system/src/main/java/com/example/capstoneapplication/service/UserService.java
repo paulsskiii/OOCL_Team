@@ -109,4 +109,31 @@ public class UserService {
 
         return registerResult;
     }
+
+
+    public Map<String, Object> loginUser (UserCredential userCred) {
+        Map<String, Object> loginResult = new HashMap<> ();
+        String dbErrorMsg = "db_error";
+
+        try {
+            Optional<UserCredential> foundUser = userCredRepo.findByActiveUsernamePassword (userCred.getUsername (), userCred.getPassword ());
+            boolean isActiveUserFound = foundUser.isPresent ();
+
+            if (isActiveUserFound) {
+                loginResult.put ("success", true);
+                loginResult.put ("message", "user_found");
+                loginResult.put ("token", "asdf123");
+            } else {
+                loginResult.put ("success", false);
+                loginResult.put ("message", "user_not_found");
+            }
+        } catch (Exception e) {
+            loginResult.put ("success", false);
+            loginResult.put ("message", dbErrorMsg);
+
+            e.printStackTrace ();
+        }
+
+        return loginResult;
+    }
 }

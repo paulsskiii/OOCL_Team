@@ -114,7 +114,6 @@ public class UserServiceTest {
 
         checkResultMap = userService.registerUser (newUserCred, newUserInfo);
 
-        System.out.println (checkResultMap);
         assertTrue ((boolean)checkResultMap.get ("success"));
         assertEquals ("user_created", checkResultMap.get ("message"));
 
@@ -124,21 +123,23 @@ public class UserServiceTest {
 
     @Test
     void test_login_active_user_happy () {
-        
+        when (userCredRepo.findByActiveUsernamePassword (any (String.class), any (String.class))).thenReturn (Optional.of (validUserCred));
+        checkResultMap = userService.loginUser (newUserCred);
+
+        assertTrue ((boolean)checkResultMap.get ("success"));
+        assertEquals ("user_found", checkResultMap.get ("message"));
+
+        verify (userCredRepo, times(1)).findByActiveUsernamePassword (newUserCred.getUsername (), newUserCred.getPassword ());
     }
 
     @Test
-    void test_login_inactive_user () {
+    void test_login_user_inactive_or_wrong_credentials () {
+        when (userCredRepo.findByActiveUsernamePassword (any (String.class), any (String.class))).thenReturn (Optional.empty ());
+        checkResultMap = userService.loginUser (newUserCred);
 
-    }
+        assertFalse ((boolean)checkResultMap.get ("success"));
+        assertEquals ("user_not_found", checkResultMap.get ("message"));
 
-    @Test
-    void test_login_active_user_wrong_username () {
-        
-    }
-
-    @Test
-    void test_login_active_user_wrong_password () {
-        
+        verify (userCredRepo, times(1)).findByActiveUsernamePassword (newUserCred.getUsername (), newUserCred.getPassword ());
     }
 }

@@ -118,14 +118,14 @@ INSERT IGNORE INTO port (port_location, port_code, created_at) VALUES
 
 -- Insert status 
 INSERT IGNORE INTO status (status_type, status_code, created_at) VALUES
-('Delivered', 'DLV', '2025-08-12 09:45:00'),
-('In-Transit', 'ITR', '2025-08-03 14:20:00'),
-('Loaded', 'LOD', '2025-08-22 11:10:00'),
-('Discharged', 'DSC', '2025-09-01 08:55:00'),
-('Pending', 'PND', '2025-08-18 16:35:00'),
-('In-Process', 'PRC', '2025-09-10 10:25:00'),
-('Not-Delivered', 'NDL', '2025-09-23 15:50:00');
-  
+('Pending', 'PND', '2025-08-03 08:42:00'),
+('In-Process', 'PRC', '2025-08-07 15:18:00'),
+('Loaded', 'LOD', '2025-08-12 11:27:00'),
+('Discharged', 'DSC', '2025-08-18 17:05:00'),
+('In-Transit', 'ITR', '2025-08-22 09:54:00'),
+('Delivered', 'DLV', '2025-08-29 14:33:00'),
+('Not-Delivered', 'NDL', '2025-09-07 19:12:00');
+
 -- Insert cargo
 INSERT IGNORE INTO cargo (name, descriptions, weight, status_id, destination, origin, shipper, consignee, created_at) VALUES
 ('Container A', 'Electronics shipment', 1250.5, 3, 'SIN011', 'MNL001', 3, 1, '2025-08-12 10:34:55'),

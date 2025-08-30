@@ -73,6 +73,11 @@ function CargoTable({
 			key: "destination",
 		},
 		{
+			title: "Shipper",
+			dataIndex: "shipper",
+			key: "shipper",
+		},
+		{
 			title: "Consignee",
 			dataIndex: "consignee",
 			key: "consignee",

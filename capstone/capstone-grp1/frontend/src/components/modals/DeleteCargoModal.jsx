@@ -1,6 +1,7 @@
 import { Modal, Button } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Container as LucideContainer, TriangleAlert } from "lucide-react";
+import { MainPageContext } from "../../pages/MainAppPage";
 
 function DeleteCargoModal({
 	open,
@@ -10,9 +11,28 @@ function DeleteCargoModal({
 }) {
 	const [loading, setLoading] = useState(false);
 
-	function handleDelete() {
-		console.log("Delete API here");
-	}
+	const { fetchCargoes, API_URL } = useContext(MainPageContext);
+
+	const handleDelete = async () => {
+		try {
+			const response = await fetch(`${API_URL}/cargo/${cargoToBeDeleted?.id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			// Re-fetch containers to update the list
+			await fetchCargoes();
+			setCargoToBeDeleted("");
+			// Reset the form
+		} catch (e) {
+			console.error("Failed to delete cargo:", e);
+			//		setError("Failed to delete new cargo. Please check the backend.");
+		}
+	};
 
 	function handleCancel() {
 		setIsDeleteModalOpen(false);

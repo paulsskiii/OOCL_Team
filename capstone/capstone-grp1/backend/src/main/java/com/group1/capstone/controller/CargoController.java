@@ -94,10 +94,10 @@ public class CargoController {
     }
     
     // 11. Filter by Status
-    // GET /api/cargo/filter/status?statusCode=IN_TRANSIT
+    // GET /api/cargo/filter/status?statusId=1
     @GetMapping("/filter/status")
-    public ResponseEntity<List<Cargo>> filterByStatus(@RequestParam("statusCode") String statusCode) {
-        return ResponseEntity.ok(cargoService.filterByStatus(statusCode));
+    public ResponseEntity<List<Cargo>> filterByStatus(@RequestParam("statusId") int statusId) {
+        return ResponseEntity.ok(cargoService.filterByStatus(statusId));
     }
     
     // 12. Sort by Alphabetical (Ascending)
@@ -129,12 +129,12 @@ public class CargoController {
     }
     
     // 16. Search by Cargo Name + Filter by Status
-    // GET /api/cargo/search/name-status?name=electronics&statusCode=IN_TRANSIT
+    // GET /api/cargo/search/name-status?name=electronics&statusId=1
     @GetMapping("/search/name-status")
     public ResponseEntity<List<Cargo>> searchByCargoNameAndStatus(
             @RequestParam("name") String name,
-            @RequestParam("statusCode") String statusCode) {
-        return ResponseEntity.ok(cargoService.searchByCargoNameAndStatus(name, statusCode));
+            @RequestParam("statusCode") int statusId) {
+        return ResponseEntity.ok(cargoService.searchByCargoNameAndStatus(name, statusId));
     }
     
     // 17. Search by Cargo Name + Sort by Alphabetical (Ascending)

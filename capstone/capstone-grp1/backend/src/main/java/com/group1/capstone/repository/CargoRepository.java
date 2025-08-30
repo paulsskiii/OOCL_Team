@@ -31,10 +31,10 @@ public interface CargoRepository extends JpaRepository<Cargo, Integer> {
     List<Cargo> findByNameContainingIgnoreCase(String name);
 
     // Filter by Status
-    List<Cargo> findByStatusCode(String statusCode);
+    List<Cargo> findByStatusId(int statusId);
     
     // Search by Cargo Name and Filter by Status
-    List<Cargo> findByNameContainingIgnoreCaseAndStatusCode(String name, String statusCode);
+    List<Cargo> findByNameContainingIgnoreCaseAndStatusId(String name, int statusId);
     
     // Find all with custom sorting
     List<Cargo> findAll(Sort sort);

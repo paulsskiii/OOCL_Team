@@ -37,30 +37,28 @@ CREATE TABLE cargo (
     name VARCHAR(50) NOT NULL,
     descriptions VARCHAR(254),
     weight FLOAT(5) NOT NULL,
-    status_code VARCHAR(5) NOT NULL,
+    status_id INTEGER NOT NULL,
     destination VARCHAR(10) NOT NULL,
     origin VARCHAR(10) NOT NULL,
     shipper INTEGER NOT NULL,
     consignee INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (status_code) REFERENCES status(status_code),
+    FOREIGN KEY (status_id) REFERENCES status(id),
     FOREIGN KEY (destination) REFERENCES port(port_code),
     FOREIGN KEY (origin) REFERENCES port(port_code),
     FOREIGN KEY (shipper) REFERENCES user(id),
-    FOREIGN KEY (consignee) REFERENCES user(id),
-    CONSTRAINT unique_cargo_name_user UNIQUE (name, shipper)
+    FOREIGN KEY (consignee) REFERENCES user(id)
 );
 
 CREATE TABLE tracking_event(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     cargo_id INTEGER NOT NULL,
-    status_code VARCHAR(5) NOT NULL,
+    status_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (cargo_id) REFERENCES cargo(id),
-    FOREIGN KEY (status_code) REFERENCES status(status_code),
-    CONSTRAINT unique_tracking_event UNIQUE (cargo_id, status_code)
+    FOREIGN KEY (status_id) REFERENCES status(id)
 );
 
 -- INDEXES

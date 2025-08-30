@@ -39,7 +39,7 @@ public class TrackingEventService {
     public TrackingEvent updateTrackingEvent(int id, TrackingEvent updatedTrackingEvent) {
         return trackingEventRepository.findById(id).map(trackingEvent -> {
             trackingEvent.setCargoId(updatedTrackingEvent.getCargoId());
-            trackingEvent.setStatusCode(updatedTrackingEvent.getStatusCode());
+            trackingEvent.setStatusId(updatedTrackingEvent.getStatusId());
 
             return trackingEventRepository.save(trackingEvent);
         }).orElseThrow(() -> new TrackingEventNotFoundException("Tracking Event with ID " + id + " not found."));

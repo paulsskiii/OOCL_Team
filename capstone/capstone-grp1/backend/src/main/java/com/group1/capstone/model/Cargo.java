@@ -23,8 +23,8 @@ public class Cargo {
    @Column(name = "weight", nullable = false)
    private float weight;
 
-   @JoinColumn(name = "status_code", nullable = false, referencedColumnName = "status_code")
-   private String statusCode;
+   @JoinColumn(name = "status_id", nullable = false, referencedColumnName = "id")
+   private int statusId;
 
    @JoinColumn(name = "destination", nullable = false, referencedColumnName = "port_code")
    private String destination;

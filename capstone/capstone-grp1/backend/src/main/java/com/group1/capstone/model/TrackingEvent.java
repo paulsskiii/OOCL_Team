@@ -17,8 +17,8 @@ public class TrackingEvent {
    @JoinColumn(name = "cargo_id",referencedColumnName = "id", nullable = false)
    private int cargoId;
 
-   @JoinColumn(name = "status_code", referencedColumnName = "status_code", nullable = false)
-   private String statusCode;
+   @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
+   private int statusId;
 
    @Column(name = "created_at", nullable = false)
    private Timestamp createdAt;

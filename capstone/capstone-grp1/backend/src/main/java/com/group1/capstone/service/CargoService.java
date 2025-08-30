@@ -46,7 +46,7 @@ public class CargoService {
         return cargoRepository.findById(id).map(cargo -> {
             cargo.setName(updatedCargo.getName());
             cargo.setDescriptions(updatedCargo.getDescriptions());
-            cargo.setStatusCode(updatedCargo.getStatusCode());
+            cargo.setStatusId(updatedCargo.getStatusId());
             cargo.setDestination(updatedCargo.getDestination());
             cargo.setOrigin(updatedCargo.getOrigin());
             cargo.setWeight(updatedCargo.getWeight());
@@ -84,8 +84,8 @@ public class CargoService {
     }
     
     // 11. Filter by Status
-    public List<Cargo> filterByStatus(String statusCode) {
-        return cargoRepository.findByStatusCode(statusCode);
+    public List<Cargo> filterByStatus(int statusId) {
+        return cargoRepository.findByStatusId(statusId);
     }
     
     // 12. Sort by Alphabetical (Ascending)
@@ -109,8 +109,8 @@ public class CargoService {
     }
     
     // 16. Search by Cargo Name + Filter by Status
-    public List<Cargo> searchByCargoNameAndStatus(String name, String statusCode) {
-        return cargoRepository.findByNameContainingIgnoreCaseAndStatusCode(name, statusCode);
+    public List<Cargo> searchByCargoNameAndStatus(String name, int statusId) {
+        return cargoRepository.findByNameContainingIgnoreCaseAndStatusId(name, statusId);
     }
     
     // 17. Search by Cargo Name + Sort by Alphabetical (Ascending)

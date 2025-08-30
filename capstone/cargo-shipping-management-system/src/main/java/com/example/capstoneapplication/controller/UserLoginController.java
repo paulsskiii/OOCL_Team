@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.capstoneapplication.model.UserCredentials;
-import com.example.capstoneapplication.service.UserCredentialService;
+import com.example.capstoneapplication.model.UserCredential;
+import com.example.capstoneapplication.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,16 +16,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/login")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserLoginController {
-    private final UserCredentialService userCredService;
+    private final UserService userService;
 
-    public UserLoginController (UserCredentialService userCredService) {
-        this.userCredService = userCredService;
+    public UserLoginController (UserService userCredService) {
+        this.userService = userCredService;
     }
 
     @PostMapping
-    public ResponseEntity<Long> loginUser (@RequestBody UserCredentials userCred) {
-        UserCredentials returnedUser = userCredService.findByUser (userCred);
-        return new ResponseEntity<> (returnedUser.getId (), returnedUser.getIsActive () > 0 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Long> loginUser (@RequestBody UserCredential userCred) {
+        return null;
     }
     
 }

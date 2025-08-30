@@ -37,7 +37,7 @@ public class UserServiceTest {
     private final UserCredential validUserCred = new UserCredential (1L, "test", "test_password", 1);
     private final UserInformation validUserInfo = new UserInformation (1L, "test", "test_password", 1L);
 
-    private final UserCredential newUserCred = new UserCredential ("test", "test_password", 1);
+    private final UserCredential newUserCred = new UserCredential ("test", "test_password");
     private final UserInformation newUserInfo = new UserInformation ("test", "test_password", 1L);
 
     private Map<String, Object> checkResultMap;
@@ -120,5 +120,25 @@ public class UserServiceTest {
 
         verify (userCredRepo, times(1)).save (newUserCred);
         verify (userInfoRepo, times(1)).save (newUserInfo);
+    }
+
+    @Test
+    void test_login_active_user_happy () {
+        
+    }
+
+    @Test
+    void test_login_inactive_user () {
+
+    }
+
+    @Test
+    void test_login_active_user_wrong_username () {
+        
+    }
+
+    @Test
+    void test_login_active_user_wrong_password () {
+        
     }
 }

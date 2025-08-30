@@ -9,11 +9,14 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Table(name="user_credentials")
 public class UserCredential {
     @Id
@@ -21,9 +24,11 @@ public class UserCredential {
     @Column(name="id")
     private Long id;
 
+    @NonNull
     @Column(name="username", nullable=false, columnDefinition="varchar(255)")
     private String username;
 
+    @NonNull
     @Column(name="password", nullable=false, columnDefinition="varchar(255)")
     private String password;
 

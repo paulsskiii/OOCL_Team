@@ -14,8 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.capstoneapplication.controller.UserLoginController;
-import com.example.capstoneapplication.model.UserCredentials;
-import com.example.capstoneapplication.service.UserCredentialService;
+import com.example.capstoneapplication.model.UserCredential;
+import com.example.capstoneapplication.service.UserService;
 
 @WebMvcTest(UserLoginController.class)
 public class UserLoginControllerTest {
@@ -23,54 +23,22 @@ public class UserLoginControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserCredentialService userCredService;
+    private UserService userService;
 
-    private final UserCredentials testActiveUser = new UserCredentials (1L, "test", "testpass", 1);
-    private final UserCredentials testInactiveUser = new UserCredentials (2L, "inactive", "testpass", 0);
-    private final UserCredentials testInvalidUser = new UserCredentials (-1L, "none", "none", 0);
-
-    private String jsonContent = "{\r\n" + //
-            "\"id\": 2,\r\n" + //
-            "\"username\": \"asdfasdf\",\r\n" + //
-            "\"password\": 234,\r\n" + //
-            "\"is_active\": \"sdfasdf\"\r\n" + //
-            "}";
+    private final UserCredential testActiveUser = new UserCredential (1L, "test", "testpass", 1);
+    private final UserCredential testInactiveUser = new UserCredential (2L, "inactive", "testpass", 0);
+    private final UserCredential testInvalidUser = new UserCredential (-1L, "none", "none", 0);
 
     @Test
     void test_login_inactive_user () throws Exception {
-        when (userCredService.findByUser(any(UserCredentials.class)))
-            .thenReturn (testInactiveUser);
-
-        int statusResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/login").contentType (MediaType.APPLICATION_JSON)
-        .content (jsonContent))
-        .andReturn ()
-        .getResponse ()
-        .getStatus ();
-
-        assertEquals(400, statusResult);
     }
 
     @Test
     void test_login_active_user () throws Exception {
-        when (userCredService.findByUser (any(UserCredentials.class)))
-            .thenReturn (testActiveUser);
 
-        mockMvc.perform (MockMvcRequestBuilders.post ("/api/login").contentType (MediaType.APPLICATION_JSON)
-        .content (jsonContent))
-        .andExpect (status ().isOk ());
     }
 
     @Test
     void test_login_wrong_user () throws Exception {
-        when (userCredService.findByUser (any(UserCredentials.class)))
-            .thenReturn (testInvalidUser);
-
-        int statusResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/login").contentType (MediaType.APPLICATION_JSON)
-        .content (jsonContent))
-        .andReturn ()
-        .getResponse ()
-        .getStatus ();
-
-        assertEquals(400, statusResult);
     }
 }

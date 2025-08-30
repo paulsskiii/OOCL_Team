@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,8 +37,8 @@ public class UserServiceTest {
     private final UserCredential validUserCred = new UserCredential (1L, "test", "test_password", 1);
     private final UserInformation validUserInfo = new UserInformation (1L, "test", "test_password", 1L);
 
-    private final UserCredential nonUserCred = new UserCredential (-1L, "none", "none", 0);
-    private final UserInformation nonUserInfo = new UserInformation (-1L, "none", "none", -1L);
+    private final UserCredential newUserCred = new UserCredential ("test", "test_password", 1);
+    private final UserInformation newUserInfo = new UserInformation ("test", "test_password", 1L);
 
     private Map<String, Object> checkResultMap;
 
@@ -113,12 +112,13 @@ public class UserServiceTest {
         when (userInfoRepo.findByActiveEmail(any (String.class))).thenReturn (Optional.empty ());
         when (userInfoRepo.save (any (UserInformation.class))).thenReturn (validUserInfo);
 
-        checkResultMap = userService.registerUser (validUserCred, validUserInfo);
+        checkResultMap = userService.registerUser (newUserCred, newUserInfo);
 
+        System.out.println (checkResultMap);
         assertTrue ((boolean)checkResultMap.get ("success"));
         assertEquals ("user_created", checkResultMap.get ("message"));
 
-        verify (userCredRepo, times(1)).save (validUserCred);
-        verify (userInfoRepo, times(1)).save (validUserInfo);
+        verify (userCredRepo, times(1)).save (newUserCred);
+        verify (userInfoRepo, times(1)).save (newUserInfo);
     }
 }

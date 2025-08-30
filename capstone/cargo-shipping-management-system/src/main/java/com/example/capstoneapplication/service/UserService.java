@@ -82,6 +82,7 @@ public class UserService {
         Map<String, Object> registerResult = new HashMap<> ();
         boolean isRegisterAllowed = (boolean) checkResult.get ("isAllowed");
         String dbErrorMsg = "db_error";
+
         try {
             if (!isRegisterAllowed) {
                 registerResult.put ("success", false);
@@ -102,6 +103,8 @@ public class UserService {
         } catch (Exception e) {
             registerResult.put ("success", false);
             registerResult.put ("message", dbErrorMsg);
+
+            e.printStackTrace();
         }
 
         return registerResult;

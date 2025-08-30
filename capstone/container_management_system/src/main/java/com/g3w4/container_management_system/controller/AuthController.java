@@ -13,6 +13,8 @@ import com.g3w4.container_management_system.response.LoginResponse;
 import com.g3w4.container_management_system.service.AuthenticationService;
 import com.g3w4.container_management_system.service.JwtService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -37,7 +39,7 @@ public class AuthController {
     // Flow -> Login (/login) > Authenticates user > Generates and returns a JWT Token
     // Keep token expiry times short and rotate them often
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
+    public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginUserDto loginUserDto) {
         Users authenticatedUser = authenticationService.authenticate(loginUserDto);
         String jwtToken = jwtService.generateToken(authenticatedUser);
 

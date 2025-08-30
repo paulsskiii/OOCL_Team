@@ -113,7 +113,6 @@ public class UserService {
 
     public Map<String, Object> loginUser (UserCredential userCred) {
         Map<String, Object> loginResult = new HashMap<> ();
-        String dbErrorMsg = "db_error";
 
         try {
             Optional<UserCredential> foundUser = userCredRepo.findByActiveUsernamePassword (userCred.getUsername (), userCred.getPassword ());
@@ -121,15 +120,15 @@ public class UserService {
 
             if (isActiveUserFound) {
                 loginResult.put ("success", true);
-                loginResult.put ("message", "user_found");
+                loginResult.put ("message", "login_success");
                 loginResult.put ("token", "asdf123");
             } else {
                 loginResult.put ("success", false);
-                loginResult.put ("message", "user_not_found");
+                loginResult.put ("message", "login_fail");
             }
         } catch (Exception e) {
             loginResult.put ("success", false);
-            loginResult.put ("message", dbErrorMsg);
+            loginResult.put ("message", "login_error");
 
             e.printStackTrace ();
         }

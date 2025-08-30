@@ -116,11 +116,6 @@ public class UserRegistrationControllerTest {
 
     @Test
     void test_controller_register_bad_json_format () throws Exception {
-        registerFailResult.put ("message", "error");
-        when (userService.registerUser (validUserCredReg, validUserInfoReg)).thenReturn (registerFailResult);
-
-        UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
-
         MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (validUserCred)))
         .andExpect (jsonPath ("$.success").value(false))

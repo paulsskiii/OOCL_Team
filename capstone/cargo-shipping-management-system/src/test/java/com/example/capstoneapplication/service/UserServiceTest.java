@@ -127,7 +127,7 @@ public class UserServiceTest {
         checkResultMap = userService.loginUser (newUserCred);
 
         assertTrue ((boolean)checkResultMap.get ("success"));
-        assertEquals ("user_found", checkResultMap.get ("message"));
+        assertEquals ("login_success", checkResultMap.get ("message"));
 
         verify (userCredRepo, times(1)).findByActiveUsernamePassword (newUserCred.getUsername (), newUserCred.getPassword ());
     }
@@ -138,7 +138,18 @@ public class UserServiceTest {
         checkResultMap = userService.loginUser (newUserCred);
 
         assertFalse ((boolean)checkResultMap.get ("success"));
-        assertEquals ("user_not_found", checkResultMap.get ("message"));
+        assertEquals ("login_fail", checkResultMap.get ("message"));
+
+        verify (userCredRepo, times(1)).findByActiveUsernamePassword (newUserCred.getUsername (), newUserCred.getPassword ());
+    }
+
+    @Test
+    void test_login_user_db_error () {
+        when (userCredRepo.findByActiveUsernamePassword (any (String.class), any (String.class))).thenThrow (new RuntimeException ("login db error"));
+        checkResultMap = userService.loginUser (newUserCred);
+
+        assertFalse ((boolean)checkResultMap.get ("success"));
+        assertEquals ("login_error", checkResultMap.get ("message"));
 
         verify (userCredRepo, times(1)).findByActiveUsernamePassword (newUserCred.getUsername (), newUserCred.getPassword ());
     }

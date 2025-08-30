@@ -9,6 +9,7 @@ import {
 import { MapPin } from "lucide-react";
 import StatusColumnRecord from "./StatusColumnRecord";
 import { MainPageContext } from "../pages/MainAppPage";
+import { format } from "date-fns";
 
 function CargoTable({
 	isDeleteModalOpen,
@@ -57,10 +58,10 @@ function CargoTable({
 
 	const columns = [
 		{
-			title: "Container #",
+			title: "Container Name",
 			dataIndex: "name",
 			key: "name",
-			render: (text) => <a>{text}</a>,
+			render: (text) => <span>{text}</span>,
 		},
 		{
 			title: "Origin",
@@ -87,6 +88,20 @@ function CargoTable({
 			key: "status",
 			dataIndex: "status",
 			render: (text) => <StatusColumnRecord status={text} />,
+		},
+		{
+			title: "Created at",
+			key: "createdAt",
+			dataIndex: "createdAt",
+			render: (text) => <div>{format(text, "MM/dd/yyyy")}</div>,
+			sorter: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+		},
+		{
+			title: "Updated at",
+			key: "updatedAt",
+			dataIndex: "updatedAt",
+			render: (text) => <div>{format(text, "MM/dd/yyyy")}</div>,
+			sorter: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
 		},
 		{
 			title: "Action",

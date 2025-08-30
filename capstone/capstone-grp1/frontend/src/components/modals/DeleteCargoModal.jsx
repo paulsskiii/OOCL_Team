@@ -2,6 +2,7 @@ import { Modal, Button } from "antd";
 import { useEffect, useState, useContext } from "react";
 import { Container as LucideContainer, TriangleAlert } from "lucide-react";
 import { MainPageContext } from "../../pages/MainAppPage";
+import axios from "axios";
 
 function DeleteCargoModal({
 	open,
@@ -15,15 +16,9 @@ function DeleteCargoModal({
 
 	const handleDelete = async () => {
 		try {
-			const response = await fetch(`${API_URL}/cargo/${cargoToBeDeleted?.id}`, {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
+			const response = await axios.delete(
+				`${API_URL}/cargo/${cargoToBeDeleted?.id}`
+			);
 			// Re-fetch containers to update the list
 			await fetchCargoes();
 			setCargoToBeDeleted("");

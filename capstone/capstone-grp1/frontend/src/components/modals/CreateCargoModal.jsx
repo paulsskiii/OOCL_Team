@@ -3,6 +3,8 @@ import { useEffect, useState, useContext } from "react";
 import { Container as LucideContainer } from "lucide-react";
 import { Input, Select, Form } from "antd";
 import { MainPageContext } from "../../pages/MainAppPage";
+import axios from "axios";
+
 function CreateCargoModal({ open, handleOk, setIsCreateModalOpen }) {
 	const [loading, setLoading] = useState(false);
 	const [form] = Form.useForm();
@@ -46,37 +48,25 @@ function CreateCargoModal({ open, handleOk, setIsCreateModalOpen }) {
 			console.log("Validation successful!");
 
 			// Create Cargo
-			const res = await fetch(API_URL + "/cargo", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					name,
-					descriptions: description,
-					weight,
-					statusId: 5,
-					origin,
-					destination,
-					shipper,
-					consignee,
-				}),
+			const res = await axios.post(API_URL + "/cargo", {
+				name,
+				descriptions: description,
+				weight,
+				statusId: 5,
+				origin,
+				destination,
+				shipper,
+				consignee,
 			});
 
-			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-
-			const cargo = await res.json(); // parse response
+			const cargo = res.data; // parse response
 			console.log("Created cargo:", cargo);
 
 			// Create Tracking Event for this cargo
-			const res2 = await fetch(API_URL + "/tracking-event", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					cargoId: cargo.id, // use returned ID
-					statusId: 5,
-				}),
+			const res2 = await axios.post(API_URL + "/tracking-event", {
+				cargoId: cargo.id, // use returned ID
+				statusId: 5,
 			});
-
-			if (!res2.ok) throw new Error(`HTTP error! status: ${res2.status}`);
 
 			console.log("Tracking event created!");
 

@@ -4,6 +4,7 @@ import { Button, Layout, Menu } from "antd";
 import UserSideBar from "../components/UserSideBar";
 import { LayoutDashboard, SquareUserRound } from "lucide-react";
 import MainContent from "../components/MainContent";
+import axios from "axios";
 
 const { Sider } = Layout;
 
@@ -71,11 +72,9 @@ const MainAppPage = () => {
 				console.log("You are here");
 			}
 
-			const res = await fetch(API_URL + "/cargo");
+			const res = await axios.get(API_URL + "/cargo");
 
-			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-
-			const rawCargoes = await res.json();
+			const rawCargoes = res.data;
 
 			let processedCargoes = transformCargoes(
 				rawCargoes,
@@ -94,9 +93,8 @@ const MainAppPage = () => {
 
 	const fetchUsers = async () => {
 		try {
-			const res = await fetch(API_URL + "/user");
-			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-			setUsersList(await res.json());
+			const res = await axios.get(API_URL + "/user");
+			setUsersList(res.data);
 		} catch (e) {
 			setError("Failed to load users.");
 		}
@@ -104,9 +102,8 @@ const MainAppPage = () => {
 
 	const fetchPorts = async () => {
 		try {
-			const res = await fetch(API_URL + "/port");
-			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-			setPortsList(await res.json());
+			const res = await axios.get(API_URL + "/port");
+			setPortsList(res.data);
 		} catch (e) {
 			setError("Failed to load ports.");
 		}
@@ -114,9 +111,8 @@ const MainAppPage = () => {
 
 	const fetchStatus = async () => {
 		try {
-			const res = await fetch(API_URL + "/status");
-			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-			setStatusList(await res.json());
+			const res = await axios.get(API_URL + "/status");
+			setStatusList(res.data);
 		} catch (e) {
 			setError("Failed to load status.");
 		}
@@ -124,9 +120,8 @@ const MainAppPage = () => {
 
 	const fetchTrackingEvents = async () => {
 		try {
-			const res = await fetch(API_URL + "/tracking-event");
-			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-			setTrackingEventList(await res.json());
+			const res = await axios.get(API_URL + "/tracking-event");
+			setTrackingEventList(res.data);
 		} catch (e) {
 			setError("Failed to load status.");
 		}

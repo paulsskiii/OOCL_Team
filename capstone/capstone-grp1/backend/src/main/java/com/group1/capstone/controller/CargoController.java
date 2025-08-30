@@ -78,8 +78,7 @@ public class CargoController {
     }
 
     // 9. Get all cargo moving for the day, month, year
-    // GET /api/cargo/moving/date/{date}
-    // GET /api/cargo/moving/date/2024-01-15
+    // GET /api/cargo/moving/filter?from=2024-01-01&to=2025-08-29
     @GetMapping("/moving/filter")
     public ResponseEntity<List<Cargo>> getCargoMovingOnDate(
             @RequestParam(value = "from", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,

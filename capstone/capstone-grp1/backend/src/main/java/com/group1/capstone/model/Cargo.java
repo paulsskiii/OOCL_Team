@@ -33,7 +33,7 @@ public class Cargo {
    private String origin;
 
    @JoinColumn(name = "shipper", nullable = false, referencedColumnName = "id")
-   private int createdBy;
+   private int shipper;
 
    @JoinColumn(name = "consignee", nullable = false, referencedColumnName = "id")
    private int consignee;

@@ -26,7 +26,7 @@ public class User {
    @Column(name = "email", nullable = false, unique = true, length = 50)
    private String email;
 
-   @JoinColumn(name = "role", nullable = false)
+   @Column(name = "role", nullable = false)
    private String role;
 
    @Column(name = "password", nullable = false, length = 50)

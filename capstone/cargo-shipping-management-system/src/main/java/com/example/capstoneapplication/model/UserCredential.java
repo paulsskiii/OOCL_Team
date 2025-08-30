@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="user_credentials")
-public class UserCredentials {
+public class UserCredential {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -30,7 +30,7 @@ public class UserCredentials {
     @Column(name="isActive", nullable=false)
     private int isActive;
 
-    public UserCredentials (String username, String password, int isActive) {
+    public UserCredential (String username, String password, int isActive) {
         this.username = username;
         this.password = password;
         this.isActive = isActive;

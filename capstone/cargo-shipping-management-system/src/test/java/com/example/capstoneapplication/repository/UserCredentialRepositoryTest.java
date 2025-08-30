@@ -13,30 +13,30 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.capstoneapplication.model.UserCredentials;
-import com.example.capstoneapplication.repository.UserCredentialsRepository;
+import com.example.capstoneapplication.model.UserCredential;
+import com.example.capstoneapplication.repository.UserCredentialRepository;
 
 import jakarta.transaction.Transactional;
 
 @SpringBootTest
-public class UserCredentialsRepositoryTest {
+public class UserCredentialRepositoryTest {
     @Autowired
-    UserCredentialsRepository userCredRepo;
+    UserCredentialRepository userCredRepo;
 
-    private List<UserCredentials> expectedUserCreds;
+    private List<UserCredential> expectedUserCreds;
 
 
     @BeforeEach
     void setup () {
-        expectedUserCreds = new ArrayList<UserCredentials> ();
-        expectedUserCreds.add (new UserCredentials ("test", "test_password", 1));
-        expectedUserCreds.add (new UserCredentials ("test2", "test_password", 1));
+        expectedUserCreds = new ArrayList<UserCredential> ();
+        expectedUserCreds.add (new UserCredential ("test", "test_password", 1));
+        expectedUserCreds.add (new UserCredential ("test2", "test_password", 1));
     }
 
     @Test
     @Transactional
     void test_add_valid_user () {
-        UserCredentials createdUserCred = userCredRepo.save (expectedUserCreds.get (0));
+        UserCredential createdUserCred = userCredRepo.save (expectedUserCreds.get (0));
 
         assertEquals (1, userCredRepo.findAll ().size ());
         
@@ -58,8 +58,8 @@ public class UserCredentialsRepositoryTest {
     void test_add_user_exceeding_255_chars () {
         String longName = "KAKUEHFALKSDJFHALKDSJFHALKDSJFHALKSDJFHADLKFJHADSLKFJHASDLKFJHASDLKFJAHSDFLKJAHDSFLKJASHFDLKJASDHFLKAJSDHFLAKJFHAIUSFHALSUFHALWEFJHASLKDJFHASDLKJFHASDLKJFHASDLKJFHASDLKJFHALKSDFKAKUEHFALKSDJFHALKDSJFHALKDSJFHALKSDJFHADLKFJHADSLKFJHASDLKFJHASDLKFJAHSDFLKJAH";
         assertThrows (DataIntegrityViolationException.class, () -> {
-            userCredRepo.save (new UserCredentials (longName, "test_password", 1));
-            userCredRepo.save (new UserCredentials ("test", longName, 1));
+            userCredRepo.save (new UserCredential (longName, "test_password", 1));
+            userCredRepo.save (new UserCredential ("test", longName, 1));
             userCredRepo.findAll ();
         });
     }

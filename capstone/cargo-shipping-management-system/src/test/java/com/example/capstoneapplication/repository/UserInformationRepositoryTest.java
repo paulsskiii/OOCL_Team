@@ -14,9 +14,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.example.capstoneapplication.model.UserCredentials;
+import com.example.capstoneapplication.model.UserCredential;
 import com.example.capstoneapplication.model.UserInformation;
-import com.example.capstoneapplication.repository.UserCredentialsRepository;
+import com.example.capstoneapplication.repository.UserCredentialRepository;
 import com.example.capstoneapplication.repository.UserInformationRepository;
 
 import jakarta.transaction.Transactional;
@@ -27,7 +27,7 @@ public class UserInformationRepositoryTest {
     UserInformationRepository userInfoRepo;
 
     @Autowired
-    UserCredentialsRepository userCredRepo;
+    UserCredentialRepository userCredRepo;
 
     private List<UserInformation> expectedUserInfos;
 
@@ -39,9 +39,9 @@ public class UserInformationRepositoryTest {
         expectedUserInfos.add (new UserInformation ("testuser@gmail.com", "+639236439243", 1L));
         expectedUserInfos.add (new UserInformation ("testuser2@gmail.com", "+639174439315", 2L));
         
-        List<UserCredentials> expectedUserCreds = new ArrayList<UserCredentials> ();
-        expectedUserCreds.add (new UserCredentials ("test", "test_password", 1));
-        expectedUserCreds.add (new UserCredentials ("test2", "test_password", 1));
+        List<UserCredential> expectedUserCreds = new ArrayList<UserCredential> ();
+        expectedUserCreds.add (new UserCredential ("test", "test_password", 1));
+        expectedUserCreds.add (new UserCredential ("test2", "test_password", 1));
 
         userCredRepo.save (expectedUserCreds.get (0));
         userCredRepo.save (expectedUserCreds.get (1));

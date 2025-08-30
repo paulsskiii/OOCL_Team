@@ -2,6 +2,8 @@ package com.group1.capstone.service;
 
 import com.group1.capstone.exceptions.TrackingEventNotFoundException;
 import com.group1.capstone.model.TrackingEvent;
+import com.group1.capstone.repository.CargoRepository;
+import com.group1.capstone.repository.StatusRepository;
 import com.group1.capstone.repository.TrackingEventRepository;
 
 import java.util.List;
@@ -12,7 +14,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class TrackingEventService {
     @Autowired
+    private ProducerService producerService;
+
+    @Autowired
     private TrackingEventRepository trackingEventRepository;
+
+    @Autowired
+    private StatusRepository statusRepository;
+
+    @Autowired
+    private CargoRepository cargoRepository;
+
+    @Autowired
+    private CargoService cargoService;
 
     // 1. Find all TrackingEvent
     public List<TrackingEvent> getAllTrackingEvents() {
@@ -32,6 +46,7 @@ public class TrackingEventService {
 
     // 4. Add TrackingEvent
     public TrackingEvent addTrackingEvent(TrackingEvent trackingEvent) {
+        producerService.sendMessage(trackingEvent, "Delivered", cargoService.getCargoById(trackingEvent.getCargoId()).getName(), "CREATED");
         return trackingEventRepository.save(trackingEvent);
     }
 

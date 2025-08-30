@@ -11,6 +11,9 @@ import com.group1.capstone.repository.UserRepository;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private ProducerService kafkaProducerService;
     @Autowired
     private UserRepository userRepository;
 
@@ -32,6 +35,7 @@ public class UserService {
 
     // 4. Add User
     public User addUser(User user) {
+        kafkaProducerService.sendMessage(user, "CREATED ");
         return userRepository.save(user);
     }
 

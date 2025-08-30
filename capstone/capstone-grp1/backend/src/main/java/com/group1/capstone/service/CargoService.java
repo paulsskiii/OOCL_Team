@@ -14,7 +14,7 @@ import com.group1.capstone.repository.CargoRepository;
 @Service
 public class CargoService {
     @Autowired
-    private KafkaProducerService kafkaProducerService;
+    private ProducerService producerService;
 
     @Autowired
     private CargoRepository cargoRepository;
@@ -36,13 +36,14 @@ public class CargoService {
     }
 
     // 4. Add cargo
-    public Cargo addCargo(Cargo cargo) {  
-        kafkaProducerService.sendMessage(cargo);
+    public Cargo addCargo(Cargo cargo) {
+        producerService.sendMessage(cargo, "CREATED");
         return cargoRepository.save(cargo);
     }
 
     // 5. Update cargo    
     public Cargo updateCargo(int id, Cargo updatedCargo) {
+        producerService.sendMessage(updatedCargo, "UPDATED ");
         return cargoRepository.findById(id).map(cargo -> {
             cargo.setName(updatedCargo.getName());
             cargo.setDescriptions(updatedCargo.getDescriptions());
@@ -60,6 +61,7 @@ public class CargoService {
         if (!cargoRepository.existsById(id)) {
             throw new CargoNotFoundException("Cargo with ID " + id + " not found.");
         }
+        producerService.sendMessage(getCargoById(id), "CREATED");
         cargoRepository.deleteById(id);
     }
 

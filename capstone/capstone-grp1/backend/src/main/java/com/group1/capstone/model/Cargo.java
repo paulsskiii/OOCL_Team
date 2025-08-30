@@ -43,7 +43,7 @@ public class Cargo {
 
    @Column(name = "updated_at", nullable = false)
    private Timestamp updatedAt;
-   
+
    @PrePersist
    protected void onCreate() {
       Timestamp now = new Timestamp(System.currentTimeMillis());

@@ -1,10 +1,10 @@
 package com.example.capstoneapplication.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.capstoneapplication.model.UserCredential;
@@ -60,13 +59,11 @@ public class UserRegistrationControllerTest {
 
         UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
-        MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
         .andExpect (jsonPath ("$.success").value(false))
         .andExpect (jsonPath ("$.message").value ("username_conflict"))
-        .andReturn ();
-
-        assertEquals(409, mvcResult.getResponse ().getStatus ());
+        .andExpect (status ().isConflict ());
         
         verify (userService, times(1)).registerUser (validUserCredReg, validUserInfoReg);
     }
@@ -78,14 +75,12 @@ public class UserRegistrationControllerTest {
 
         UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
-        MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
         .andExpect (jsonPath ("$.success").value(false))
         .andExpect (jsonPath ("$.message").value ("email_conflict"))
-        .andReturn ();
+        .andExpect (status ().isConflict ());
 
-        assertEquals(409, mvcResult.getResponse ().getStatus ());
-        
         verify (userService, times(1)).registerUser (validUserCredReg, validUserInfoReg);
     }
 
@@ -96,27 +91,23 @@ public class UserRegistrationControllerTest {
 
         UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
-        MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
         .andExpect (jsonPath ("$.success").value(false))
         .andExpect (jsonPath ("$.message").value ("db_error"))
-        .andReturn ();
-
-        assertEquals(500, mvcResult.getResponse ().getStatus ());
+        .andExpect (status ().isInternalServerError ());
         
         verify (userService, times(1)).registerUser (validUserCredReg, validUserInfoReg);
     }
 
     @Test
     void test_controller_register_bad_json_format () throws Exception {
-        MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (validUserCred)))
         .andExpect (jsonPath ("$.success").value(false))
         .andExpect (jsonPath ("$.message").value ("bad_error"))
-        .andReturn ();
+        .andExpect (status ().isBadRequest ());
 
-        assertEquals(400, mvcResult.getResponse ().getStatus ());
-        
         verify (userService, times(0)).registerUser (validUserCredReg, validUserInfoReg);
     }
 
@@ -126,13 +117,12 @@ public class UserRegistrationControllerTest {
 
         UserRegistrationDetails userDetail = new UserRegistrationDetails (validUserCredReg.getUsername (), validUserCredReg.getPassword (), validUserInfoReg.getEmail (), validUserInfoReg.getContactNumber ());
 
-        MvcResult mvcResult = mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/register").contentType (MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (userDetail)))
         .andExpect (jsonPath ("$.success").value(true))
         .andExpect (jsonPath ("$.message").value ("user_created"))
-        .andReturn ();
+        .andExpect (status ().isCreated ());
 
-        assertEquals(201, mvcResult.getResponse ().getStatus ());
         
         verify (userService, times(1)).registerUser (validUserCredReg, validUserInfoReg);
     }

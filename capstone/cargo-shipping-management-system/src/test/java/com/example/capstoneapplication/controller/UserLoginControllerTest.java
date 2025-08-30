@@ -1,6 +1,5 @@
 package com.example.capstoneapplication.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.capstoneapplication.model.UserCredential;
@@ -61,13 +59,12 @@ public class UserLoginControllerTest {
 
         when (userService.loginUser (validLogin)).thenReturn (loginFailMap);
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post ("/api/login").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/login").contentType(MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (validLogin)))
         .andExpect (jsonPath("$.success").value (false))
         .andExpect (jsonPath("$.message").value ("login_fail"))
-        .andReturn ();
+        .andExpect (status ().isUnauthorized ());
 
-        assertEquals (401, mvcResult.getResponse ().getStatus ());
         verify (userService, times(1)).loginUser (validLogin);
     }
 
@@ -79,25 +76,23 @@ public class UserLoginControllerTest {
 
         when (userService.loginUser (validLogin)).thenReturn (loginFailMap);
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post ("/api/login").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/login").contentType(MediaType.APPLICATION_JSON)
         .content (objectMapper.writeValueAsString (validLogin)))
         .andExpect (jsonPath("$.success").value (false))
         .andExpect (jsonPath("$.message").value ("login_error"))
-        .andReturn ();
+        .andExpect (status().isInternalServerError ());
 
-        assertEquals (500, mvcResult.getResponse ().getStatus ());
         verify (userService, times(1)).loginUser (validLogin);
     }
 
     @Test
     void test_login_bad_json () throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post ("/api/login").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform (MockMvcRequestBuilders.post ("/api/login").contentType(MediaType.APPLICATION_JSON)
         .content ("{\"sadfasd\": \"" + "asdfasdf\"}"))
         .andExpect (jsonPath("$.success").value (false))
         .andExpect (jsonPath("$.message").value ("bad_error"))
-        .andReturn ();
+        .andExpect (status ().isBadRequest ());
 
-        assertEquals (400, mvcResult.getResponse ().getStatus ());
         verify (userService, times(0)).loginUser (validLogin);
     }
 }

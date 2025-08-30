@@ -11,5 +11,7 @@ import com.example.capstoneapplication.model.Container;
 public interface ContainerRepository extends JpaRepository<Container, Long> {
 
     public Optional<Container> findByName(String name);
+
+    List<Container> findByDestinationAndArrivalDate(String destination, String arrivalDate);
     
 }

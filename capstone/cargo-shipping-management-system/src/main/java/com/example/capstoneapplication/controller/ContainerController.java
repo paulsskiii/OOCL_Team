@@ -43,7 +43,7 @@ public class ContainerController {
 
     @PostMapping
     public ResponseEntity<Container> addContainer(@RequestBody Container container) {
-        return ResponseEntity.ok(containerService.addContainer(container));
+        return ResponseEntity.ok(containerService.addContainer(container)); // update ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
@@ -53,8 +53,14 @@ public class ContainerController {
 
     @DeleteMapping("/{id}")
     public void deleteContainer(@PathVariable Long id) {
-        containerService.deleteContainer(id);
+        containerService.deleteContainer(id); // updated return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/filter/destination")
+    public ResponseEntity<List<Container>> filterContainers(
+            @RequestParam String destination,
+            @RequestParam String arrivalDate) {
+        return ResponseEntity.ok(containerService.getContainersByDestinationAndArrivalDate(destination, arrivalDate));
+    }
 
 }

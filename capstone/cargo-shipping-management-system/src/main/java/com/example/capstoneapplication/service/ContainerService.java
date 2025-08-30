@@ -57,4 +57,8 @@ public class ContainerService {
         containerRepository.deleteById(id);
     }
 
+    public List<Container> getContainersByDestinationAndArrivalDate(String destination, String arrivalDate) {
+        return containerRepository.findByDestinationAndArrivalDate(destination, arrivalDate);
+    }
+
 }

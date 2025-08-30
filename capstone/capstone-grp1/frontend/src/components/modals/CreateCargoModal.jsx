@@ -41,40 +41,50 @@ function CreateCargoModal({ open, handleOk, setIsCreateModalOpen }) {
 
 	async function handleValidate(e) {
 		e.preventDefault();
-		console.log("connecting to api" + API_URL);
 		try {
 			await form.validateFields();
 			console.log("Validation successful!");
-			try {
-				const response = await fetch(API_URL + "/cargo", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						name: name,
-						descriptions: description,
-						weight: weight,
-						statusCode: "PND",
-						origin: origin,
-						destination: destination,
-						shipper: shipper,
-						consignee: consignee,
-					}),
-				});
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-				// Re-fetch containers to update the list
-				await fetchCargoes();
-				// Reset the form
-				handleCancel();
-			} catch (e) {
-				console.error("Failed to add cargo:", e);
-				///	setError("Failed to add new cargo. Please check the backend.");
-			}
-		} catch (errorInfo) {
-			console.log("Validation failed:", errorInfo);
+
+			// Create Cargo
+			const res = await fetch(API_URL + "/cargo", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					name,
+					descriptions: description,
+					weight,
+					statusId: 5,
+					origin,
+					destination,
+					shipper,
+					consignee,
+				}),
+			});
+
+			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+			const cargo = await res.json(); // parse response
+			console.log("Created cargo:", cargo);
+
+			// Create Tracking Event for this cargo
+			const res2 = await fetch(API_URL + "/tracking-event", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					cargoId: cargo.id, // use returned ID
+					statusId: 5,
+				}),
+			});
+
+			if (!res2.ok) throw new Error(`HTTP error! status: ${res2.status}`);
+
+			console.log("Tracking event created!");
+
+			// Refresh list and close modal
+			await fetchCargoes();
+			handleCancel();
+		} catch (err) {
+			console.error("Failed to create cargo or tracking event:", err);
 		}
 	}
 

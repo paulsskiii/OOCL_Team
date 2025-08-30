@@ -15,6 +15,7 @@ const MainAppPage = () => {
 	const [usersList, setUsersList] = useState([]);
 	const [portsList, setPortsList] = useState([]);
 	const [statusList, setStatusList] = useState([]);
+	const [trackingEventList, setTrackingEventList] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [collapsed, setCollapsed] = useState(false);
@@ -28,11 +29,12 @@ const MainAppPage = () => {
 			);
 
 			// find status object
-			const statusObj = statuses.find((s) => s.statusCode === cargo.statusCode);
+			const statusObj = statuses.find((s) => s.id === cargo.statusId);
 
 			// find user objects
 			const createdByUser = users.find((u) => u.id === cargo.createdBy);
 			const consigneeUser = users.find((u) => u.id === cargo.consignee);
+			const shipperUser = users.find((u) => u.id === cargo.shipper);
 			const courierUser = users.find((u) => u.id === cargo.courier);
 
 			return {
@@ -41,10 +43,13 @@ const MainAppPage = () => {
 				destination: destinationPort
 					? destinationPort.portLocation
 					: cargo.destination,
-				status: statusObj ? statusObj.statusType : cargo.statusCode,
+				status: statusObj ? statusObj.statusType : cargo.statusId,
 				createdBy: createdByUser
 					? `${createdByUser.firstName} ${createdByUser.lastName}`
 					: cargo.createdBy,
+				shipper: shipperUser
+					? `${shipperUser.firstName} ${shipperUser.lastName}`
+					: cargo.shipper,
 				consignee: consigneeUser
 					? `${consigneeUser.firstName} ${consigneeUser.lastName}`
 					: cargo.consignee,
@@ -117,12 +122,23 @@ const MainAppPage = () => {
 		}
 	};
 
+	const fetchTrackingEvents = async () => {
+		try {
+			const res = await fetch(API_URL + "/tracking-event");
+			if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+			setTrackingEventList(await res.json());
+		} catch (e) {
+			setError("Failed to load status.");
+		}
+	};
+
 	// Initial fetch
 	useEffect(() => {
 		fetchUsers();
 		fetchStatus();
 		fetchPorts();
-		fetchCargoes(); // sets rawCargoes instead of transformed
+		fetchCargoes();
+		fetchTrackingEvents();
 	}, []);
 
 	useEffect(() => {
@@ -148,8 +164,10 @@ const MainAppPage = () => {
 				usersList,
 				portsList,
 				statusList,
+				trackingEventList,
 				setCargoes,
 				fetchCargoes,
+				fetchTrackingEvents,
 				API_URL,
 			}}
 		>
@@ -172,11 +190,34 @@ const MainAppPage = () => {
 				>
 					{/* Sidebar */}
 					<div className="flex flex-row items-center gap-1 px-2 py-5">
-						<Button
-							type="text"
-							icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-							onClick={() => setCollapsed(!collapsed)}
-						/>
+						{/* Logo + Toggle */}
+						<div className="flex flex-row items-center gap-1 px-2 py-5">
+							{!collapsed ? (
+								<div className="flex flex-row items-center w-full gap-2">
+									<img src=".\caplogo.png" className="w-10 h-10" />
+									<span className="flex-1 text-2xl font-bold">CargoGo</span>
+									<Button
+										type="text"
+										icon={
+											collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
+										}
+										onClick={() => setCollapsed(!collapsed)}
+									/>
+								</div>
+							) : (
+								<div className="flex flex-row w-full gap-1">
+									<img src=".\caplogo.png" className="w-10 h-10" />
+									<Button
+										type="text"
+										className="text-gray-7700"
+										icon={
+											collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
+										}
+										onClick={() => setCollapsed(!collapsed)}
+									/>
+								</div>
+							)}
+						</div>
 					</div>
 
 					<div className="flex-1 overflow-auto h-3/4">
@@ -210,8 +251,6 @@ const MainAppPage = () => {
 						/>
 					</div>
 				</Sider>
-
-				{/* Children can now consume context */}
 				<MainContent />
 			</Layout>
 		</MainPageContext.Provider>

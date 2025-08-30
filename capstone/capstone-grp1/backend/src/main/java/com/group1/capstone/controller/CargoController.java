@@ -86,4 +86,69 @@ public class CargoController {
         return ResponseEntity.ok(cargoService.getCargoMovingOnDate(from, to));
     }
 
+    // 10. Search by Cargo Name
+    // GET /api/cargo/search/name?q=electronics
+    @GetMapping("/search/name")
+    public ResponseEntity<List<Cargo>> searchByCargoName(@RequestParam("q") String name) {
+        return ResponseEntity.ok(cargoService.searchByCargoName(name));
+    }
+    
+    // 11. Filter by Status
+    // GET /api/cargo/filter/status?statusCode=IN_TRANSIT
+    @GetMapping("/filter/status")
+    public ResponseEntity<List<Cargo>> filterByStatus(@RequestParam("statusCode") String statusCode) {
+        return ResponseEntity.ok(cargoService.filterByStatus(statusCode));
+    }
+    
+    // 12. Sort by Alphabetical (Ascending)
+    // GET /api/cargo/sort/name/asc
+    @GetMapping("/sort/name/asc")
+    public ResponseEntity<List<Cargo>> sortByAlphabeticalAsc() {
+        return ResponseEntity.ok(cargoService.sortByAlphabeticalAsc());
+    }
+    
+    // 13. Sort by Alphabetical (Descending)
+    // GET /api/cargo/sort/name/desc
+    @GetMapping("/sort/name/desc")
+    public ResponseEntity<List<Cargo>> sortByAlphabeticalDesc() {
+        return ResponseEntity.ok(cargoService.sortByAlphabeticalDesc());
+    }
+    
+    // 14. Sort by Creation Date (Ascending)
+    // GET /api/cargo/sort/date/asc
+    @GetMapping("/sort/date/asc")
+    public ResponseEntity<List<Cargo>> sortByCreationDateAsc() {
+        return ResponseEntity.ok(cargoService.sortByCreationDateAsc());
+    }
+    
+    // 15. Sort by Creation Date (Descending)
+    // GET /api/cargo/sort/date/desc
+    @GetMapping("/sort/date/desc")
+    public ResponseEntity<List<Cargo>> sortByCreationDateDesc() {
+        return ResponseEntity.ok(cargoService.sortByCreationDateDesc());
+    }
+    
+    // 16. Search by Cargo Name + Filter by Status
+    // GET /api/cargo/search/name-status?name=electronics&statusCode=IN_TRANSIT
+    @GetMapping("/search/name-status")
+    public ResponseEntity<List<Cargo>> searchByCargoNameAndStatus(
+            @RequestParam("name") String name,
+            @RequestParam("statusCode") String statusCode) {
+        return ResponseEntity.ok(cargoService.searchByCargoNameAndStatus(name, statusCode));
+    }
+    
+    // 17. Search by Cargo Name + Sort by Alphabetical (Ascending)
+    // GET /api/cargo/search/name-sort-asc?name=electronics
+    @GetMapping("/search/name-sort-asc")
+    public ResponseEntity<List<Cargo>> searchByCargoNameAndSortAlphabeticalAsc(@RequestParam("name") String name) {
+        return ResponseEntity.ok(cargoService.searchByCargoNameAndSortAlphabeticalAsc(name));
+    }
+    
+    // 18. Search by Cargo Name + Sort by Alphabetical (Descending)
+    // GET /api/cargo/search/name-sort-desc?name=electronics
+    @GetMapping("/search/name-sort-desc")
+    public ResponseEntity<List<Cargo>> searchByCargoNameAndSortAlphabeticalDesc(@RequestParam("name") String name) {
+        return ResponseEntity.ok(cargoService.searchByCargoNameAndSortAlphabeticalDesc(name));
+    }
+
 }

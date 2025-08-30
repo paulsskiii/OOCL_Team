@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.group1.capstone.exceptions.CargoNotFoundException;
@@ -75,5 +76,54 @@ public class CargoService {
     // 9. Get all cargo moving for the day, month, year
     public List<Cargo> getCargoMovingOnDate(LocalDate from, LocalDate to) {
         return cargoRepository.findCargoMovingOnDate(from, to);
+    }
+
+    // 10. Search by Cargo Name
+    public List<Cargo> searchByCargoName(String name) {
+        return cargoRepository.findByNameContainingIgnoreCase(name);
+    }
+    
+    // 11. Filter by Status
+    public List<Cargo> filterByStatus(String statusCode) {
+        return cargoRepository.findByStatusCode(statusCode);
+    }
+    
+    // 12. Sort by Alphabetical (Ascending)
+    public List<Cargo> sortByAlphabeticalAsc() {
+        return cargoRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+    }
+    
+    // 13. Sort by Alphabetical (Descending)
+    public List<Cargo> sortByAlphabeticalDesc() {
+        return cargoRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
+    }
+    
+    // 14. Sort by Creation Date (Ascending)
+    public List<Cargo> sortByCreationDateAsc() {
+        return cargoRepository.findAll(Sort.by(Sort.Direction.ASC, "createdAt"));
+    }
+    
+    // 15. Sort by Creation Date (Descending)
+    public List<Cargo> sortByCreationDateDesc() {
+        return cargoRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+    }
+    
+    // 16. Search by Cargo Name + Filter by Status
+    public List<Cargo> searchByCargoNameAndStatus(String name, String statusCode) {
+        return cargoRepository.findByNameContainingIgnoreCaseAndStatusCode(name, statusCode);
+    }
+    
+    // 17. Search by Cargo Name + Sort by Alphabetical (Ascending)
+    public List<Cargo> searchByCargoNameAndSortAlphabeticalAsc(String name) {
+        List<Cargo> cargos = cargoRepository.findByNameContainingIgnoreCase(name);
+        cargos.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+        return cargos;
+    }
+    
+    // 18. Search by Cargo Name + Sort by Alphabetical (Descending)
+    public List<Cargo> searchByCargoNameAndSortAlphabeticalDesc(String name) {
+        List<Cargo> cargos = cargoRepository.findByNameContainingIgnoreCase(name);
+        cargos.sort((c1, c2) -> c2.getName().compareToIgnoreCase(c1.getName()));
+        return cargos;
     }
 }

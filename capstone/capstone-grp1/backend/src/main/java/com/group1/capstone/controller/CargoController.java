@@ -133,7 +133,7 @@ public class CargoController {
     @GetMapping("/search/name-status")
     public ResponseEntity<List<Cargo>> searchByCargoNameAndStatus(
             @RequestParam("name") String name,
-            @RequestParam("statusCode") int statusId) {
+            @RequestParam("statusId") int statusId) {
         return ResponseEntity.ok(cargoService.searchByCargoNameAndStatus(name, statusId));
     }
     

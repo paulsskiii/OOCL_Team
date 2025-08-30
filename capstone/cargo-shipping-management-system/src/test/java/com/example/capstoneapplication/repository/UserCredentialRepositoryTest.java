@@ -11,10 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.example.capstoneapplication.model.UserCredential;
-import com.example.capstoneapplication.repository.UserCredentialRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -62,16 +60,5 @@ public class UserCredentialRepositoryTest {
             userCredRepo.save (new UserCredential ("test", longName, 1));
             userCredRepo.findAll ();
         });
-    }
-
-    // @Test
-    // @Transactional
-    // void test_remove_existing_user () {
-    //     userCredRepo.save (expectedUserCreds.get (0));
-    //     userCredRepo.save (expectedUserCreds.get (1));
-
-    //     assertEquals (2, userCredRepo.findAll ().size ());
-        
-    // }
-    
+    }    
 }

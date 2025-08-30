@@ -1,7 +1,6 @@
 package com.example.capstoneapplication.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +9,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.example.capstoneapplication.model.UserCredential;
 import com.example.capstoneapplication.model.UserInformation;
-import com.example.capstoneapplication.repository.UserCredentialRepository;
-import com.example.capstoneapplication.repository.UserInformationRepository;
 
 import jakarta.transaction.Transactional;
 
-@SpringBootTest
+@SpringBootTest 
 public class UserInformationRepositoryTest {
     @Autowired
     UserInformationRepository userInfoRepo;
@@ -30,7 +25,6 @@ public class UserInformationRepositoryTest {
     UserCredentialRepository userCredRepo;
 
     private List<UserInformation> expectedUserInfos;
-
 
     @BeforeEach
     @Transactional

@@ -1,8 +1,5 @@
 package com.example.capstoneapplication.util;
 
-import com.example.capstoneapplication.model.UserCredential;
-import com.example.capstoneapplication.model.UserInformation;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

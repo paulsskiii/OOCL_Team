@@ -22,10 +22,10 @@ public class StatusController {
         return ResponseEntity.ok(statusService.getAllStatus());
     }
 
-    // 2. Get status by ID
-    @GetMapping("/{statusCode}")
-    public ResponseEntity<Status> getStatusById(@PathVariable String statusCode) {
-        return ResponseEntity.ok(statusService.getStatusById(statusCode));
+    // 2. Get cargo by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Status> getStatusById(@PathVariable int id) {
+        return ResponseEntity.ok(statusService.getStatusById(id));
     }
 
     // 3. Get status count
@@ -41,15 +41,15 @@ public class StatusController {
     }
 
     // 5. Update status
-    @PutMapping("/{statusCode}")
-    public ResponseEntity<Status> updateStatus(@PathVariable String statusCode, @RequestBody Status updatedStatus) {
-        return ResponseEntity.ok(statusService.updateStatus(statusCode, updatedStatus));
+    @PutMapping("/{id}")
+    public ResponseEntity<Status> updateStatus(@PathVariable int id, @RequestBody Status updatedStatus) {
+        return ResponseEntity.ok(statusService.updateStatus(id, updatedStatus));
     }
 
     // 6. Delete status
-    @DeleteMapping("/{statusCode}")
-    public ResponseEntity<Void> deleteStatus(@PathVariable String statusCode) {
-        statusService.deleteStatus(statusCode);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStatus(@PathVariable int id) {
+        statusService.deleteStatus(id);
         return ResponseEntity.noContent().build(); // HTTP 204 No Content
     }
 }

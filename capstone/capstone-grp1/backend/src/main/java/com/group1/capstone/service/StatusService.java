@@ -20,9 +20,9 @@ public class StatusService {
     }
 
     // 2. Find status by ID
-    public Status getStatusById(String statusCode) {
-        return statusRepository.findById(statusCode)
-                .orElseThrow(() -> new StatusNotFoundException("Status with Code " + statusCode + " not found."));
+    public Status getStatusById(int id) {
+        return statusRepository.findById(id)
+                .orElseThrow(() -> new StatusNotFoundException("Status with ID " + id + " not found."));
     }
 
     // 3. Get status count
@@ -36,20 +36,21 @@ public class StatusService {
     }
 
     // 5. Update status    
-    public Status updateStatus(String statusCode, Status updatedStatus) {
-        return statusRepository.findById(statusCode).map(status -> {
+    public Status updateStatus(int id, Status updatedStatus) {
+        return statusRepository.findById(id).map(status -> {
             status.setStatusType(updatedStatus.getStatusType());
+            status.setStatusCode(updatedStatus.getStatusCode());
 
             return statusRepository.save(status);
-        }).orElseThrow(() -> new StatusNotFoundException("Status with Code " + statusCode + " not found."));
+        }).orElseThrow(() -> new StatusNotFoundException("Status with ID " + id + " not found."));
     }
     
     // 6. Delete status
-    public void deleteStatus(String statusCode) {
-        if (!statusRepository.existsById(statusCode)) {
-            throw new StatusNotFoundException("Status with Code " + statusCode + " not found.");
+    public void deleteStatus(int id) {
+        if (!statusRepository.existsById(id)) {
+            throw new StatusNotFoundException("Status with ID " + id + " not found.");
         }
-        statusRepository.deleteById(statusCode);
+        statusRepository.deleteById(id);
     }
 
 

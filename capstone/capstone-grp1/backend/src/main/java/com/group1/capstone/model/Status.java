@@ -10,7 +10,11 @@ import java.sql.Timestamp;
 @Table(name = "status")
 public class Status {
    @Id
-   @Column(name = "status_code", nullable = false, unique = true, length = 5)
+   @Column(name = "id", nullable = false)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private int id;
+
+   @Column(name = "status_code", nullable = false, length = 5)
    private String statusCode;
 
    @Column(name = "status_type", nullable = false, length = 100)
